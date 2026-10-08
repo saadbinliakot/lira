@@ -1,0 +1,166 @@
+%*******************************************************************
+%   Project Name: BracU Thesis Template
+%   Prepared by: Ayesha Abed Library, Brac University
+%   
+%   "Predicting a T20 Cricket Match Result While The Match is in Progress", this thesis was 
+%   submitted to BracU on 23 August, 2015 by Fahad Munir, Md. Kamrul Hasan, Sakib Ahmed, Sultan Md. Quraish
+%   Authors have given full consent to use their thesis as a sample to develop a Thesis Template using LaTex 
+%   PLEASE KEEP ALL FILES IN THEIR DESIGNATED FOLDERS
+%*******************************************************************
+% Project Structure:
+% appendix: Contains “appendix.txt” files.
+% bibliography: Contains “references.bib” file.
+% chapters: Contains “chapter.txt” files. For every chapter, create separate “chapter_[1,2,3..].txt” files.
+% core: This folder will contain following files:
+%     declaration.txt
+%     approval.txt
+%     ethics_statement.txt
+%     abstract.txt
+%     dedication.txt
+%     acknowledgement.txt
+%     titlepage.txt
+% images:Contains all images files. 
+% main.txt
+%     This is the main.txt file. All the packages and environment variable are declared in main.txt. All others .txt files are referred from this file.
+%
+% If you have any questions or concerns about the latex template, please feel free to visit Ayesha Abed Library.
+%*******************************************************************
+
+\documentclass[12pt,oneside,openany]{report}
+\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes} % Provides advanced facilities for in-line and display quotations
+\usepackage{amsmath} % TO use mathematical equations 
+\pagestyle{plain} % Just a plain page number. For more http://www.emerson.emory.edu/services/latex/latex_129.html
+
+\usepackage{graphicx} % to use the graphicx package
+\usepackage{tikz} % For drawing diagrams
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, decorations.pathreplacing, shapes.arrows}
+\usepackage{pgfgantt} % For drawing Gantt charts
+\usepackage[margin=1cm,font=small,labelfont=bf,skip=10pt]{caption} % To use caption with figure and images
+\usepackage{array} % The array environment is used to make a table of information, with column alignment (left, center, or right) and optional vertical lines separating the columns
+\usepackage{tabularx} % Tables with columns that wrap to the available page width
+\usepackage{makecell} % Controlled line breaks in table headers
+\usepackage{longtable} % For tables spanning multiple pages
+\usepackage{enumitem} % For configurable list spacing and margins
+
+\usepackage[nottoc]{tocbibind} % The tocbibind package can be used to add the ToC and/or bibliography and/or the index etc., to the Table of Contents listing
+
+\usepackage[normalem]{ulem} % The ulem package provides various types of underlining that can stretch between words and be broken across lines.
+
+\usepackage{hyperref} % Provides LaTeX the ability to create hyperlinks within the document.
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,      
+    urlcolor=black,
+    citecolor=black,
+}
+\urlstyle{same}
+
+\setlength{\parindent}{0em} % To control Indentation of paragraphs 
+
+\usepackage[backend=biber,style=ieee,sorting=ynt,natbib=true]{biblatex} % for more plz click https://www.overleaf.com/learn/latex/Biblatex_citation_styles
+\addbibresource{bibliography/references.bib} % Imports bibliography file
+
+\usepackage{appendix} % For appendices environment
+
+\let\cleardoublepage=\clearpage % removes unwanted doublepages
+
+\begin{document}
+
+\thispagestyle{empty} % removes page number from title page
+\input{core/titlepage} % Add title page
+\cleardoublepage
+
+\pagenumbering{roman} % Roman numbers to be use all pages before Chapter 1
+
+%*******************************************************************
+% TOC = Table of Contents
+% The hyperref makes Title page No. 1 entry in the TOC
+% In order to properly link  all section in TOC "phantomsection" command used
+%  see below link for details on "addcontentsline"
+% http://www.emerson.emory.edu/services/latex/latex_162.html
+% "input" command to add files
+% "Ethics Statement" & "Dedication" page are Optional; you may omit this two page if you want
+% Please do not change the order of listings in TOC
+%*******************************************************************
+\phantomsection
+\addcontentsline{toc}{chapter}{Declaration}
+\input{core/declaration}
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Approval}
+\input{core/approval}
+
+% \phantomsection
+% \addcontentsline{toc}{chapter}{Ethics Statement}
+% \input{core/ethics_statement}
+
+\phantomsection
+\addcontentsline{toc}{chapter}{Abstract}
+\input{core/abstract}
+
+% \phantomsection
+% \addcontentsline{toc}{chapter}{Dedication}
+% \input{core/dedication}
+
+% \phantomsection
+% \addcontentsline{toc}{chapter}{Acknowledgment}
+% \input{core/acknowledgement}
+
+\renewcommand{\contentsname}{Table of Contents} % Rename TOC name from Contents to Table of Contents
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{Table of Contents} % Add Table of Contents in TOC
+\tableofcontents % To  generation of the Table of Contents
+
+\listoffigures % To  generation of the List of Figure
+\listoftables % To  generation of the Tables of Figure
+
+\cleardoublepage
+
+\pagenumbering{arabic} % To use page number 1,2,3 ..
+
+\chapter{Introduction}
+\input{chapters/chapter_1.tex}
+
+\chapter{Literature Review}
+\input{chapters/chapter_2.tex}
+
+\chapter{Requirements, Impacts and Constraints}
+\input{chapters/chapter_3.tex}
+
+
+\chapter{Proposed Methodology}
+\input{chapters/chapter_4.tex}
+
+% \chapter{Result Analysis}
+% \input{chapters/chapter_6.tex}
+
+\chapter{Experimental Validation}
+\input{chapters/chapter_9.tex}
+
+\chapter{Conclusion}
+\input{chapters/chapter_6.tex}
+
+
+\phantomsection
+\printbibliography % Where the bibliography will be printed
+\addcontentsline{toc}{chapter}{Bibliography}
+
+% ********************************** Appendices ********************************
+\begin{appendices} % Using appendices environment for more functionality
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Appendix A How to install \LaTeX}
+\input{appendix/appendix_1}
+
+\newpage
+\phantomsection
+\addcontentsline{toc}{chapter}{Appendix B Overleaf: GitHub for \LaTeX\ projects}
+\input{appendix/appendix_2}
+\end{appendices}
+
+\end{document}

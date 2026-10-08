@@ -1,0 +1,289 @@
+% \section{Final Specifications and Requirements}
+% This section discusses technical or methodological Requirements, data or resource requirements (software), etc.
+
+% \section{Societal Impact}
+% Study and report on project impact on society, health, safety, legal, and cultural aspects.
+
+% \section{Environmental Impact}
+% Study and report on project sustainability and environmental impact.
+
+% \section{Ethical Issues}
+% Identify ethical issues and professional responsibilities related to the design solution.
+
+% \section{Standards - if applicable}
+% Write about any standard maintained.
+
+\section{Project Management Plan}
+
+The project is organised into three phases over 46 weeks. The schedules are shown
+in Figures~\ref{fig:plan-phase1},~\ref{fig:plan-phase2}, and~\ref{fig:plan-phase3}.
+
+The phases follow the order of the research process. Phase 1 establishes the physical
+and methodological foundation. Phase 2 develops and tests the algorithms under
+controlled conditions. Phase 3 applies the validated pipeline to real observations
+and completes the reporting.
+
+This order reduces the risk of interpreting real data with an untested method.
+
+\vspace{0.5cm}
+\textbf{Phase 1 (Weeks 1 to 15). Background and Method Design}
+
+The first 15 weeks are reserved for background study and method design. The later
+experiments depend on both of them.
+
+The literature review is completed first so that the project requirements and research
+gaps are clear. The clustering and causal discovery reviews come next. They are
+followed by the accretion-disk review, which connects the statistical problem to the
+physical variables.
+
+The gaps found in these reviews guide the pipeline design. Data collection or
+simulation is scheduled at the end of this phase. The data generator and preprocessing
+choices should follow the final model design.
+
+\vspace{0.5cm}
+\begin{enumerate}
+    \item Review causal discovery methods for time series.
+    \item Review unsupervised methods for regime identification.
+    \item Review accretion-disk physics and known accretion states.
+    \item Identify gaps in causal discovery for astrophysical time series.
+    \item Design the regime-separation and graph-recovery pipeline.
+    \item Obtain or simulate accretion-disk time-series data from sources such as GRMHD simulations or NICER/RXTE archives.
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{figure}[htbp]
+\centering
+\begin{center}
+\begin{ganttchart}[
+    x unit=0.8cm,
+    y unit title=0.8cm,
+    y unit chart=0.8cm,
+    vgrid,
+    hgrid,
+    title label font=\bfseries\small,
+    bar label font=\small,
+    bar/.style={fill=blue!20},
+    include title in canvas=false
+]{1}{15}
+\gantttitle{Phase 1. Weeks 1 to 15}{15} \\
+\gantttitlelist{1,...,15}{1} \\
+\ganttbar{Task 1}{1}{3} \\
+\ganttbar{Task 2}{4}{6} \\
+\ganttbar{Task 3}{7}{9} \\
+\ganttbar{Task 4}{10}{11} \\
+\ganttbar{Task 5}{12}{14} \\
+\ganttbar{Task 6}{14}{15}
+\end{ganttchart}
+\end{center}
+\caption{Project plan for Phase 1.}
+\label{fig:plan-phase1}
+\end{figure}
+\vspace{0.5cm}
+
+Figure~\ref{fig:plan-phase1} shows that the tasks are arranged from general to
+specific. The first reviews establish the research context. The physics review and
+gap analysis then define the scientific and technical requirements.
+
+Pipeline design comes next, followed by data preparation. This sequence ensures that
+the data and experiments match the proposed method rather than being selected
+independently of it.
+
+\vspace{0.5cm}
+\textbf{Phase 2 (Weeks 16 to 30). Algorithm Development and Simulation}
+
+Phase 2 uses 15 weeks to implement and test the method before real-data analysis.
+The first step is to generate data with known regimes and graphs. Ground truth is
+required for objective evaluation.
+
+Regime clustering is implemented next. Graph recovery within each estimated regime
+comes after it. Once both components are available, the complete pipeline can be
+compared with the known ground truth.
+
+The final weeks are used for sensitivity analysis. The method is tested under
+different noise levels, sample sizes, and sampling patterns.
+
+\vspace{0.5cm}
+\begin{enumerate}
+    \item Generate data with known causal graphs and regime labels.
+    \item Implement regime clustering based on mechanism changes.
+    \item Implement time-series causal discovery within each regime.
+    \item Compare the recovered regimes and graphs with the ground truth.
+    \item Test sensitivity to noise, sample size, and irregular sampling.
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{figure}[htbp]
+\centering
+\begin{center}
+\begin{ganttchart}[
+    x unit=0.8cm,
+    y unit title=0.8cm,
+    y unit chart=0.8cm,
+    vgrid,
+    hgrid,
+    title label font=\bfseries\small,
+    bar label font=\small,
+    bar/.style={fill=blue!20},
+    include title in canvas=false
+]{16}{30}
+\gantttitle{Phase 2. Weeks 16 to 30}{15} \\
+\gantttitlelist{16,...,30}{1} \\
+\ganttbar{Task 1}{16}{18} \\
+\ganttbar{Task 2}{19}{21} \\
+\ganttbar{Task 3}{22}{25} \\
+\ganttbar{Task 4}{26}{28} \\
+\ganttbar{Task 5}{29}{30}
+\end{ganttchart}
+\end{center}
+\caption{Project plan for Phase 2.}
+\label{fig:plan-phase2}
+\end{figure}
+\vspace{0.5cm}
+
+Figure~\ref{fig:plan-phase2} reflects this dependency. Data generation comes before
+algorithm testing, and regime discovery comes before regime-specific graph learning.
+Validation is scheduled only after the full pipeline is available.
+
+Sensitivity analysis is last because it evaluates the stability of the completed
+implementation.
+
+\vspace{0.5cm}
+\textbf{Phase 3 (Weeks 31 to 46). Real-Data Application and Reporting}
+
+The final 16 weeks are used for real-data application and communication of the
+results. Real light curves are analysed only after the synthetic tests. The synthetic
+tests show that the method can recover known structures.
+
+The discovered regimes are then compared with known accretion states. Their graphs
+are examined for physical differences. The report is drafted after the main analysis.
+It then reflects the final results and limitations.
+
+Visualisation is completed at the end. It presents the regime assignments, graphs,
+and time-series results consistently throughout the thesis.
+
+\vspace{0.5cm}
+\begin{enumerate}
+    \item Apply the pipeline to real accretion-disk light curves, such as those from GRS 1915+105 or Cygnus X-1.
+    \item Interpret the discovered regimes using known accretion states.
+    \item Compare the causal graphs and discuss their physical meaning.
+    \item Write the report, including the method, results, and limitations.
+    \item Prepare causal graphs, regime assignments, and time-series plots.
+\end{enumerate}
+
+\vspace{0.5cm}
+\begin{figure}[htbp]
+\centering
+\begin{center}
+\begin{ganttchart}[
+    x unit=0.75cm,
+    y unit title=0.8cm,
+    y unit chart=0.8cm,
+    vgrid,
+    hgrid,
+    title label font=\bfseries\small,
+    bar label font=\small,
+    bar/.style={fill=blue!20},
+    include title in canvas=false
+]{31}{46}
+\gantttitle{Phase 3. Weeks 31 to 46}{16} \\
+\gantttitlelist{31,...,46}{1} \\
+\ganttbar{Task 1}{31}{34} \\
+\ganttbar{Task 2}{35}{37} \\
+\ganttbar{Task 3}{38}{40} \\
+\ganttbar{Task 4}{41}{44} \\
+\ganttbar{Task 5}{45}{46}
+\end{ganttchart}
+\end{center}
+\caption{Project plan for Phase 3.}
+\label{fig:plan-phase3}
+\end{figure}
+\vspace{0.5cm}
+
+Figure~\ref{fig:plan-phase3} shows this final progression. Real-data analysis begins
+the phase. Interpretation follows the discovery of the regimes. Reporting begins
+after the main findings are available.
+
+The final visualization task supports the written discussion. It also prepares the
+project for review and submission.
+
+\section{Risk Management}
+
+\vspace{0.3cm}
+Real astrophysical time series, including X-ray light curves, can be noisy, irregular,
+and limited in size. These properties make causal graph recovery and regime
+separation difficult.
+
+Unlike in a controlled experiment, the accretion state for each observation is not known.
+The number of causal mechanisms is also uncertain. Unobserved variables, such as
+magnetic-field changes, may confound the measured features.
+
+Many causal discovery algorithms also assume acyclic relationships. Accretion disks
+can contain feedback among temperature, density, and accretion rate.
+
+The study manages these risks in three ways. First, it uses simulated data with known
+graphs for controlled validation. Second, it uses methods designed for time series and
+time-delayed effects. Third, it compares results across methods and tests their
+stability under noise and small sample sizes.
+
+\vspace{0.5cm}
+\textbf{Risks of Synthetic Data}
+
+Synthetic data is central to Phase 2. It is the only practical way to know the
+correct regime boundaries and causal graphs in advance. Without a known answer, it is
+impossible to say whether the pipeline recovered the true structure. It could also
+have simply produced a plausible-looking result.
+
+Synthetic data carries its own set of risks. These risks must be stated clearly.
+
+The first risk is that the generator may be too favourable to the method. The
+simulated series are built from the same linear and piecewise-stationary assumptions
+that LIRA uses to recover them. If the real system departs from these assumptions,
+the simulation results will overestimate performance.
+
+To reduce this risk, the study varies noise levels, sample sizes, and sampling
+patterns. It also compares the pipeline against established baselines rather than
+against an empty model.
+
+The second risk is that synthetic data does not contain every feature of real
+observations. Real X-ray light curves contain gaps caused by telescope visibility.
+They also contain instrumental artefacts and source-specific variability. A simple
+generator does not reproduce these effects.
+
+A method that works perfectly on clean simulations may fail when they are present.
+The sensitivity analysis therefore includes irregular and noisy conditions. It cannot
+cover every case that real data may present.
+
+The third risk is overconfidence. Because the boundary and graph are known during
+simulation, it is tempting to treat a successful recovery as proof that the method
+works in general.
+
+The study avoids this. Synthetic results are treated as a necessary but insufficient
+condition. The pipeline must first succeed under controlled conditions. It is only
+then applied to real observations where the truth is unknown.
+
+Any claim from the synthetic experiments is a claim about the implementation. It is
+not a claim about black hole physics.
+
+The fourth risk is that the assumed collider structure may not hold for every
+system. The identifiability analysis depends on this structure. If real accretion
+variables form causal chains instead of the collider used here, the identifiability
+guarantee does not transfer.
+
+This limitation is carried forward into the discussion of real data in Chapter 6. It
+is not hidden by the simulation.
+
+This risk strategy also explains the phase order. Phase 1 reduces design risk through
+background study and method specification. Phase 2 reduces implementation risk by
+testing the pipeline where the correct answer is known. The synthetic-data risks
+above are contained and documented in this phase.
+
+Phase 3 addresses the remaining scientific risk. It applies the validated method to
+real observations. It also reports the assumptions and uncertainties that cannot be
+removed from observational data.
+
+The phase order is therefore not only a schedule. It is a deliberate escalation from
+low-risk controlled tests to high-risk real-data analysis. No stage begins before the
+previous stage has established its own reliability.
+
+% \section{Economic Analysis}
+% Conduct economic analysis and cost-benefit estimation.

@@ -1,0 +1,24 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces Summary of major related works in causal discovery, regime detection, and causal clustering.}}{23}{table.2.1}%
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces Variable set and transformation}}{36}{table.caption.52}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces Spectral-state diagnostics and their regime dependence}}{37}{table.caption.53}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Complexity penalty comparison}}{42}{table.caption.54}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces Complete parameter specification}}{44}{table.caption.55}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Distributional summary of the generated data}}{46}{table.caption.56}%
+\contentsline {table}{\numberline {5.2}{\ignorespaces Generating coefficients}}{46}{table.caption.57}%
+\contentsline {table}{\numberline {5.3}{\ignorespaces Residual independence diagnostics (Hard State segment)}}{48}{table.caption.60}%
+\contentsline {table}{\numberline {5.4}{\ignorespaces Gate evaluation at each recursion node}}{49}{table.caption.63}%
+\contentsline {table}{\numberline {5.5}{\ignorespaces Regime recovery accuracy}}{51}{table.caption.66}%
+\contentsline {table}{\numberline {5.6}{\ignorespaces Recovered structural coefficients}}{52}{table.caption.68}%
+\contentsline {table}{\numberline {5.7}{\ignorespaces Pooled model versus regime-specific models}}{52}{table.caption.69}%
+\contentsline {table}{\numberline {5.8}{\ignorespaces Contemporaneous edge recovery ($\hat {W}$)}}{53}{table.caption.71}%
+\contentsline {table}{\numberline {5.9}{\ignorespaces Lagged edge recovery ($\hat {A}$, self-lags)}}{53}{table.caption.72}%
+\contentsline {table}{\numberline {5.10}{\ignorespaces Estimated causal effects, refutation outcomes, and robustness}}{55}{table.caption.74}%
+\contentsline {table}{\numberline {5.11}{\ignorespaces Graph falsification summary}}{57}{table.caption.77}%
+\contentsline {table}{\numberline {5.12}{\ignorespaces Summary of experimental findings}}{58}{table.caption.78}%
+\addvspace {10\p@ }

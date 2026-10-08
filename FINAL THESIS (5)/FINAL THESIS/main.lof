@@ -1,0 +1,26 @@
+\babel@toc {english}{}\relax 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces High-level pipeline of the unsupervised dynamic causal discovery framework, illustrating the progression from observational data to regime-specific causal graphs.}}{3}{figure.caption.11}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Representations of Time-Series Causal Graphs}}{16}{figure.caption.36}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Project plan for Phase 1.}}{30}{figure.caption.46}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Project plan for Phase 2.}}{31}{figure.caption.47}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Project plan for Phase 3.}}{32}{figure.caption.48}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Accretion geometry of the two spectral states. In the Hard State the disk is truncated and replaced inward by a hot corona, with a steady radio jet. In the Soft State the disk extends to the innermost stable circular orbit and the jet is quenched.}}{34}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Hypothesised causal structures for the hard and soft accretion states.}}{35}{figure.caption.50}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Step-by-step recursive framework for temporal regime discovery and dynamic causal graph recovery, combining lagged OLS estimation, Binary Segmentation, Chow and BIC gates, and DYNOTEARS.}}{36}{figure.caption.51}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Hypothesised regime-specific causal structures. Edge width is proportional to coefficient magnitude. The causally isolated variable in each regime is shown dashed.}}{47}{figure.caption.58}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces The generated series with the true boundary (dashed) and the boundary discovered by LIRA (solid). No level shift is visible at the boundary in any variable, by construction.}}{47}{figure.caption.59}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Residual autocorrelation functions with and without the AR(1) term. Shaded band gives the 95\% interval under independence.}}{48}{figure.caption.61}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Lagged Chow $F$-statistic across candidate split points, with detail near the boundary.}}{49}{figure.caption.62}%
+\contentsline {figure}{\numberline {5.5}{\ignorespaces BIC evaluation at each recursion node.}}{50}{figure.caption.64}%
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Realised recursion tree on the synthetic validation series.}}{50}{figure.caption.65}%
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Regime recovery: LIRA against structure-blind clustering baselines.}}{51}{figure.caption.67}%
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Recovered coefficients per regime, and the pooled model that matches neither.}}{53}{figure.caption.70}%
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Recovered adjacency matrices against ground truth, for both the contemporaneous and lagged components.}}{54}{figure.caption.73}%
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Causal effect estimation and refutation battery. All reported tests pass.}}{55}{figure.caption.75}%
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Robustness to unobserved confounding as a function of estimated causal-effect magnitude.}}{56}{figure.caption.76}%
+\addvspace {10\p@ }

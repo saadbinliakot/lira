@@ -1,0 +1,155 @@
+This chapter introduces the research context, motivation, objectives, and method. It
+also describes the scope and main limitations of the study.
+
+\section{Background}
+Modern observatories collect high-cadence data at several wavelengths. Missions such
+as \textit{Chandra}, \textit{XMM-Newton}, and \textit{NICER} have greatly increased the
+amount and quality of available astrophysical data \cite{weisskopf2002, jansen2001,
+gendreau2012}. These data reveal complex changes in black hole accretion systems.
+
+Black holes are regions of spacetime from which light cannot escape after crossing
+the event horizon. The matter around them can still produce strong radiation.
+Accretion occurs when matter is captured and spirals inward. It converts gravitational
+energy into heat and radiation with high efficiency \cite{shakura1973, frank2002}.
+Black hole binaries and Active Galactic Nuclei (AGN) vary over several timescales
+\cite{remillard2006, done2007}. Their variability reflects changes in the geometry of
+the flow and in the mechanism that releases energy. These changes are commonly
+described using the \textit{Hard State} and \textit{Soft State}
+\cite{fender2004}.
+
+Accretion systems also follow power-law scaling relations across a wide range of
+black-hole masses. These relations suggest shared physical behaviour and motivate
+the Fundamental Plane of black hole activity \cite{merloni2003}. However, correlation
+alone cannot show which physical process drives another. Causal discovery provides
+a way to study these directed relationships.
+
+The main difficulty is that the physical drivers of accretion, such as magnetic-field
+configuration, viscosity, and local shocks, are usually not observed directly. We
+observe only their emitted light. This thesis studies \textbf{Latent Regime Discovery}:
+finding the hidden physical states and their causal mechanisms from observational
+data.
+
+\section{Rationale of the Study}
+Black hole accretion systems change between physically distinct states, but the state
+of each observation is not labelled. Manual classification is time-consuming and does
+not scale well to high-cadence instruments such as \textit{NICER}.
+
+The causal relationships can also change between states. A pooled model may therefore
+produce biased coefficients and hide the true jet-disk coupling. For example, the
+relationship between X-ray luminosity and radio emission may differ between the Hard
+State and the Soft State. That difference cannot be recovered unless the observations
+are first separated by regime.
+
+An automated framework for latent causal regime discovery would reduce the need for
+manual labelling and could reveal physical relationships that correlation-based
+analyses miss.
+
+\section{Problem Statement}
+This thesis addresses the lack of methods that can discover latent causal regimes
+from unlabelled observations without environment labels, a surrogate domain index,
+or a pre-specified number of states. ICP \cite{peters2016causal} and IRM
+\cite{arjovsky2019irm} require environment labels. CD-NOD \cite{huang2020causal}
+requires an auxiliary time or domain index. CCSL requires multiple independent
+subject datasets, whereas X-ray binary monitoring usually provides one continuous
+record.
+
+Traditional clustering groups observations by feature similarity rather than causal
+mechanism. It can miss boundaries where observed distributions overlap but the causal
+laws differ. High-cadence accretion data also contain temporal autocorrelation.
+Methods that assume independent and identically distributed (i.i.d.) observations
+may then produce inflated statistics and false regime boundaries.
+
+The problem is therefore the joint treatment of unlabelled data, an unknown regime
+count, temporal dependence, and invariance-based recursive partitioning.
+\section{Objectives}
+The general objective is to develop and validate a framework that discovers hidden
+causal regimes and their structures from unlabelled, temporally dependent data. The
+framework should not require environment labels, a surrogate nonstationarity index,
+or a pre-specified number of states. The specific objectives are:
+\begin{enumerate}
+    \item To formulate accretion observables within a structural causal model grounded
+    in established scaling physics, with parameters that have a physical interpretation.
+    \item To design a statistical criterion that distinguishes genuine mechanism
+    changes from variation caused by noise.
+    \item To maintain the validity of this criterion when high-cadence observations
+    are temporally dependent.
+    \item To determine the number and location of latent regimes automatically.
+    \item To prevent overfitting and unnecessary fragmentation of the time series.
+    \item To recover a directed causal structure within each regime and compare the
+    coupling between physical variables across states.
+    \item To validate the framework on data with known ground-truth regimes and graphs
+    before applying it to real observations.
+\end{enumerate}
+
+\section{Methodology in Brief}
+The method has two stages. First, the observables are transformed into log space so
+that the power-law relationships become linear. A global OLS model is then fitted,
+and a Chow $F$-test \cite{chow1960} checks whether one causal mechanism explains the
+series. A first-order autoregressive term accounts for temporal autocorrelation,
+giving a lagged Chow statistic with $q=6$ parameters per model.
+
+If invariance is rejected, the method searches for the strongest candidate split.
+The Bayesian Information Criterion (BIC) \cite{schwarz1978} decides whether the
+split improves the model enough to justify the added complexity. This process is
+applied recursively, so the number of regimes $K$ is determined automatically.
+Second, DYNOTEARS estimates a directed causal graph within each stable partition.
+The framework is first tested on synthetic structural causal models with known
+graphs. Regime recovery is evaluated with the Adjusted Rand Index
+\cite{hubert1985}. Future work will apply it to the WATCHDOG catalogue
+\cite{tetarenko2016} and the Fundamental Plane compilation of Merloni et al.
+\cite{merloni2003}.
+
+The overall methodology is summarised in Figure~\ref{fig:pipeline_intro}.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[
+        node distance=0.7cm,
+        every node/.style={align=center, font=\small},
+        outerbox/.style={draw=black!60, rectangle, rounded corners=1ex, inner sep=10pt, text width=8.5cm, fill opacity=0.9},
+        arrow/.style={->, >=Stealth, thick, draw=black!80}
+    ]
+
+    % 1. Data Node
+    \node[outerbox, fill=cyan!30] (data) {\textbf{Unlabeled Observational Data} \\ \vspace{0.3em} \footnotesize Multiwavelength accretion time-series data};
+
+    % 2. Prep Node
+    \node[outerbox, fill=teal!30] (prep) [below=of data] {\textbf{Data Preprocessing} \\ \vspace{0.3em} \footnotesize Log-space transformation \& temporal lag integration};
+
+    % 3. Stage 1 Node
+    \node[outerbox, fill=blue!20] (stage1) [below=of prep] {\textbf{Stage 1: Latent Regime Discovery} \\ \vspace{0.3em} \footnotesize Recursive timeline splitting via Binary Segmentation \\ \footnotesize Evaluated using the Lagged Chow F-Test \& BIC Penalty};
+
+    % 4. Stage 2 Node
+    \node[outerbox, fill=orange!30] (stage2) [below=of stage1] {\textbf{Stage 2: Causal Graph Recovery} \\ \vspace{0.3em} \footnotesize Extracting localized Window Causal Graphs using DYNOTEARS};
+
+    % 5. Output Node
+    \node[outerbox, fill=purple!30] (output) [below=of stage2] {\textbf{Output: K-Regime-Specific Causal Graphs} \\ \vspace{0.3em} \footnotesize Dynamic causal rules mapping distinct physical accretion states};
+
+    % Main Vertical Arrows
+    \draw[arrow] (data) -- (prep);
+    \draw[arrow] (prep) -- (stage1);
+    \draw[arrow] (stage1) -- (stage2);
+    \draw[arrow] (stage2) -- (output);
+
+    \end{tikzpicture}
+    \caption{High-level pipeline of the unsupervised dynamic causal discovery framework, illustrating the progression from observational data to regime-specific causal graphs.}
+    \label{fig:pipeline_intro}
+\end{figure}
+\vspace{1.5em}
+
+\section{Scopes and Challenges}
+This study combines causal inference with high-energy observational astrophysics.
+The framework is designed for multi-wavelength black-hole accretion data and uses
+log-linear structural equations within each regime. Its outputs are regime-specific
+causal graphs, regression coefficients, and autoregressive parameters.
+
+Several limitations remain. The linear model may miss nonlinear relationships, and
+the piecewise-stationary model is only an approximation to continuous accretion
+dynamics. The Chow test and BIC derivations assume Gaussian noise. The temporal
+model uses only one lag, and the current validation uses synthetic rather than real
+observations. Unmeasured variables, such as magnetic-field geometry, may create
+spurious associations that the PC algorithm cannot resolve without additional
+knowledge \cite{spirtes2000causation}. Residual autocorrelation may also inflate the
+Chow statistic; Newey-West standard errors \cite{newey1987} are considered as a
+robustness check. Non-Gaussian noise and violations of faithfulness provide further
+challenges for causal discovery.

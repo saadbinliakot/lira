@@ -1,0 +1,72 @@
+This thesis introduced LIRA (Latent Invariant Regime Analysis), a framework for
+finding hidden causal regimes in black hole accretion time series. The method uses
+the power-law physics of the Fundamental Plane and models the observations with a
+log-linear structural equation. Black hole mass is included in the intercept, while
+four spectral-state variables describe changes over time. LIRA finds regime
+boundaries through recursive partitioning, a lagged Chow $F$-test, and the Bayesian
+Information Criterion. DYNOTEARS then estimates the causal graph inside each
+regime. The results are checked with refutation tests, sensitivity analysis, and graph
+falsification.
+
+The synthetic experiments produced strong results. LIRA found the true boundary
+within four observations out of ten thousand. It also found the correct number of
+regimes. It recovered the structural coefficients to within $0.017$ of their true
+values.
+
+The isolated variable in each regime was identified correctly. Clustering methods
+that ignored causal structure performed poorly. A pooled model also gave an averaged
+structure that matched neither regime.
+
+The two-gate design was useful. The Chow test alone would have created extra splits.
+The BIC gate rejected those unnecessary splits.
+
+Several limitations remain. The most important one is that every result in this
+thesis was obtained from synthetic data. The synthetic experiments show that LIRA
+works when the data follow the assumptions it was designed for. They do not show that
+it works on real black hole observations.
+
+Real X-ray light curves contain gaps. They also contain instrumental artefacts and
+sources of variability that the generator does not reproduce. The pipeline may behave
+differently once it is applied to them.
+
+The simulation also uses the same linear and piecewise-stationary structure that LIRA
+assumes during recovery. The tests are therefore favourable to the method by
+construction.
+
+Beyond the data itself, the model assumes linear and piecewise-stationary
+relationships. Real accretion systems may change in nonlinear and continuous ways
+instead. The identifiability result also depends on the collider structure used in
+this thesis. It may not hold for a model with causal chains between the spectral
+variables.
+
+The sensitivity analysis showed that the weaker coupling in the Soft State supports
+weaker causal claims than the Hard State.
+
+The next step is to move from synthetic validation to real data. This is the single
+most important piece of future work. Real observations are the only way to test
+whether the regimes LIRA finds correspond to physical accretion states. They also
+show whether the regimes are artefacts of the simulation.
+
+The recommended sequence mirrors the phase structure used in this thesis. LIRA should
+first be applied to well-monitored sources with dense coverage. GRS 1915+105 and
+Cygnus X-1 are good candidates. Their known state transitions provide an external
+check on the discovered boundaries.
+
+The analysis should then be extended to the WATCHDOG catalogue. It offers a broader
+sample of sources and longer baselines.
+
+In both cases, the discovered regimes should be compared against independently
+identified Hard and Soft States. The recovered causal graphs should be checked
+against the physical expectations discussed in Chapter 2.
+
+Any disagreement between the synthetic and real-data results should be treated as a
+finding in its own right. It would locate exactly where the simulation assumptions
+break down.
+
+Other useful steps include testing nonlinear mechanisms. LIRA can also be compared
+with CASTOR on the same benchmark. Future work can also allow causal structure to
+change gradually rather than at fixed boundaries.
+
+Together, these extensions would address the gap between the controlled synthetic
+validation reported here and the noisier, less predictable behaviour of real
+accretion systems.

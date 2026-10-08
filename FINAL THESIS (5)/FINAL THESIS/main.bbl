@@ -1,0 +1,1921 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{ynt/global//global/global/global}
+    \entry{chow1960}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d4bfc9c3361c817c48795dcd1c5d06d6}{%
+           family={Chow},
+           familyi={C\bibinitperiod},
+           given={G.\bibnamedelimi C.},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{d4bfc9c3361c817c48795dcd1c5d06d6}
+      \strng{fullhash}{d4bfc9c3361c817c48795dcd1c5d06d6}
+      \strng{fullhashraw}{d4bfc9c3361c817c48795dcd1c5d06d6}
+      \strng{bibnamehash}{d4bfc9c3361c817c48795dcd1c5d06d6}
+      \strng{authorbibnamehash}{d4bfc9c3361c817c48795dcd1c5d06d6}
+      \strng{authornamehash}{d4bfc9c3361c817c48795dcd1c5d06d6}
+      \strng{authorfullhash}{d4bfc9c3361c817c48795dcd1c5d06d6}
+      \strng{authorfullhashraw}{d4bfc9c3361c817c48795dcd1c5d06d6}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Econometrica}
+      \field{number}{3}
+      \field{title}{Tests of equality between sets of coefficients in two linear regressions}
+      \field{volume}{28}
+      \field{year}{1960}
+      \field{pages}{591\bibrangedash 605}
+      \range{pages}{15}
+    \endentry
+    \entry{shakura1973}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=b2bdc0c0f958beb2e5d0f3c6649a4187}{%
+           family={Shakura},
+           familyi={S\bibinitperiod},
+           given={N.\bibnamedelimi I.},
+           giveni={N\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=311a8d6482967758916f03936c9e4cff}{%
+           family={Sunyaev},
+           familyi={S\bibinitperiod},
+           given={R.\bibnamedelimi A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d993d271bac9eb80de0407199bdcd5bc}
+      \strng{fullhash}{d993d271bac9eb80de0407199bdcd5bc}
+      \strng{fullhashraw}{d993d271bac9eb80de0407199bdcd5bc}
+      \strng{bibnamehash}{d993d271bac9eb80de0407199bdcd5bc}
+      \strng{authorbibnamehash}{d993d271bac9eb80de0407199bdcd5bc}
+      \strng{authornamehash}{d993d271bac9eb80de0407199bdcd5bc}
+      \strng{authorfullhash}{d993d271bac9eb80de0407199bdcd5bc}
+      \strng{authorfullhashraw}{d993d271bac9eb80de0407199bdcd5bc}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Astronomy and Astrophysics}
+      \field{title}{Black holes in binary systems. Observational appearance}
+      \field{volume}{24}
+      \field{year}{1973}
+      \field{pages}{337\bibrangedash 355}
+      \range{pages}{19}
+    \endentry
+    \entry{schwarz1978}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=9ebbf417ba950b396469d38cc259bfda}{%
+           family={Schwarz},
+           familyi={S\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{9ebbf417ba950b396469d38cc259bfda}
+      \strng{fullhash}{9ebbf417ba950b396469d38cc259bfda}
+      \strng{fullhashraw}{9ebbf417ba950b396469d38cc259bfda}
+      \strng{bibnamehash}{9ebbf417ba950b396469d38cc259bfda}
+      \strng{authorbibnamehash}{9ebbf417ba950b396469d38cc259bfda}
+      \strng{authornamehash}{9ebbf417ba950b396469d38cc259bfda}
+      \strng{authorfullhash}{9ebbf417ba950b396469d38cc259bfda}
+      \strng{authorfullhashraw}{9ebbf417ba950b396469d38cc259bfda}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annals of Statistics}
+      \field{number}{2}
+      \field{title}{Estimating the dimension of a model}
+      \field{volume}{6}
+      \field{year}{1978}
+      \field{pages}{461\bibrangedash 464}
+      \range{pages}{4}
+    \endentry
+    \entry{hubert1985}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=e19158c11645d238064b02e3e6f4f91a}{%
+           family={Hubert},
+           familyi={H\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+        {{hash=990a9383b16e12e60ba11f1c069276ec}{%
+           family={Arabie},
+           familyi={A\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{efdbef05c074ec6d4291a902f65f2216}
+      \strng{fullhash}{efdbef05c074ec6d4291a902f65f2216}
+      \strng{fullhashraw}{efdbef05c074ec6d4291a902f65f2216}
+      \strng{bibnamehash}{efdbef05c074ec6d4291a902f65f2216}
+      \strng{authorbibnamehash}{efdbef05c074ec6d4291a902f65f2216}
+      \strng{authornamehash}{efdbef05c074ec6d4291a902f65f2216}
+      \strng{authorfullhash}{efdbef05c074ec6d4291a902f65f2216}
+      \strng{authorfullhashraw}{efdbef05c074ec6d4291a902f65f2216}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Classification}
+      \field{number}{1}
+      \field{title}{Comparing partitions}
+      \field{volume}{2}
+      \field{year}{1985}
+      \field{pages}{193\bibrangedash 218}
+      \range{pages}{26}
+    \endentry
+    \entry{newey1987}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=706b6cbc836d7f68c8a59223b16c843c}{%
+           family={Newey},
+           familyi={N\bibinitperiod},
+           given={W.\bibnamedelimi K.},
+           giveni={W\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=44afaffdbfca24ef9517ed598ee6bced}{%
+           family={West},
+           familyi={W\bibinitperiod},
+           given={K.\bibnamedelimi D.},
+           giveni={K\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \strng{namehash}{081ddba50afd9a84d9fd0e67727bb8d8}
+      \strng{fullhash}{081ddba50afd9a84d9fd0e67727bb8d8}
+      \strng{fullhashraw}{081ddba50afd9a84d9fd0e67727bb8d8}
+      \strng{bibnamehash}{081ddba50afd9a84d9fd0e67727bb8d8}
+      \strng{authorbibnamehash}{081ddba50afd9a84d9fd0e67727bb8d8}
+      \strng{authornamehash}{081ddba50afd9a84d9fd0e67727bb8d8}
+      \strng{authorfullhash}{081ddba50afd9a84d9fd0e67727bb8d8}
+      \strng{authorfullhashraw}{081ddba50afd9a84d9fd0e67727bb8d8}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Econometrica}
+      \field{number}{3}
+      \field{title}{A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix}
+      \field{volume}{55}
+      \field{year}{1987}
+      \field{pages}{703\bibrangedash 708}
+      \range{pages}{6}
+    \endentry
+    \entry{spirtes2000causation}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=f0924fa092ce0a8f24b79fcf1e746c8f}{%
+           family={Spirtes},
+           familyi={S\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=c1ac60b180fcd13ba2916a77d80dde83}{%
+           family={Glymour},
+           familyi={G\bibinitperiod},
+           given={Clark\bibnamedelima N.},
+           giveni={C\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=02f6653c0e96cdc7d40f942944d5e3fb}{%
+           family={Scheines},
+           familyi={S\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{b56b7720791c10654038b326c889a60f}
+      \strng{fullhash}{321e1aaa7cb3fd7e7bb3c6560612ac34}
+      \strng{fullhashraw}{321e1aaa7cb3fd7e7bb3c6560612ac34}
+      \strng{bibnamehash}{321e1aaa7cb3fd7e7bb3c6560612ac34}
+      \strng{authorbibnamehash}{321e1aaa7cb3fd7e7bb3c6560612ac34}
+      \strng{authornamehash}{b56b7720791c10654038b326c889a60f}
+      \strng{authorfullhash}{321e1aaa7cb3fd7e7bb3c6560612ac34}
+      \strng{authorfullhashraw}{321e1aaa7cb3fd7e7bb3c6560612ac34}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{Causation, Prediction, and Search}
+      \field{year}{2000}
+    \endentry
+    \entry{jansen2001}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=dbebba0934cf0614864284289cbeba7e}{%
+           family={Jansen},
+           familyi={J\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{93b1aeaf3eaf0f616913875396287b5b}
+      \strng{fullhash}{93b1aeaf3eaf0f616913875396287b5b}
+      \strng{fullhashraw}{93b1aeaf3eaf0f616913875396287b5b}
+      \strng{bibnamehash}{93b1aeaf3eaf0f616913875396287b5b}
+      \strng{authorbibnamehash}{93b1aeaf3eaf0f616913875396287b5b}
+      \strng{authornamehash}{93b1aeaf3eaf0f616913875396287b5b}
+      \strng{authorfullhash}{93b1aeaf3eaf0f616913875396287b5b}
+      \strng{authorfullhashraw}{93b1aeaf3eaf0f616913875396287b5b}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Astronomy and Astrophysics}
+      \field{title}{XMM-Newton observatory. I. The spacecraft and operations}
+      \field{volume}{365}
+      \field{year}{2001}
+      \field{pages}{L1\bibrangedash L6}
+      \range{pages}{-1}
+    \endentry
+    \entry{frank2002}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=d2d18beadce987151948483c176935d7}{%
+           family={Frank},
+           familyi={F\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=71dba03eb8615a9f16fd35ce92b19cc2}{%
+           family={King},
+           familyi={K\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=ad302c8c4741b2f227c29b189ed6fcbb}{%
+           family={Raine},
+           familyi={R\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{b7ea930d6c2061817eb9d387764d7310}
+      \strng{fullhash}{9f05c7d8b8ff159521c701058552be03}
+      \strng{fullhashraw}{9f05c7d8b8ff159521c701058552be03}
+      \strng{bibnamehash}{9f05c7d8b8ff159521c701058552be03}
+      \strng{authorbibnamehash}{9f05c7d8b8ff159521c701058552be03}
+      \strng{authornamehash}{b7ea930d6c2061817eb9d387764d7310}
+      \strng{authorfullhash}{9f05c7d8b8ff159521c701058552be03}
+      \strng{authorfullhashraw}{9f05c7d8b8ff159521c701058552be03}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{3rd}
+      \field{title}{Accretion Power in Astrophysics}
+      \field{year}{2002}
+    \endentry
+    \entry{weisskopf2002}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=2ba78e0a714c86fa4a0aea30ae33fb9d}{%
+           family={Weisskopf},
+           familyi={W\bibinitperiod},
+           given={M.\bibnamedelimi C.},
+           giveni={M\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{a44c1ea7a0b651da92f962a20f410d61}
+      \strng{fullhash}{a44c1ea7a0b651da92f962a20f410d61}
+      \strng{fullhashraw}{a44c1ea7a0b651da92f962a20f410d61}
+      \strng{bibnamehash}{a44c1ea7a0b651da92f962a20f410d61}
+      \strng{authorbibnamehash}{a44c1ea7a0b651da92f962a20f410d61}
+      \strng{authornamehash}{a44c1ea7a0b651da92f962a20f410d61}
+      \strng{authorfullhash}{a44c1ea7a0b651da92f962a20f410d61}
+      \strng{authorfullhashraw}{a44c1ea7a0b651da92f962a20f410d61}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Publications of the Astronomical Society of the Pacific}
+      \field{number}{791}
+      \field{title}{An overview of the performance and scientific results from the Chandra X-ray Observatory}
+      \field{volume}{114}
+      \field{year}{2002}
+      \field{pages}{1\bibrangedash 24}
+      \range{pages}{24}
+    \endentry
+    \entry{merloni2003}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=99a72fdba2827cb919476d0e1bc9eb91}{%
+           family={Merloni},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7d5214e327fd99bdaf474354a3816534}{%
+           family={Heinz},
+           familyi={H\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=21a7145faa761b37f44cb72494a6cdbc}{%
+           family={Matteo},
+           familyi={M\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           prefix={di},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \strng{namehash}{7b3c3fe5ebfc94ab1e73099368822f4d}
+      \strng{fullhash}{89bea263d91a42418a58c7ece77c1166}
+      \strng{fullhashraw}{89bea263d91a42418a58c7ece77c1166}
+      \strng{bibnamehash}{89bea263d91a42418a58c7ece77c1166}
+      \strng{authorbibnamehash}{89bea263d91a42418a58c7ece77c1166}
+      \strng{authornamehash}{7b3c3fe5ebfc94ab1e73099368822f4d}
+      \strng{authorfullhash}{89bea263d91a42418a58c7ece77c1166}
+      \strng{authorfullhashraw}{89bea263d91a42418a58c7ece77c1166}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Monthly Notices of the Royal Astronomical Society}
+      \field{number}{4}
+      \field{title}{A Fundamental Plane of black hole activity}
+      \field{volume}{345}
+      \field{year}{2003}
+      \field{pages}{1057\bibrangedash 1076}
+      \range{pages}{20}
+    \endentry
+    \entry{fender2004}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=25e75bf0504a8f06d3c567f0b9d1f4fb}{%
+           family={Fender},
+           familyi={F\bibinitperiod},
+           given={R.\bibnamedelimi P.},
+           giveni={R\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=1f1697fbabe9c3d1d3dabe445505cc91}{%
+           family={Belloni},
+           familyi={B\bibinitperiod},
+           given={T.\bibnamedelimi M.},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=877e805fa46872b4d32734eb43e2e93d}{%
+           family={Gallo},
+           familyi={G\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{35f478609e1c5297b51ea5035b73aa1a}
+      \strng{fullhash}{c1b34cce6a6afe0033826cd9cb51f41a}
+      \strng{fullhashraw}{c1b34cce6a6afe0033826cd9cb51f41a}
+      \strng{bibnamehash}{c1b34cce6a6afe0033826cd9cb51f41a}
+      \strng{authorbibnamehash}{c1b34cce6a6afe0033826cd9cb51f41a}
+      \strng{authornamehash}{35f478609e1c5297b51ea5035b73aa1a}
+      \strng{authorfullhash}{c1b34cce6a6afe0033826cd9cb51f41a}
+      \strng{authorfullhashraw}{c1b34cce6a6afe0033826cd9cb51f41a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Monthly Notices of the Royal Astronomical Society}
+      \field{number}{4}
+      \field{title}{Towards a unified model for black hole X-ray binary jets}
+      \field{volume}{355}
+      \field{year}{2004}
+      \field{pages}{1105\bibrangedash 1118}
+      \range{pages}{14}
+    \endentry
+    \entry{wasserman2004}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=d13d94f5a7c6585bc1b76f106e442abc}{%
+           family={Wasserman},
+           familyi={W\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{d13d94f5a7c6585bc1b76f106e442abc}
+      \strng{fullhash}{d13d94f5a7c6585bc1b76f106e442abc}
+      \strng{fullhashraw}{d13d94f5a7c6585bc1b76f106e442abc}
+      \strng{bibnamehash}{d13d94f5a7c6585bc1b76f106e442abc}
+      \strng{authorbibnamehash}{d13d94f5a7c6585bc1b76f106e442abc}
+      \strng{authornamehash}{d13d94f5a7c6585bc1b76f106e442abc}
+      \strng{authorfullhash}{d13d94f5a7c6585bc1b76f106e442abc}
+      \strng{authorfullhashraw}{d13d94f5a7c6585bc1b76f106e442abc}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{title}{All of Statistics: A Concise Course in Statistical Inference}
+      \field{year}{2004}
+    \endentry
+    \entry{remillard2006}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=e107b1db73abdbdd3780d3e0206596d2}{%
+           family={Remillard},
+           familyi={R\bibinitperiod},
+           given={R.\bibnamedelimi A.},
+           giveni={R\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=a571115db682e74498d43512e4aba895}{%
+           family={McClintock},
+           familyi={M\bibinitperiod},
+           given={J.\bibnamedelimi E.},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{afdf1b8ce30ea2e7d59f140d71f7fcbc}
+      \strng{fullhash}{afdf1b8ce30ea2e7d59f140d71f7fcbc}
+      \strng{fullhashraw}{afdf1b8ce30ea2e7d59f140d71f7fcbc}
+      \strng{bibnamehash}{afdf1b8ce30ea2e7d59f140d71f7fcbc}
+      \strng{authorbibnamehash}{afdf1b8ce30ea2e7d59f140d71f7fcbc}
+      \strng{authornamehash}{afdf1b8ce30ea2e7d59f140d71f7fcbc}
+      \strng{authorfullhash}{afdf1b8ce30ea2e7d59f140d71f7fcbc}
+      \strng{authorfullhashraw}{afdf1b8ce30ea2e7d59f140d71f7fcbc}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annual Review of Astronomy and Astrophysics}
+      \field{title}{X-ray properties of black-hole binaries}
+      \field{volume}{44}
+      \field{year}{2006}
+      \field{pages}{49\bibrangedash 92}
+      \range{pages}{44}
+    \endentry
+    \entry{shimizu2006lingam}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=d5235ea47ea56947d9cbb725fbbf5e5c}{%
+           family={Shimizu},
+           familyi={S\bibinitperiod},
+           given={Shohei},
+           giveni={S\bibinitperiod}}}%
+        {{hash=198d6e58844515dee7766cd2b34954e4}{%
+           family={Hoyer},
+           familyi={H\bibinitperiod},
+           given={Patrik\bibnamedelima O.},
+           giveni={P\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+        {{hash=d8d0cf7bd57572ea220ffe8f52affb0a}{%
+           family={Hyvarinen},
+           familyi={H\bibinitperiod},
+           given={Aapo},
+           giveni={A\bibinitperiod}}}%
+        {{hash=1c0a201c7c42214ae59d2393844a167f}{%
+           family={Kerminen},
+           familyi={K\bibinitperiod},
+           given={Antti},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{cd744ea322f537b9a9fe03cda57d4917}
+      \strng{fullhash}{18f89ab84f3f6fe2fc1c3d1f4baf2bef}
+      \strng{fullhashraw}{18f89ab84f3f6fe2fc1c3d1f4baf2bef}
+      \strng{bibnamehash}{18f89ab84f3f6fe2fc1c3d1f4baf2bef}
+      \strng{authorbibnamehash}{18f89ab84f3f6fe2fc1c3d1f4baf2bef}
+      \strng{authornamehash}{cd744ea322f537b9a9fe03cda57d4917}
+      \strng{authorfullhash}{18f89ab84f3f6fe2fc1c3d1f4baf2bef}
+      \strng{authorfullhashraw}{18f89ab84f3f6fe2fc1c3d1f4baf2bef}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{72}
+      \field{title}{A linear non-{G}aussian acyclic model for causal discovery}
+      \field{volume}{7}
+      \field{year}{2006}
+      \field{pages}{2003\bibrangedash 2030}
+      \range{pages}{28}
+    \endentry
+    \entry{done2007}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=30014e10af976f7649103969fcb8986c}{%
+           family={Done},
+           familyi={D\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+        {{hash=7460fcf9fa48eaeb688cedaa60a214d2}{%
+           family={Gierliński},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a713c6b4c5e18d9fca1b7bc1735e824c}{%
+           family={Kubota},
+           familyi={K\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{d4e39eb4e7c4f47880b31ce8c1db8c3a}
+      \strng{fullhash}{673f79ae02f864acc8ef9ececfa37852}
+      \strng{fullhashraw}{673f79ae02f864acc8ef9ececfa37852}
+      \strng{bibnamehash}{673f79ae02f864acc8ef9ececfa37852}
+      \strng{authorbibnamehash}{673f79ae02f864acc8ef9ececfa37852}
+      \strng{authornamehash}{d4e39eb4e7c4f47880b31ce8c1db8c3a}
+      \strng{authorfullhash}{673f79ae02f864acc8ef9ececfa37852}
+      \strng{authorfullhashraw}{673f79ae02f864acc8ef9ececfa37852}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Astronomy and Astrophysics Review}
+      \field{number}{1}
+      \field{title}{Modelling the behaviour of accretion flows in X-ray binaries: everything you always wanted to know about accretion but were afraid to ask}
+      \field{volume}{15}
+      \field{year}{2007}
+      \field{pages}{1\bibrangedash 66}
+      \range{pages}{66}
+    \endentry
+    \entry{hastie2009}{book}{}{}
+      \name{author}{3}{}{%
+        {{hash=e1440a33ef594fbe1375568d9288cc69}{%
+           family={Hastie},
+           familyi={H\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+        {{hash=21780bd4ff9a4cecd018c6cfdbd80280}{%
+           family={Tibshirani},
+           familyi={T\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=1744c71a13ec525bb87612fff17bcfe1}{%
+           family={Friedman},
+           familyi={F\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{f1123bbdcd7529575228dfcb6bea6702}
+      \strng{fullhash}{95aee2243bf53075e61eef0f7b9640aa}
+      \strng{fullhashraw}{95aee2243bf53075e61eef0f7b9640aa}
+      \strng{bibnamehash}{95aee2243bf53075e61eef0f7b9640aa}
+      \strng{authorbibnamehash}{95aee2243bf53075e61eef0f7b9640aa}
+      \strng{authornamehash}{f1123bbdcd7529575228dfcb6bea6702}
+      \strng{authorfullhash}{95aee2243bf53075e61eef0f7b9640aa}
+      \strng{authorfullhashraw}{95aee2243bf53075e61eef0f7b9640aa}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{2nd}
+      \field{title}{The Elements of Statistical Learning}
+      \field{year}{2009}
+    \endentry
+    \entry{hyvarinen2010estimation}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=d8d0cf7bd57572ea220ffe8f52affb0a}{%
+           family={Hyvarinen},
+           familyi={H\bibinitperiod},
+           given={Aapo},
+           giveni={A\bibinitperiod}}}%
+        {{hash=62735e1af0391d63c09ff9fbcd3d4d54}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=d5235ea47ea56947d9cbb725fbbf5e5c}{%
+           family={Shimizu},
+           familyi={S\bibinitperiod},
+           given={Shohei},
+           giveni={S\bibinitperiod}}}%
+        {{hash=198d6e58844515dee7766cd2b34954e4}{%
+           family={Hoyer},
+           familyi={H\bibinitperiod},
+           given={Patrik\bibnamedelima O.},
+           giveni={P\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+      }
+      \strng{namehash}{530cb1aa7fbca7eee60d8c06d2b1c686}
+      \strng{fullhash}{0eca0101b4d0303c74549746e2b4872a}
+      \strng{fullhashraw}{0eca0101b4d0303c74549746e2b4872a}
+      \strng{bibnamehash}{0eca0101b4d0303c74549746e2b4872a}
+      \strng{authorbibnamehash}{0eca0101b4d0303c74549746e2b4872a}
+      \strng{authornamehash}{530cb1aa7fbca7eee60d8c06d2b1c686}
+      \strng{authorfullhash}{0eca0101b4d0303c74549746e2b4872a}
+      \strng{authorfullhashraw}{0eca0101b4d0303c74549746e2b4872a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{56}
+      \field{title}{Estimation of a structural vector autoregression model using non-{G}aussianity}
+      \field{volume}{11}
+      \field{year}{2010}
+      \field{pages}{1709\bibrangedash 1731}
+      \range{pages}{23}
+    \endentry
+    \entry{gendreau2012}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=365224694121199f9b489408f5f863a3}{%
+           family={Gendreau},
+           familyi={G\bibinitperiod},
+           given={K.\bibnamedelimi C.},
+           giveni={K\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=95cd244420b04a23b008bd7e3bcde30f}{%
+           family={Arzoumanian},
+           familyi={A\bibinitperiod},
+           given={Z.},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=51e9985721bffe295ff6f6e9bc66400b}{%
+           family={Okajima},
+           familyi={O\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{b7e3778bb9c86b58b11007f2c9ab57bf}
+      \strng{fullhash}{bcc80e71349475c7297e954288db6d2d}
+      \strng{fullhashraw}{bcc80e71349475c7297e954288db6d2d}
+      \strng{bibnamehash}{bcc80e71349475c7297e954288db6d2d}
+      \strng{authorbibnamehash}{bcc80e71349475c7297e954288db6d2d}
+      \strng{authornamehash}{b7e3778bb9c86b58b11007f2c9ab57bf}
+      \strng{authorfullhash}{bcc80e71349475c7297e954288db6d2d}
+      \strng{authorfullhashraw}{bcc80e71349475c7297e954288db6d2d}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of SPIE}
+      \field{title}{The Neutron star Interior Composition ExploreR (NICER): an explorer mission of opportunity for soft x-ray timing spectroscopy}
+      \field{volume}{8443}
+      \field{year}{2012}
+    \endentry
+    \entry{murphy2012}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=8d5884fbe19bc9c4ab9214b2f05705b3}{%
+           family={Murphy},
+           familyi={M\bibinitperiod},
+           given={K.\bibnamedelimi P.},
+           giveni={K\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{8d5884fbe19bc9c4ab9214b2f05705b3}
+      \strng{fullhash}{8d5884fbe19bc9c4ab9214b2f05705b3}
+      \strng{fullhashraw}{8d5884fbe19bc9c4ab9214b2f05705b3}
+      \strng{bibnamehash}{8d5884fbe19bc9c4ab9214b2f05705b3}
+      \strng{authorbibnamehash}{8d5884fbe19bc9c4ab9214b2f05705b3}
+      \strng{authornamehash}{8d5884fbe19bc9c4ab9214b2f05705b3}
+      \strng{authorfullhash}{8d5884fbe19bc9c4ab9214b2f05705b3}
+      \strng{authorfullhashraw}{8d5884fbe19bc9c4ab9214b2f05705b3}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{title}{Machine Learning: A Probabilistic Perspective}
+      \field{year}{2012}
+    \endentry
+    \entry{peters2016causal}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=b50a0fee091540dedaefacc234101037}{%
+           family={Peters},
+           familyi={P\bibinitperiod},
+           given={Jonas},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c7f7732433b0bbb55933e75b1838dc93}{%
+           family={Buhlmann},
+           familyi={B\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+        {{hash=ab9469dddb5d18ec039f709e2d7c4e00}{%
+           family={Meinshausen},
+           familyi={M\bibinitperiod},
+           given={Nicolai},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{192db85c120e4e6754f044b6e694aeb6}
+      \strng{fullhash}{1195d764762ab577c11a38cc10492e9b}
+      \strng{fullhashraw}{1195d764762ab577c11a38cc10492e9b}
+      \strng{bibnamehash}{1195d764762ab577c11a38cc10492e9b}
+      \strng{authorbibnamehash}{1195d764762ab577c11a38cc10492e9b}
+      \strng{authornamehash}{192db85c120e4e6754f044b6e694aeb6}
+      \strng{authorfullhash}{1195d764762ab577c11a38cc10492e9b}
+      \strng{authorfullhashraw}{1195d764762ab577c11a38cc10492e9b}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of the Royal Statistical Society: Series B}
+      \field{number}{5}
+      \field{title}{Causal inference using invariant prediction: identification and confidence intervals}
+      \field{volume}{78}
+      \field{year}{2016}
+      \field{pages}{947\bibrangedash 1012}
+      \range{pages}{66}
+    \endentry
+    \entry{tetarenko2016}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=ba9c5bc4734762f6ae2489183445ff27}{%
+           family={Tetarenko},
+           familyi={T\bibinitperiod},
+           given={B.\bibnamedelimi E.},
+           giveni={B\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{863529c5e0a79deda655eec4d01c5eb2}
+      \strng{fullhash}{863529c5e0a79deda655eec4d01c5eb2}
+      \strng{fullhashraw}{863529c5e0a79deda655eec4d01c5eb2}
+      \strng{bibnamehash}{863529c5e0a79deda655eec4d01c5eb2}
+      \strng{authorbibnamehash}{863529c5e0a79deda655eec4d01c5eb2}
+      \strng{authornamehash}{863529c5e0a79deda655eec4d01c5eb2}
+      \strng{authorfullhash}{863529c5e0a79deda655eec4d01c5eb2}
+      \strng{authorfullhashraw}{863529c5e0a79deda655eec4d01c5eb2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Astrophysical Journal Supplement Series}
+      \field{number}{2}
+      \field{title}{WATCHDOG: A comprehensive all-sky database of galactic black hole X-ray binaries}
+      \field{volume}{222}
+      \field{year}{2016}
+      \field{pages}{15}
+      \range{pages}{1}
+    \endentry
+    \entry{kuipers2018efficient}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=4f2e5d9dd80a859c46c1fd20f16f84ec}{%
+           family={Kuipers},
+           familyi={K\bibinitperiod},
+           given={Jack},
+           giveni={J\bibinitperiod}}}%
+        {{hash=fcce6a454c0f9aa5f4e75a4353ae6498}{%
+           family={Suter},
+           familyi={S\bibinitperiod},
+           given={Polina},
+           giveni={P\bibinitperiod}}}%
+        {{hash=7aac150a3347c957afa9bfe3eb6f1c46}{%
+           family={Moffa},
+           familyi={M\bibinitperiod},
+           given={Giusi},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{f3342db8d36a8d5acc42bdfbd09eb489}
+      \strng{fullhash}{185b0fbbcbe041ab8b62c461a69eb645}
+      \strng{fullhashraw}{185b0fbbcbe041ab8b62c461a69eb645}
+      \strng{bibnamehash}{185b0fbbcbe041ab8b62c461a69eb645}
+      \strng{authorbibnamehash}{185b0fbbcbe041ab8b62c461a69eb645}
+      \strng{authornamehash}{f3342db8d36a8d5acc42bdfbd09eb489}
+      \strng{authorfullhash}{185b0fbbcbe041ab8b62c461a69eb645}
+      \strng{authorfullhashraw}{185b0fbbcbe041ab8b62c461a69eb645}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Computational and Graphical Statistics}
+      \field{title}{Efficient sampling and structure learning of {B}ayesian networks}
+      \field{volume}{31}
+      \field{year}{2018}
+      \field{pages}{639\bibrangedash 650}
+      \range{pages}{12}
+    \endentry
+    \entry{tsagris2018constraint}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=f34f30d67098b043c7ee86ef045383bd}{%
+           family={Tsagris},
+           familyi={T\bibinitperiod},
+           given={Michail},
+           giveni={M\bibinitperiod}}}%
+        {{hash=bc117bb25fd6ff78bfe39b70f9e2c162}{%
+           family={Borboudakis},
+           familyi={B\bibinitperiod},
+           given={Giorgos},
+           giveni={G\bibinitperiod}}}%
+        {{hash=aa139a308ff00c9b99aa1bbe91b6ae17}{%
+           family={Lagani},
+           familyi={L\bibinitperiod},
+           given={Vincenzo},
+           giveni={V\bibinitperiod}}}%
+        {{hash=cc54d70ad26f30d64590a823f13f93c3}{%
+           family={Tsamardinos},
+           familyi={T\bibinitperiod},
+           given={Ioannis},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{a9afd27458e51fb267e45387a23879c3}
+      \strng{fullhash}{936de118cfe2c2c977ecc6fda3867232}
+      \strng{fullhashraw}{936de118cfe2c2c977ecc6fda3867232}
+      \strng{bibnamehash}{936de118cfe2c2c977ecc6fda3867232}
+      \strng{authorbibnamehash}{936de118cfe2c2c977ecc6fda3867232}
+      \strng{authornamehash}{a9afd27458e51fb267e45387a23879c3}
+      \strng{authorfullhash}{936de118cfe2c2c977ecc6fda3867232}
+      \strng{authorfullhashraw}{936de118cfe2c2c977ecc6fda3867232}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Data Science and Analytics}
+      \field{title}{Constraint-based causal discovery with mixed data}
+      \field{volume}{6}
+      \field{year}{2018}
+      \field{pages}{19\bibrangedash 30}
+      \range{pages}{12}
+    \endentry
+    \entry{zheng2018dags}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=06671b249f91f5e67c5cb44531aa0865}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Xun},
+           giveni={X\bibinitperiod}}}%
+        {{hash=6005af5eb346816e800db6e473ba657d}{%
+           family={Aragam},
+           familyi={A\bibinitperiod},
+           given={Bryon},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d99cb93ae82897335dc1569bf56dd97f}{%
+           family={Ravikumar},
+           familyi={R\bibinitperiod},
+           given={Pradeep\bibnamedelima K.},
+           giveni={P\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=b80203b0ba1299db35073382e835b485}{%
+           family={Xing},
+           familyi={X\bibinitperiod},
+           given={Eric\bibnamedelima P.},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \strng{namehash}{bf1e380d57689ceeaf9cb2e6fff4091e}
+      \strng{fullhash}{e39934a21d663797db5ac9730bba5d52}
+      \strng{fullhashraw}{e39934a21d663797db5ac9730bba5d52}
+      \strng{bibnamehash}{e39934a21d663797db5ac9730bba5d52}
+      \strng{authorbibnamehash}{e39934a21d663797db5ac9730bba5d52}
+      \strng{authornamehash}{bf1e380d57689ceeaf9cb2e6fff4091e}
+      \strng{authorfullhash}{e39934a21d663797db5ac9730bba5d52}
+      \strng{authorfullhashraw}{e39934a21d663797db5ac9730bba5d52}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems (NeurIPS)}
+      \field{title}{{DAGs with NO TEARS}: Continuous optimization for structure learning}
+      \field{volume}{31}
+      \field{year}{2018}
+    \endentry
+    \entry{arjovsky2019irm}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=ab4a5e058dea2d852ff02aa4e10045c3}{%
+           family={Arjovsky},
+           familyi={A\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ac762f2592005edf6bad58f566967c6c}{%
+           family={Bottou},
+           familyi={B\bibinitperiod},
+           given={Léon},
+           giveni={L\bibinitperiod}}}%
+        {{hash=94f7047ed067ed3ca0ce018501dd9db9}{%
+           family={Gulrajani},
+           familyi={G\bibinitperiod},
+           given={Ishaan},
+           giveni={I\bibinitperiod}}}%
+        {{hash=47d681c0cbae75196012a538c46ccc06}{%
+           family={Lopez-Paz},
+           familyi={L\bibinithyphendelim P\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{c0253375e3f94eb82dddef2732bbe5a4}
+      \strng{fullhash}{fff4e7042f937a836fba8845cc73b792}
+      \strng{fullhashraw}{fff4e7042f937a836fba8845cc73b792}
+      \strng{bibnamehash}{fff4e7042f937a836fba8845cc73b792}
+      \strng{authorbibnamehash}{fff4e7042f937a836fba8845cc73b792}
+      \strng{authornamehash}{c0253375e3f94eb82dddef2732bbe5a4}
+      \strng{authorfullhash}{fff4e7042f937a836fba8845cc73b792}
+      \strng{authorfullhashraw}{fff4e7042f937a836fba8845cc73b792}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1907.02893}
+      \field{title}{Invariant risk minimization}
+      \field{year}{2019}
+    \endentry
+    \entry{glymour2019review}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=d92f65fed9d3110577c6ff13a43603b6}{%
+           family={Glymour},
+           familyi={G\bibinitperiod},
+           given={Clark},
+           giveni={C\bibinitperiod}}}%
+        {{hash=62735e1af0391d63c09ff9fbcd3d4d54}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f0924fa092ce0a8f24b79fcf1e746c8f}{%
+           family={Spirtes},
+           familyi={S\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{812319d747d99f68c75284e3bb934b89}
+      \strng{fullhash}{5c935608da0eb8b79aa1ba8cce1ba120}
+      \strng{fullhashraw}{5c935608da0eb8b79aa1ba8cce1ba120}
+      \strng{bibnamehash}{5c935608da0eb8b79aa1ba8cce1ba120}
+      \strng{authorbibnamehash}{5c935608da0eb8b79aa1ba8cce1ba120}
+      \strng{authornamehash}{812319d747d99f68c75284e3bb934b89}
+      \strng{authorfullhash}{5c935608da0eb8b79aa1ba8cce1ba120}
+      \strng{authorfullhashraw}{5c935608da0eb8b79aa1ba8cce1ba120}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Frontiers in Genetics}
+      \field{title}{Review of causal discovery methods based on graphical models}
+      \field{volume}{10}
+      \field{year}{2019}
+    \endentry
+    \entry{huang2019specific}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=571527e12e3b0bdd6adc95e83090cb30}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Biwei},
+           giveni={B\bibinitperiod}}}%
+        {{hash=62735e1af0391d63c09ff9fbcd3d4d54}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=4b1c47330a6364bd6222728a5bd478e1}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Pengtao},
+           giveni={P\bibinitperiod}}}%
+        {{hash=3ea091639cfde4ce3d5b74c07c332087}{%
+           family={Gong},
+           familyi={G\bibinitperiod},
+           given={Mingming},
+           giveni={M\bibinitperiod}}}%
+        {{hash=b80203b0ba1299db35073382e835b485}{%
+           family={Xing},
+           familyi={X\bibinitperiod},
+           given={Eric\bibnamedelima P.},
+           giveni={E\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=d92f65fed9d3110577c6ff13a43603b6}{%
+           family={Glymour},
+           familyi={G\bibinitperiod},
+           given={Clark},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{d70cc5565a5adf5216b2873c48d63dcb}
+      \strng{fullhash}{e5dc98456e00e7569f7e711eac75b3f1}
+      \strng{fullhashraw}{e5dc98456e00e7569f7e711eac75b3f1}
+      \strng{bibnamehash}{e5dc98456e00e7569f7e711eac75b3f1}
+      \strng{authorbibnamehash}{e5dc98456e00e7569f7e711eac75b3f1}
+      \strng{authornamehash}{d70cc5565a5adf5216b2873c48d63dcb}
+      \strng{authorfullhash}{e5dc98456e00e7569f7e711eac75b3f1}
+      \strng{authorfullhashraw}{e5dc98456e00e7569f7e711eac75b3f1}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems (NeurIPS)}
+      \field{title}{Specific and shared causal relation modeling and mechanism-based clustering}
+      \field{volume}{32}
+      \field{year}{2019}
+      \field{pages}{13520\bibrangedash 13531}
+      \range{pages}{12}
+    \endentry
+    \entry{nauta2019causal}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=e5165e7ac743cd4b61e7c5de59c457cd}{%
+           family={Nauta},
+           familyi={N\bibinitperiod},
+           given={Meike},
+           giveni={M\bibinitperiod}}}%
+        {{hash=53e0b46d34463b6909ee3833ed76902c}{%
+           family={Bucur},
+           familyi={B\bibinitperiod},
+           given={Doina},
+           giveni={D\bibinitperiod}}}%
+        {{hash=03c422f056a8e52b7f131d01ef415f41}{%
+           family={Seifert},
+           familyi={S\bibinitperiod},
+           given={Christin},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{cc91e2387aa44d7fc8625e4b882fab79}
+      \strng{fullhash}{13db889249b4ab926f2de46355771dfd}
+      \strng{fullhashraw}{13db889249b4ab926f2de46355771dfd}
+      \strng{bibnamehash}{13db889249b4ab926f2de46355771dfd}
+      \strng{authorbibnamehash}{13db889249b4ab926f2de46355771dfd}
+      \strng{authornamehash}{cc91e2387aa44d7fc8625e4b882fab79}
+      \strng{authorfullhash}{13db889249b4ab926f2de46355771dfd}
+      \strng{authorfullhashraw}{13db889249b4ab926f2de46355771dfd}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Machine Learning and Knowledge Extraction}
+      \field{number}{1}
+      \field{title}{Causal discovery with attention-based convolutional neural networks}
+      \field{volume}{1}
+      \field{year}{2019}
+      \field{pages}{312\bibrangedash 340}
+      \range{pages}{29}
+    \endentry
+    \entry{huang2020causal}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=571527e12e3b0bdd6adc95e83090cb30}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Biwei},
+           giveni={B\bibinitperiod}}}%
+        {{hash=62735e1af0391d63c09ff9fbcd3d4d54}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=00b06765d4d041da464652a126cfa7c1}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Jiji},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a666124dff991badd0e99067f12a743f}{%
+           family={Ramsey},
+           familyi={R\bibinitperiod},
+           given={Joseph},
+           giveni={J\bibinitperiod}}}%
+        {{hash=1d5d84bc965f8a45353416edc2a43800}{%
+           family={Sanchez-Romero},
+           familyi={S\bibinithyphendelim R\bibinitperiod},
+           given={Ruben},
+           giveni={R\bibinitperiod}}}%
+        {{hash=d92f65fed9d3110577c6ff13a43603b6}{%
+           family={Glymour},
+           familyi={G\bibinitperiod},
+           given={Clark},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ca31cc11ec9370460148c3a9c48fce45}{%
+           family={Schölkopf},
+           familyi={S\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{d70cc5565a5adf5216b2873c48d63dcb}
+      \strng{fullhash}{62e7276e7fbc710ffcc8c420b0f0178e}
+      \strng{fullhashraw}{62e7276e7fbc710ffcc8c420b0f0178e}
+      \strng{bibnamehash}{d70cc5565a5adf5216b2873c48d63dcb}
+      \strng{authorbibnamehash}{d70cc5565a5adf5216b2873c48d63dcb}
+      \strng{authornamehash}{d70cc5565a5adf5216b2873c48d63dcb}
+      \strng{authorfullhash}{62e7276e7fbc710ffcc8c420b0f0178e}
+      \strng{authorfullhashraw}{62e7276e7fbc710ffcc8c420b0f0178e}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{89}
+      \field{title}{Causal discovery from heterogeneous/nonstationary data with independent changes}
+      \field{volume}{21}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 53}
+      \range{pages}{53}
+    \endentry
+    \entry{mooij2020fci}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=ce7c98ecd490ed138dd0d65d7207083a}{%
+           family={Mooij},
+           familyi={M\bibinitperiod},
+           given={Joris},
+           giveni={J\bibinitperiod}}}%
+        {{hash=fe0ce375bdf8fbf38c3907f444ebe3fb}{%
+           family={Claassen},
+           familyi={C\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{9527381a840d67d02b75552b3b8d57f6}
+      \strng{fullhash}{9527381a840d67d02b75552b3b8d57f6}
+      \strng{fullhashraw}{9527381a840d67d02b75552b3b8d57f6}
+      \strng{bibnamehash}{9527381a840d67d02b75552b3b8d57f6}
+      \strng{authorbibnamehash}{9527381a840d67d02b75552b3b8d57f6}
+      \strng{authornamehash}{9527381a840d67d02b75552b3b8d57f6}
+      \strng{authorfullhash}{9527381a840d67d02b75552b3b8d57f6}
+      \strng{authorfullhashraw}{9527381a840d67d02b75552b3b8d57f6}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 36th Conference on Uncertainty in Artificial Intelligence (UAI)}
+      \field{title}{Constraint-based causal discovery using partial ancestral graphs in the presence of cycles}
+      \field{year}{2020}
+      \field{pages}{1159\bibrangedash 1168}
+      \range{pages}{10}
+    \endentry
+    \entry{mooij2020jci}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=32c50b3bb2e43125b3098626ef50e556}{%
+           family={Mooij},
+           familyi={M\bibinitperiod},
+           given={Joris\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=ccf47561f0571069ea22170859e8cefb}{%
+           family={Magliacane},
+           familyi={M\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod}}}%
+        {{hash=fe0ce375bdf8fbf38c3907f444ebe3fb}{%
+           family={Claassen},
+           familyi={C\bibinitperiod},
+           given={Tom},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{7bd6c725acd72a66688bbe56c77d01a0}
+      \strng{fullhash}{2e52abc14beb7de9f9386abbd957f082}
+      \strng{fullhashraw}{2e52abc14beb7de9f9386abbd957f082}
+      \strng{bibnamehash}{2e52abc14beb7de9f9386abbd957f082}
+      \strng{authorbibnamehash}{2e52abc14beb7de9f9386abbd957f082}
+      \strng{authornamehash}{7bd6c725acd72a66688bbe56c77d01a0}
+      \strng{authorfullhash}{2e52abc14beb7de9f9386abbd957f082}
+      \strng{authorfullhashraw}{2e52abc14beb7de9f9386abbd957f082}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Machine Learning Research}
+      \field{number}{99}
+      \field{title}{Joint causal inference from multiple contexts}
+      \field{volume}{21}
+      \field{year}{2020}
+      \field{pages}{1\bibrangedash 108}
+      \range{pages}{108}
+    \endentry
+    \entry{neal2020}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=bf30761923b257fc77bf9c7adc67966b}{%
+           family={Neal},
+           familyi={N\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Independently published}%
+      }
+      \strng{namehash}{bf30761923b257fc77bf9c7adc67966b}
+      \strng{fullhash}{bf30761923b257fc77bf9c7adc67966b}
+      \strng{fullhashraw}{bf30761923b257fc77bf9c7adc67966b}
+      \strng{bibnamehash}{bf30761923b257fc77bf9c7adc67966b}
+      \strng{authorbibnamehash}{bf30761923b257fc77bf9c7adc67966b}
+      \strng{authornamehash}{bf30761923b257fc77bf9c7adc67966b}
+      \strng{authorfullhash}{bf30761923b257fc77bf9c7adc67966b}
+      \strng{authorfullhashraw}{bf30761923b257fc77bf9c7adc67966b}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{title}{Introduction to Causal Inference from a Machine Learning Perspective}
+      \field{year}{2020}
+    \endentry
+    \entry{pamfil2020dynotears}{inproceedings}{}{}
+      \name{author}{7}{}{%
+        {{hash=99ea9e71163f678a62aee1451aefd169}{%
+           family={Pamfil},
+           familyi={P\bibinitperiod},
+           given={Roxana},
+           giveni={R\bibinitperiod}}}%
+        {{hash=9893bd8530aad49bbe035fafd72e297f}{%
+           family={Sriwattanaworachai},
+           familyi={S\bibinitperiod},
+           given={Nisara},
+           giveni={N\bibinitperiod}}}%
+        {{hash=a7b0277edfbe59ae8c1b30c38634e4eb}{%
+           family={Desai},
+           familyi={D\bibinitperiod},
+           given={Shaan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1e3bb83af42a048a62b14c9fbfff7b5c}{%
+           family={Pilgerstorfer},
+           familyi={P\bibinitperiod},
+           given={Philip},
+           giveni={P\bibinitperiod}}}%
+        {{hash=71f5bb0ab81d93ce965482bbe2e5b7fa}{%
+           family={Georgatzis},
+           familyi={G\bibinitperiod},
+           given={Konstantinos},
+           giveni={K\bibinitperiod}}}%
+        {{hash=f42531b5bb26523937db272c6cec510a}{%
+           family={Beaumont},
+           familyi={B\bibinitperiod},
+           given={Paul},
+           giveni={P\bibinitperiod}}}%
+        {{hash=6005af5eb346816e800db6e473ba657d}{%
+           family={Aragam},
+           familyi={A\bibinitperiod},
+           given={Bryon},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{417de84a08f8c8fd843554413796d051}
+      \strng{fullhash}{00d71aa38bf777a20af43600ea267e9b}
+      \strng{fullhashraw}{00d71aa38bf777a20af43600ea267e9b}
+      \strng{bibnamehash}{417de84a08f8c8fd843554413796d051}
+      \strng{authorbibnamehash}{417de84a08f8c8fd843554413796d051}
+      \strng{authornamehash}{417de84a08f8c8fd843554413796d051}
+      \strng{authorfullhash}{00d71aa38bf777a20af43600ea267e9b}
+      \strng{authorfullhashraw}{00d71aa38bf777a20af43600ea267e9b}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 23rd International Conference on Artificial Intelligence and Statistics (AISTATS)}
+      \field{title}{{DYNOTEARS}: Structure learning from time-series data}
+      \field{year}{2020}
+      \field{pages}{1595\bibrangedash 1605}
+      \range{pages}{11}
+    \endentry
+    \entry{annadani2021variational}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=f118375a0ea022b9b01e294e7507db72}{%
+           family={Annadani},
+           familyi={A\bibinitperiod},
+           given={Yashas},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=e50faddcb6b031c8509043a0fee1f991}{%
+           family={Rothfuss},
+           familyi={R\bibinitperiod},
+           given={Jonas},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c84276698f0ba64d181bc35c48f6a2dd}{%
+           family={Lacoste},
+           familyi={L\bibinitperiod},
+           given={Alexandre},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a1d545b67f81b5efeebf8c6e4f1d5d7a}{%
+           family={Scherrer},
+           familyi={S\bibinitperiod},
+           given={Nino},
+           giveni={N\bibinitperiod}}}%
+        {{hash=eb6a43771a55bde951c0119ac5c7ad13}{%
+           family={Goyal},
+           familyi={G\bibinitperiod},
+           given={Anirudh},
+           giveni={A\bibinitperiod}}}%
+        {{hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=6e0afe0dd7f80126ec663a279b8d6212}{%
+           family={Bauer},
+           familyi={B\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{0c975207c149bb3e8857911c4ebdc00c}
+      \strng{fullhash}{3b70eb53f49d2144e2f0920541d83ea5}
+      \strng{fullhashraw}{3b70eb53f49d2144e2f0920541d83ea5}
+      \strng{bibnamehash}{0c975207c149bb3e8857911c4ebdc00c}
+      \strng{authorbibnamehash}{0c975207c149bb3e8857911c4ebdc00c}
+      \strng{authornamehash}{0c975207c149bb3e8857911c4ebdc00c}
+      \strng{authorfullhash}{3b70eb53f49d2144e2f0920541d83ea5}
+      \strng{authorfullhashraw}{3b70eb53f49d2144e2f0920541d83ea5}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2106.07635}
+      \field{title}{Variational causal networks: Approximate {B}ayesian inference over causal structures}
+      \field{year}{2021}
+    \endentry
+    \entry{castelletti2021structural}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=c9331dacf02ab90a7b4b7d7031257352}{%
+           family={Castelletti},
+           familyi={C\bibinitperiod},
+           given={Federico},
+           giveni={F\bibinitperiod}}}%
+        {{hash=4d354df63356eaf8116676b57ed63a7f}{%
+           family={Mascaro},
+           familyi={M\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{cc76a85f9090fafdb9ef70601fa6e634}
+      \strng{fullhash}{cc76a85f9090fafdb9ef70601fa6e634}
+      \strng{fullhashraw}{cc76a85f9090fafdb9ef70601fa6e634}
+      \strng{bibnamehash}{cc76a85f9090fafdb9ef70601fa6e634}
+      \strng{authorbibnamehash}{cc76a85f9090fafdb9ef70601fa6e634}
+      \strng{authornamehash}{cc76a85f9090fafdb9ef70601fa6e634}
+      \strng{authorfullhash}{cc76a85f9090fafdb9ef70601fa6e634}
+      \strng{authorfullhashraw}{cc76a85f9090fafdb9ef70601fa6e634}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Statistical Methods \& Applications}
+      \field{title}{Structural learning and estimation of joint causal effects among network-dependent variables}
+      \field{volume}{30}
+      \field{year}{2021}
+      \field{pages}{1289\bibrangedash 1314}
+      \range{pages}{26}
+    \endentry
+    \entry{assaad2022survey}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=0db1031613d98d0d22fa7526f54775a3}{%
+           family={Assaad},
+           familyi={A\bibinitperiod},
+           given={Charles\bibnamedelima K.},
+           giveni={C\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+        {{hash=c3e74a86f3af923b05f614d27815e8b1}{%
+           family={Devijver},
+           familyi={D\bibinitperiod},
+           given={Emilie},
+           giveni={E\bibinitperiod}}}%
+        {{hash=410910ecb38a1335705bfa19ee963469}{%
+           family={Gaussier},
+           familyi={G\bibinitperiod},
+           given={Eric},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f4f85601ef2c1c1cfe749fe3c2abfe36}
+      \strng{fullhash}{e5cd8ad88ae5046c1e27a510717219da}
+      \strng{fullhashraw}{e5cd8ad88ae5046c1e27a510717219da}
+      \strng{bibnamehash}{e5cd8ad88ae5046c1e27a510717219da}
+      \strng{authorbibnamehash}{e5cd8ad88ae5046c1e27a510717219da}
+      \strng{authornamehash}{f4f85601ef2c1c1cfe749fe3c2abfe36}
+      \strng{authorfullhash}{e5cd8ad88ae5046c1e27a510717219da}
+      \strng{authorfullhashraw}{e5cd8ad88ae5046c1e27a510717219da}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Artificial Intelligence Research}
+      \field{title}{Survey and evaluation of causal discovery methods for time series}
+      \field{volume}{73}
+      \field{year}{2022}
+      \field{pages}{767\bibrangedash 819}
+      \range{pages}{53}
+    \endentry
+    \entry{perry2022causal}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=0f88de2bedb4b472516bfce0736db417}{%
+           family={Perry},
+           familyi={P\bibinitperiod},
+           given={Ronan},
+           giveni={R\bibinitperiod}}}%
+        {{hash=34375b0e5c9dd2df04d5147cb9f54b5f}{%
+           family={Von\bibnamedelima Kugelgen},
+           familyi={V\bibinitperiod\bibinitdelim K\bibinitperiod},
+           given={Julius},
+           giveni={J\bibinitperiod}}}%
+        {{hash=ca31cc11ec9370460148c3a9c48fce45}{%
+           family={Schölkopf},
+           familyi={S\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{14a2c874c60a8dc1746879879fe66495}
+      \strng{fullhash}{eeaaa05ef0f19f602917ac0b6c6319c7}
+      \strng{fullhashraw}{eeaaa05ef0f19f602917ac0b6c6319c7}
+      \strng{bibnamehash}{eeaaa05ef0f19f602917ac0b6c6319c7}
+      \strng{authorbibnamehash}{eeaaa05ef0f19f602917ac0b6c6319c7}
+      \strng{authornamehash}{14a2c874c60a8dc1746879879fe66495}
+      \strng{authorfullhash}{eeaaa05ef0f19f602917ac0b6c6319c7}
+      \strng{authorfullhashraw}{eeaaa05ef0f19f602917ac0b6c6319c7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems (NeurIPS)}
+      \field{title}{Causal discovery in heterogeneous environments under the sparse mechanism shift hypothesis}
+      \field{volume}{35}
+      \field{year}{2022}
+      \field{pages}{10904\bibrangedash 10917}
+      \range{pages}{14}
+    \endentry
+    \entry{absar2023neural}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=623114dcc8300ba198ed844db42acb98}{%
+           family={Absar},
+           familyi={A\bibinitperiod},
+           given={Shehnaz},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5054d8715f6746af9ed28c566f168046}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Yue},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=38751cb9cbddbc0b9fa6d830db0eeef0}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Lingfei},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{98e1df4706f8ff69cd0a4ef63c9572e6}
+      \strng{fullhash}{6db4c2f57e46588cf5c9b649a5868237}
+      \strng{fullhashraw}{6db4c2f57e46588cf5c9b649a5868237}
+      \strng{bibnamehash}{6db4c2f57e46588cf5c9b649a5868237}
+      \strng{authorbibnamehash}{6db4c2f57e46588cf5c9b649a5868237}
+      \strng{authornamehash}{98e1df4706f8ff69cd0a4ef63c9572e6}
+      \strng{authorfullhash}{6db4c2f57e46588cf5c9b649a5868237}
+      \strng{authorfullhashraw}{6db4c2f57e46588cf5c9b649a5868237}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2023 International Joint Conference on Neural Networks (IJCNN)}
+      \field{title}{Neural time-invariant causal discovery from time series data}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 8}
+      \range{pages}{8}
+    \endentry
+    \entry{chen2023ccsl}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=06debc36f6b61a405e8f0da1c7ccd6ca}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+        {{hash=034cc9a3c44c31151b596f1b00a7aada}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Yunjin},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=45e7ee9006338f36a0f54e376e63620c}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Ruichu},
+           giveni={R\bibinitperiod}}}%
+        {{hash=00e8b1aa24145af90462c56f182d8a5b}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Yueguo},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=90d8fa1fab0f6d76a2315efcd3f51b87}{%
+           family={Hao},
+           familyi={H\bibinitperiod},
+           given={Zhifeng},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{46dc3b07a9540484d03b9e9b392b984f}
+      \strng{fullhash}{9ca9e35261f50d32d075986578c0e579}
+      \strng{fullhashraw}{9ca9e35261f50d32d075986578c0e579}
+      \strng{bibnamehash}{9ca9e35261f50d32d075986578c0e579}
+      \strng{authorbibnamehash}{9ca9e35261f50d32d075986578c0e579}
+      \strng{authornamehash}{46dc3b07a9540484d03b9e9b392b984f}
+      \strng{authorfullhash}{9ca9e35261f50d32d075986578c0e579}
+      \strng{authorfullhashraw}{9ca9e35261f50d32d075986578c0e579}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Neural Networks and Learning Systems}
+      \field{note}{arXiv:2111.09666v2}
+      \field{title}{{CCSL}: A causal structure learning method from multiple unknown environments}
+      \field{year}{2023}
+    \endentry
+    \entry{cheng2023cuts}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=c606a0147b1bb1ea99d988c5cf3e9632}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Yuxiao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=d97efb495963edb2c4b444fce7d92e5a}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Lianglong},
+           giveni={L\bibinitperiod}}}%
+        {{hash=cef14c2e34920e35caaebbaeeaaa7729}{%
+           family={Xiao},
+           familyi={X\bibinitperiod},
+           given={Tingyi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=258b5fc081658f6826bb0cf33c7bc349}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Zexi},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=67988bb0c01aadd0b4aba3b3e7239603}{%
+           family={Suo},
+           familyi={S\bibinitperiod},
+           given={Jinli},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a328f63ba0e78525a27b105bb17fe87e}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=d83edf2dbb3c07dbf92abbdcaa5c5ed2}{%
+           family={Dai},
+           familyi={D\bibinitperiod},
+           given={Qionghai},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{5e696d1d90770fbc3a5254defe0e1d13}
+      \strng{fullhash}{5b9228ecc744a0f7bfa6a76993eeb2a2}
+      \strng{fullhashraw}{5b9228ecc744a0f7bfa6a76993eeb2a2}
+      \strng{bibnamehash}{5e696d1d90770fbc3a5254defe0e1d13}
+      \strng{authorbibnamehash}{5e696d1d90770fbc3a5254defe0e1d13}
+      \strng{authornamehash}{5e696d1d90770fbc3a5254defe0e1d13}
+      \strng{authorfullhash}{5b9228ecc744a0f7bfa6a76993eeb2a2}
+      \strng{authorfullhashraw}{5b9228ecc744a0f7bfa6a76993eeb2a2}
+      \field{extraname}{1}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2305.05890}
+      \field{title}{{CUTS+}: High-dimensional causal discovery from irregular time-series}
+      \field{year}{2023}
+    \endentry
+    \entry{zhang2023causalformer}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=57f7f0240f141850db99567185d1a24c}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Cheng},
+           giveni={C\bibinitperiod}}}%
+        {{hash=83ab589fc1432ce949cb31441d689991}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Lei},
+           giveni={L\bibinitperiod}}}%
+        {{hash=1a94d4a64358da512bfd8ab6eb4daf1f}{%
+           family={Yin},
+           familyi={Y\bibinitperiod},
+           given={Zhaobin},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=fcdb4c7704baa79893b29d652aecc77f}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Zheng},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{0d5ad0b09ef84b278454f4af16a82311}
+      \strng{fullhash}{6cd46e379bf0bb2c0ac9a9971811d525}
+      \strng{fullhashraw}{6cd46e379bf0bb2c0ac9a9971811d525}
+      \strng{bibnamehash}{6cd46e379bf0bb2c0ac9a9971811d525}
+      \strng{authorbibnamehash}{6cd46e379bf0bb2c0ac9a9971811d525}
+      \strng{authornamehash}{0d5ad0b09ef84b278454f4af16a82311}
+      \strng{authorfullhash}{6cd46e379bf0bb2c0ac9a9971811d525}
+      \strng{authorfullhashraw}{6cd46e379bf0bb2c0ac9a9971811d525}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2023 16th International Congress on Image and Signal Processing, BioMedical Engineering and Informatics (CISP-BMEI)}
+      \field{title}{{Causalformer}: Causal discovery-based transformer for multivariate time series forecasting}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 6}
+      \range{pages}{6}
+    \endentry
+    \entry{varambally2024mcd}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=31fcb3939c67f64bee6187a44124b351}{%
+           family={Varambally},
+           familyi={V\bibinitperiod},
+           given={Sumanth},
+           giveni={S\bibinitperiod}}}%
+        {{hash=7ad3c25da21bd9a3623215f2d363c447}{%
+           family={Ma},
+           familyi={M\bibinitperiod},
+           given={Yi-An},
+           giveni={Y\bibinithyphendelim A\bibinitperiod}}}%
+        {{hash=97101a5c27b13abad23d655d9b094d22}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Rose},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{0da426d531e922084d8d26f3eaf3515f}
+      \strng{fullhash}{49b9e2922b85a9f900e56382fccb5b6a}
+      \strng{fullhashraw}{49b9e2922b85a9f900e56382fccb5b6a}
+      \strng{bibnamehash}{49b9e2922b85a9f900e56382fccb5b6a}
+      \strng{authorbibnamehash}{49b9e2922b85a9f900e56382fccb5b6a}
+      \strng{authornamehash}{0da426d531e922084d8d26f3eaf3515f}
+      \strng{authorfullhash}{49b9e2922b85a9f900e56382fccb5b6a}
+      \strng{authorfullhashraw}{49b9e2922b85a9f900e56382fccb5b6a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 41st International Conference on Machine Learning (ICML)}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Discovering mixtures of structural causal models from time series data}
+      \field{volume}{235}
+      \field{year}{2024}
+      \field{pages}{49171\bibrangedash 49202}
+      \range{pages}{32}
+    \endentry
+    \entry{zhao2024notearsm}{misc}{}{}
+      \name{author}{2}{}{%
+        {{hash=489b5b0c148e45d746d7c00ba72bc5ec}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Yuanyuan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=812451b3a2faef976c2708860a7b849a}{%
+           family={Jia},
+           familyi={J\bibinitperiod},
+           given={Jinzhu},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{0a182cbb60be04796eb3cf09597e8b48}
+      \strng{fullhash}{0a182cbb60be04796eb3cf09597e8b48}
+      \strng{fullhashraw}{0a182cbb60be04796eb3cf09597e8b48}
+      \strng{bibnamehash}{0a182cbb60be04796eb3cf09597e8b48}
+      \strng{authorbibnamehash}{0a182cbb60be04796eb3cf09597e8b48}
+      \strng{authornamehash}{0a182cbb60be04796eb3cf09597e8b48}
+      \strng{authorfullhash}{0a182cbb60be04796eb3cf09597e8b48}
+      \strng{authorfullhashraw}{0a182cbb60be04796eb3cf09597e8b48}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Preprint. DOI: 10.21203/rs.3.rs-5644505/v1}
+      \field{title}{{NOTEARS-M}: Causal {B}ayesian network structure learning of mixed type data and its application in identifying disease risk factors}
+      \field{year}{2024}
+    \endentry
+    \entry{cheng2025dycast}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=c606a0147b1bb1ea99d988c5cf3e9632}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Yuxiao},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5413149e0d939154f381f54f9a094995}{%
+           family={Lyu},
+           familyi={L\bibinitperiod},
+           given={Bohan},
+           giveni={B\bibinitperiod}}}%
+        {{hash=8d6518649c332ab8abeb7175418fbec8}{%
+           family={Xing},
+           familyi={X\bibinitperiod},
+           given={Wanwei},
+           giveni={W\bibinitperiod}}}%
+        {{hash=7ca1785e29d89d5e12c4af422138f7c9}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Zhanxing},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{5e696d1d90770fbc3a5254defe0e1d13}
+      \strng{fullhash}{72e577863cd4682ebf87e2abf0d9bc36}
+      \strng{fullhashraw}{72e577863cd4682ebf87e2abf0d9bc36}
+      \strng{bibnamehash}{72e577863cd4682ebf87e2abf0d9bc36}
+      \strng{authorbibnamehash}{72e577863cd4682ebf87e2abf0d9bc36}
+      \strng{authornamehash}{5e696d1d90770fbc3a5254defe0e1d13}
+      \strng{authorfullhash}{72e577863cd4682ebf87e2abf0d9bc36}
+      \strng{authorfullhashraw}{72e577863cd4682ebf87e2abf0d9bc36}
+      \field{extraname}{2}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 13th International Conference on Learning Representations (ICLR 2025)}
+      \field{title}{{DyCAST}: Learning dynamic causal structure from time series}
+      \field{year}{2025}
+    \endentry
+    \entry{faltenbacher2025internal}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=dcba6f144344fc7aa86768e6f3cb6734}{%
+           family={Faltenbacher},
+           familyi={F\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f3083c070c92561aad998348bf76d92e}{%
+           family={Wahl},
+           familyi={W\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=2ef48049a75049918980c545749964ce}{%
+           family={Herman},
+           familyi={H\bibinitperiod},
+           given={R.\bibnamedelimi J.},
+           giveni={R\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=3c8a5cc6220e72f96cb776e8716c3d92}{%
+           family={Runge},
+           familyi={R\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{3e841b9262af089014c22168bb823f67}
+      \strng{fullhash}{41bcc1b193c4178245ae8ff4449b0a77}
+      \strng{fullhashraw}{41bcc1b193c4178245ae8ff4449b0a77}
+      \strng{bibnamehash}{41bcc1b193c4178245ae8ff4449b0a77}
+      \strng{authorbibnamehash}{41bcc1b193c4178245ae8ff4449b0a77}
+      \strng{authornamehash}{3e841b9262af089014c22168bb823f67}
+      \strng{authorfullhash}{41bcc1b193c4178245ae8ff4449b0a77}
+      \strng{authorfullhashraw}{41bcc1b193c4178245ae8ff4449b0a77}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv:2502.14719}
+      \field{title}{Internal incoherency scores for constraint-based causal discovery algorithms}
+      \field{year}{2025}
+    \endentry
+    \entry{li2025hcl}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=be6f1b6df7f1ddfafad18806238fa391}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+        {{hash=ab5652acf0de64074be2a35319b7c36a}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Qian},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=03d3e23852937fa39b0e34246c4ecd1d}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Xin},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{45c1e7ada08eb2d876aac8b598160b74}
+      \strng{fullhash}{10133234bee4091f41f7e0bb8fb169bf}
+      \strng{fullhashraw}{10133234bee4091f41f7e0bb8fb169bf}
+      \strng{bibnamehash}{10133234bee4091f41f7e0bb8fb169bf}
+      \strng{authorbibnamehash}{10133234bee4091f41f7e0bb8fb169bf}
+      \strng{authornamehash}{45c1e7ada08eb2d876aac8b598160b74}
+      \strng{authorfullhash}{10133234bee4091f41f7e0bb8fb169bf}
+      \strng{authorfullhashraw}{10133234bee4091f41f7e0bb8fb169bf}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2509.04415v2}
+      \field{note}{Preprint; not yet peer-reviewed}
+      \field{title}{Interpretable clustering with adaptive heterogeneous causal structure learning in mixed observational data}
+      \field{year}{2025}
+    \endentry
+    \entry{liu2025hybrid}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=e48e5380b3a992280bf1d55048e9cfb2}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Saixiong},
+           giveni={S\bibinitperiod}}}%
+        {{hash=dc416cc91c20a989cd36b6bd1d8cad51}{%
+           family={Qian},
+           familyi={Q\bibinitperiod},
+           given={Yuhua},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=636d3344022d2826c6deefebedf3d785}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Jue},
+           giveni={J\bibinitperiod}}}%
+        {{hash=0c2b1e4f047de51bf090760db0b73fc2}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Honghong},
+           giveni={H\bibinitperiod}}}%
+        {{hash=1a11dd94f89199e1f2fa5ab40b041d4c}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Feijiang},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{a37b74e233e286b117308867163eddea}
+      \strng{fullhash}{9ae3607807498a767adfbb50e83db48e}
+      \strng{fullhashraw}{9ae3607807498a767adfbb50e83db48e}
+      \strng{bibnamehash}{9ae3607807498a767adfbb50e83db48e}
+      \strng{authorbibnamehash}{9ae3607807498a767adfbb50e83db48e}
+      \strng{authornamehash}{a37b74e233e286b117308867163eddea}
+      \strng{authorfullhash}{9ae3607807498a767adfbb50e83db48e}
+      \strng{authorfullhashraw}{9ae3607807498a767adfbb50e83db48e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2507.21792}
+      \field{title}{Hybrid causal identification and causal mechanism clustering}
+      \field{year}{2025}
+    \endentry
+    \entry{rahmani2025castor}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=5de86fcbdf5b8a179a7bf4358fe230b3}{%
+           family={Rahmani},
+           familyi={R\bibinitperiod},
+           given={Aryan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=e3ffdb452de6d0eeff420ceb94f14446}{%
+           family={Frossard},
+           familyi={F\bibinitperiod},
+           given={Pascal},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {PMLR}%
+      }
+      \strng{namehash}{98d67d27800653630a84d76facde3ed9}
+      \strng{fullhash}{98d67d27800653630a84d76facde3ed9}
+      \strng{fullhashraw}{98d67d27800653630a84d76facde3ed9}
+      \strng{bibnamehash}{98d67d27800653630a84d76facde3ed9}
+      \strng{authorbibnamehash}{98d67d27800653630a84d76facde3ed9}
+      \strng{authornamehash}{98d67d27800653630a84d76facde3ed9}
+      \strng{authorfullhash}{98d67d27800653630a84d76facde3ed9}
+      \strng{authorfullhashraw}{98d67d27800653630a84d76facde3ed9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 28th International Conference on Artificial Intelligence and Statistics (AISTATS 2025)}
+      \field{series}{Proceedings of Machine Learning Research}
+      \field{title}{Causal temporal regime structure learning}
+      \field{volume}{258}
+      \field{year}{2025}
+      \field{pages}{4546\bibrangedash 4554}
+      \range{pages}{9}
+    \endentry
+    \entry{sadeghi2025causal}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=f2fe3ff4025c16c3cb8a25ddaad48af0}{%
+           family={Sadeghi},
+           familyi={S\bibinitperiod},
+           given={Ali},
+           giveni={A\bibinitperiod}}}%
+        {{hash=197560a6ad733e03bf9a14761c7361fd}{%
+           family={Gopal},
+           familyi={G\bibinitperiod},
+           given={Abhirup},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2bd7c2e971fc0c8f21ca6a78c4697032}{%
+           family={Fesanghary},
+           familyi={F\bibinitperiod},
+           given={Mohammad},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{0c7e926f0935bbc98eddf00f1562eb3b}
+      \strng{fullhash}{80ba8e120e7c010984eb8ed6f7bd8a99}
+      \strng{fullhashraw}{80ba8e120e7c010984eb8ed6f7bd8a99}
+      \strng{bibnamehash}{80ba8e120e7c010984eb8ed6f7bd8a99}
+      \strng{authorbibnamehash}{80ba8e120e7c010984eb8ed6f7bd8a99}
+      \strng{authornamehash}{0c7e926f0935bbc98eddf00f1562eb3b}
+      \strng{authorfullhash}{80ba8e120e7c010984eb8ed6f7bd8a99}
+      \strng{authorfullhashraw}{80ba8e120e7c010984eb8ed6f7bd8a99}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{International Journal of Data Science and Analytics}
+      \field{title}{Causal discovery from nonstationary time series}
+      \field{volume}{19}
+      \field{year}{2025}
+      \field{pages}{33\bibrangedash 59}
+      \range{pages}{27}
+    \endentry
+    \entry{zhu2025attention}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=8416c551940dd738789da9e890830f69}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Jiaxin},
+           giveni={J\bibinitperiod}}}%
+        {{hash=4838f7fdd28d5cefb28f3b3c734976d4}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Kai},
+           giveni={K\bibinitperiod}}}%
+        {{hash=46ddd0f2eb2970bd796d1f9d9b1f9923}{%
+           family={Mai},
+           familyi={M\bibinitperiod},
+           given={Zhijian},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=fe06af26cfad41e61dfb0de7198dc332}{%
+           family={Xie},
+           familyi={X\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+        {{hash=0f14cb52d0e3018d51da2705a6c4682c}{%
+           family={AbdAlmageed},
+           familyi={A\bibinitperiod},
+           given={Wael},
+           giveni={W\bibinitperiod}}}%
+        {{hash=013c158ec669602e341398bec12deac0}{%
+           family={Abraham},
+           familyi={A\bibinitperiod},
+           given={Zubin},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{172b97b311dd604450ccc284080ab3e0}
+      \strng{fullhash}{354bf885b4490748d6a1da12556adce0}
+      \strng{fullhashraw}{354bf885b4490748d6a1da12556adce0}
+      \strng{bibnamehash}{354bf885b4490748d6a1da12556adce0}
+      \strng{authorbibnamehash}{354bf885b4490748d6a1da12556adce0}
+      \strng{authornamehash}{172b97b311dd604450ccc284080ab3e0}
+      \strng{authorfullhash}{354bf885b4490748d6a1da12556adce0}
+      \strng{authorfullhashraw}{354bf885b4490748d6a1da12556adce0}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{ICASSP 2025}
+      \field{title}{Attention-driven causal discovery: From transformer matrices to {G}ranger causal graphs for non-stationary time-series data}
+      \field{year}{2025}
+      \field{pages}{1\bibrangedash 5}
+      \range{pages}{5}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

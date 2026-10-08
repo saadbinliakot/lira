@@ -1,0 +1,101 @@
+\section{Foundations of Causal Discovery}
+\label{sec:foundations}
+
+Causal discovery infers causal relationships from observational data. Constraint-based
+methods, such as PC and FCI, use conditional-independence tests. PC returns a
+Markov equivalence class of DAGs, while FCI also allows latent confounding and
+returns a partial ancestral graph \cite{spirtes2000causation}.
+
+Score-based methods search for a DAG that fits the data well. GES performs a greedy
+search over equivalence classes. NOTEARS reformulates DAG learning as continuous
+optimization by expressing acyclicity as a smooth constraint
+\cite{zheng2018dags}. DYNOTEARS extends this formulation to contemporaneous and
+lagged relationships in time series \cite{pamfil2020dynotears}.
+
+Functional causal models make stronger assumptions about the functional form and
+noise distribution. LiNGAM can identify the causal order when the model is linear
+and the noise is non-Gaussian \cite{shimizu2006lingam}. VAR-LiNGAM extends this
+idea to vector autoregressive models with instantaneous and lagged effects
+\cite{hyvarinen2010estimation}.
+
+These foundational methods generally assume one causal model for the full dataset.
+Real data may combine several latent processes, populations, time intervals, or
+biological states. A single model fitted to such data can produce an averaged graph
+that represents none of the underlying mechanisms. This motivates methods for
+heterogeneous structure learning.
+
+\subsection{Causal Discovery from Nonstationary and Heterogeneous Data}
+\label{ssec:nonstationary}
+
+Several methods use changes across environments to improve causal identification.
+Invariant Causal Prediction identifies parents whose conditional relationship with a
+target remains stable across known environments \cite{peters2016causal}. Its main
+limitation is the need for environment labels.
+
+CD-NOD uses distribution shifts across domains or time to recover causal structure
+\cite{huang2020causal}. It needs an auxiliary domain or time index, but not hard
+environment labels. CD-NOTS adapts this idea to time series and improves the
+treatment of lagged variables \cite{sadeghi2025causal}. The Sparse Mechanism Shift
+hypothesis gives theoretical support to this approach when only a few mechanisms
+change \cite{perry2022causal}.
+
+DyCAST models continuous changes in the causal DAG with Neural ODEs
+\cite{cheng2025dycast}. IRM provides a related learning-theoretic approach that
+encourages stable predictors across environments \cite{arjovsky2019irm}. Both IRM
+and ICP require known environment partitions.
+
+Together, these studies show that heterogeneity can help causal learning. However,
+existing methods generally need environment labels, an auxiliary nonstationarity
+index, or temporal ordering. Recovering regimes without all three is the central gap
+addressed by this thesis.
+
+\subsection{Mixture Models and Causal Clustering}
+\label{ssec:clustering}
+
+Causal clustering jointly estimates cluster assignments and causal structures. This
+is preferable to a sequential approach because incorrect assignments can corrupt
+graph learning, while an incorrect graph can corrupt clustering.
+
+The Specific and Shared Causal Model (SSCM) represents data as a mixture of causal
+mechanisms and separates shared from regime-specific relations
+\cite{huang2019specific}. It requires the number of regimes in advance.
+
+CCSL is more flexible. It uses a causal Chinese Restaurant Process to group
+observations by causal-structure similarity rather than feature distance
+\cite{chen2023ccsl}. Variational inference estimates the parameters and assignments
+together, and the number of groups need not be supplied. CCSL provides
+identifiability under a linear non-Gaussian model and has been tested on fMRI and
+Sachs protein-signalling data.
+
+\subsubsection*{i. Temporal Extensions of Causal Clustering}
+
+MCD learns mixtures of structural causal models from time series using variational
+inference \cite{varambally2024mcd}. Its autoregressive structure makes it unsuitable
+for i.i.d. cross-sectional data. CASTOR provides a temporal method for jointly
+learning sequential regimes and their DAGs \cite{rahmani2025castor}, but its use of
+temporal contiguity does not transfer directly to unordered observations.
+
+\subsubsection*{ii. i.i.d. Extensions and Recent Advances}
+
+HCL jointly learns latent clusters and causal structures from mixed observational
+data without environment labels or a pre-specified regime count
+\cite{li2025hcl}. Its preprint reports weaker assumptions than CCSL, but its
+identifiability conditions and large-graph performance require further study.
+MCVCI and MCVCC show that mechanism-aware clustering is also useful in simple
+bivariate mixtures \cite{liu2025hybrid}.
+
+\subsubsection*{iii. Classical Clustering Methods}
+
+Methods such as k-means, GMM, DBSCAN, and OPTICS group observations by similarity
+in feature space. They can fail when regimes have similar distributions but
+different causal mechanisms. CCSL results show the value of including causal
+structure in the clustering objective \cite{chen2023ccsl}.
+
+\subsection{Joint Causal Inference from Multiple Contexts}
+
+JCI represents contexts as additional nodes in a causal graph and learns causal
+structure across observational and interventional settings \cite{mooij2020jci}.
+It is general, but the contexts must be known in advance. Representation-learning
+methods also study hidden causal variables, but they usually focus on learning
+latent variables from images or videos rather than grouping tabular observations by
+causal regime.

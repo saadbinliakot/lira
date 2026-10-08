@@ -1,0 +1,43 @@
+Head of Department:
+(Chair)
+Sadia Hamid Kazi, PhD
+Chairperson and Associate Professor
+Department of Computer Science and Engineering
+Brac University
+
+iii
+
+Abstract
+Modern observatories collect high-cadence data from several wavelengths. These
+data show that black hole accretion systems move between physical states with
+different spectra, disk structures, and jet activity. However, the state linked to each
+observation is not labelled. Many causal discovery methods also need environment
+labels, a domain index, or prior knowledge of the hidden states. CASTOR can
+learn regimes and causal graphs together, but it does not provide a direct statistical
+test for deciding whether a boundary represents a real change in mechanism. In
+addition, the time dependence in monitoring data can violate the independent and
+identically distributed assumption used by many causal methods. This can inflate
+test statistics and create false boundaries.
+We propose LIRA (Latent Invariant Regime Analysis), a framework for finding hidden regimes and their causal structures from unlabelled time series. LIRA uses the
+power-law physics of the Fundamental Plane to build a log-linear model. It searches
+for regime boundaries with recursive binary segmentation and a Chow invariance
+test. A first-order autoregressive term accounts for temporal autocorrelation. The
+resulting test is a lagged Chow F -statistic. The Bayesian Information Criterion
+then decides whether each split should be kept. This also determines the number of
+regimes. Finally, DYNOTEARS estimates a causal graph for each stable regime. We
+validate the results with refutation tests, sensitivity analysis, and graph falsification.
+We tested LIRA on synthetic data where the two regimes differ only in their causal
+mechanisms and have equal variable means. LIRA recovered the boundary with an
+Adjusted Rand Index of 0.998. Structure-blind clustering achieved an ARI of at
+most 0.012. The structural coefficients were recovered to within 0.02 of their true
+values, including the isolated variable in each regime. A pooled model produced
+a spurious structure that matched neither regime. The causal effects passed all
+refutation tests. The sensitivity analysis also showed that the weaker radio-X-ray
+coupling in the Soft State supports weaker causal claims.
+
+Keywords: Causal Artificial Intelligence, Causal Inference, Latent Regime Discovery, Black Hole Accretion, Structural Break Detection, Causal Discovery, DYNOTEARS,
+Structural Causal Models, Time Series Analysis, Observational Astronomy
+
+iv
+
+

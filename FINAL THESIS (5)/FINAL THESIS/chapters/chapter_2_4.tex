@@ -1,0 +1,86 @@
+\section{Summary of Key Findings}
+\label{sec:summary}
+
+The literature has moved from single-environment causal discovery to methods that
+use known environments, distribution shifts, or joint causal clustering. This
+section summarises the main trends and limitations and states the gaps addressed by
+this thesis.
+
+\subsection{Methodological Trends}
+
+Constraint-based methods use conditional independence, while score-based methods
+optimize a graph score such as BIC. Functional causal models, including LiNGAM and
+VAR-LiNGAM, use stronger assumptions about the noise and functional form
+\cite{assaad2022survey,shimizu2006lingam,hyvarinen2010estimation}.
+
+In heterogeneous settings, invariance and distribution shifts are the main guiding
+ideas. They appear in ICP, CD-NOD, CD-NOTS, IRM, and JCI
+\cite{peters2016causal,huang2020causal,sadeghi2025causal,arjovsky2019irm,mooij2020jci}.
+CASTOR and DyCAST model temporal changes as piecewise-constant or continuously
+evolving structures \cite{rahmani2025castor,cheng2025dycast}. Causal clustering
+methods such as SSCM, CCSL, HCL, and MCD jointly estimate assignments and causal
+models \cite{huang2019specific,chen2023ccsl,li2025hcl,varambally2024mcd}.
+
+\subsection{Consistent Findings}
+
+The reviewed studies support five conclusions:
+\begin{enumerate}[nosep]
+\item Causal structure can differ substantially across regimes. A pooled model can
+produce a graph that represents none of them
+\cite{huang2020causal,chen2023ccsl,varambally2024mcd,li2025hcl,rahmani2025castor}.
+\item Joint estimation of assignments and causal structures is generally better than
+a sequential pipeline \cite{huang2019specific,chen2023ccsl,li2025hcl,rahmani2025castor}.
+\item Causal-structure similarity can be a better clustering signal than feature
+distance or correlation \cite{chen2023ccsl}.
+\item Real data often violates stationarity, as shown by CD-NOTS and CASTOR
+\cite{sadeghi2025causal,rahmani2025castor}.
+\item No method is universally best. Performance depends on whether its assumptions
+match the data-generating process \cite{assaad2022survey}.
+\end{enumerate}
+
+\subsection{Contradictions and Limitations}
+
+ICP and IRM require known environment partitions. CD-NOD and CD-NOTS require an
+auxiliary domain or time index. CCSL assumes stationarity within clusters, while
+CASTOR handles sequential changes but assumes piecewise-constant regimes and
+Gaussian equal-variance noise. These requirements limit their use when the hidden
+state and the number of regimes are both unknown.
+
+There is also a trade-off between flexibility and identifiability. CCSL has formal
+guarantees under linear non-Gaussian noise, but that assumption may be restrictive.
+HCL and MCD use more flexible models but provide weaker or less developed formal
+guarantees. Evaluation is also inconsistent: some studies report clustering quality
+without graph quality, while others do the reverse. A common benchmark is still
+needed. Internal incoherency scores are promising for detecting assumption
+violations, but they have not been adapted to causal clustering
+\cite{faltenbacher2025internal}.
+
+\subsection{Research Gaps}
+\label{ssec:gaps}
+
+The main gaps relevant to this thesis are:
+\begin{itemize}[leftmargin=1.4em]
+\item \textbf{No formal invariance test for discovered boundaries.} CASTOR and
+DyCAST use global optimization scores, but do not attach a direct hypothesis test
+to each proposed boundary. LIRA addresses this with a Chow test followed by an
+independent BIC decision.
+\item \textbf{No formal test of structural difference.} Existing causal-clustering
+methods generally do not test whether two learned regimes differ beyond finite-sample
+variation.
+\item \textbf{Limited scalability evidence.} Most causal-clustering studies use
+small synthetic graphs. Comparable large-graph evaluations remain limited.
+\item \textbf{No standard causal-clustering benchmark.} The field lacks agreed
+datasets and evaluation measures for comparing regime recovery and graph recovery.
+\item \textbf{Limited observational identifiability theory.} Formal guarantees for
+mixtures of SCMs from observational i.i.d. data remain limited beyond the linear
+non-Gaussian case of CCSL.
+\item \textbf{Within-regime nonstationarity.} Most methods assume that each regime
+is stationary, even though the mechanism may continue to change inside a regime.
+\item \textbf{Assumption checks without ground truth.} Tools for detecting violated
+causal assumptions have not been developed fully for causal clustering.
+\end{itemize}
+
+This thesis addresses the first two gaps directly and evaluates regime recovery,
+graph recovery, and scalability on controlled synthetic data. The remaining gaps,
+including standard benchmarks, within-regime nonstationarity, and broader
+assumption checks, are left for future work.

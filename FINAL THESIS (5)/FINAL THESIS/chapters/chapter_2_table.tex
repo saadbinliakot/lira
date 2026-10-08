@@ -1,0 +1,125 @@
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+{\small
+\renewcommand{\arraystretch}{1.3}
+\begin{longtable}{|P{2.0cm}|P{2.3cm}|P{2.5cm}|P{1.8cm}|P{4.3cm}|}
+\caption{Summary of major related works in causal discovery, regime detection,
+and causal clustering.}
+\label{tab:related_works} \\
+\hline
+\textbf{Study} & \textbf{Task} & \textbf{Method} & \textbf{Setting} & \textbf{Main Finding / Gap} \\
+\hline
+\endfirsthead
+
+\multicolumn{5}{c}%
+{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+\hline
+\textbf{Study} & \textbf{Task} & \textbf{Method} & \textbf{Setting} & \textbf{Main Finding / Gap} \\
+\hline
+\endhead
+
+\hline \multicolumn{5}{|r|}{{Continued on next page}} \\ \hline
+\endfoot
+
+\hline
+\endlastfoot
+
+Spirtes et al.\ \cite{spirtes2000causation}
+& DAG learning from observational data
+& PC and FCI constraint-based algorithms
+& i.i.d., single environment
+& Foundational framework for causal discovery. Assumes a single fixed causal model throughout. \\
+\hline
+Zheng et al.\ \cite{zheng2018dags}
+& Continuous DAG structure learning
+& NOTEARS: smooth algebraic acyclicity constraint
+& i.i.d., single environment
+& Enables gradient-based DAG learning at scale. The acyclicity constraint underpins DYNOTEARS and CASTOR. \\
+\hline
+Pamfil et al.\ \cite{pamfil2020dynotears}
+& Time-series causal graph recovery
+& DYNOTEARS: NOTEARS extended to contemporaneous and lagged edges
+& Stationary time series
+& Efficiently recovers window causal graphs. Assumes stationarity holds throughout the entire series. \\
+\hline
+Huang et al.\ \cite{huang2020causal}
+& Causal discovery under heterogeneity
+& CD-NOD: nonparametric method exploiting distribution shifts
+& Multiple domains or time-indexed data
+& Heterogeneity aids causal identification. Requires an auxiliary domain index or time stamp. \\
+\hline
+Peters et al.\ \cite{peters2016causal}
+& Causal parent identification
+& ICP: invariant prediction across environments
+& Multiple labelled environments
+& Exploits causal invariance effectively. Requires environment labels as a strict prerequisite. \\
+\hline
+Arjovsky et al.\ \cite{arjovsky2019irm}
+& Out-of-distribution generalisation
+& IRM: invariant risk minimisation
+& Multiple labelled environments
+& Encourages causally stable features. Guarantees weaken when the environment count is small. \\
+\hline
+Perry et al.\ \cite{perry2022causal}
+& Multi-environment causal graph recovery
+& Sparse Mechanism Shift hypothesis with MSS score
+& Multiple labelled environments
+& Full graph identifiable under sparse shifts. Environment membership must still be known. \\
+\hline
+Huang et al.\ \cite{huang2019specific}
+& Causal clustering with shared and specific relations
+& SSCM: mixture of causal mechanisms
+& i.i.d., multiple regimes
+& Distinguishes shared and regime-specific causal relations. Requires a pre-specified regime count. \\
+\hline
+Chen et al.\ \cite{chen2023ccsl}
+& Causal structure learning from unknown environments
+& CCSL: Bayesian nonparametric Causal CRP with variational inference
+& i.i.d., unknown environments
+& Does not require a regime count in advance. Identifiable under a linear non-Gaussian assumption. Primary baseline for this thesis. \\
+\hline
+Varambally et al.\ \cite{varambally2024mcd}
+& Mixture of causal models from time series
+& MCD: variational inference over mixtures of SCMs
+& Temporal, autoregressive structure
+& Jointly infers causal models and mixing probabilities. Relies on temporal ordering. \\
+\hline
+Rahmani and Frossard \cite{rahmani2025castor}
+& Temporal causal regime discovery
+& CASTOR: EM over piecewise-constant regimes with NOTEARS acyclicity
+& Sequential time series
+& Jointly learns regime boundaries and per-regime DAGs without a prior regime count. Relies on temporal contiguity unavailable in i.i.d.\ settings. \\
+\hline
+Cheng et al.\ \cite{cheng2025dycast}
+& Continuously evolving causal structure
+& DyCAST: Neural ODE constrained to DAG manifold
+& Sequential time series
+& Captures smooth causal transitions and scales beyond 50 nodes. Requires temporal ordering. \\
+\hline
+Li et al.\ \cite{li2025hcl}
+& Unsupervised causal clustering from mixed-type data
+& HCL: bi-directional iterative causal clustering (preprint)
+& i.i.d., no environment labels
+& No temporal ordering or regime count required. Scalability on large graphs has not yet been assessed. \\
+\hline
+Sadeghi et al.\ \cite{sadeghi2025causal}
+& Causal discovery from nonstationary time series
+& CD-NOTS: nonparametric extension of CD-NOD correcting lagged conditioning
+& Non-stationary time series
+& Uncovers nonlinear nonstationary causal relations missed by stationarity-assuming methods. \\
+\hline
+Mooij et al.\ \cite{mooij2020jci}
+& Joint causal inference from multiple contexts
+& JCI: context encoded as additional graph nodes
+& Multiple pre-specified contexts
+& Theoretically general and subsumes many special cases. Contexts must be labelled in advance. \\
+\hline
+Faltenbacher et al.\ \cite{faltenbacher2025internal}
+& Assumption violation detection
+& Internal incoherency scores for constraint-based algorithms
+& i.i.d., single environment
+& Flags assumption violations without ground truth. Not yet adapted to causal clustering settings. \\
+\hline
+
+\end{longtable}
+}

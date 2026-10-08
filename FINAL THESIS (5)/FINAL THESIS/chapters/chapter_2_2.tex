@@ -1,0 +1,135 @@
+\section{Causal Discovery and Time Series: Progress and Key Findings}
+\label{sec:survey}
+
+Causal discovery has developed from classical graphical models into methods that
+handle mixed data, heterogeneity, and temporal dependence. Recent work focuses on
+nonstationary and high-dimensional time series.
+
+\subsection{Graphical Causal Discovery}
+
+The main classical approaches are constraint-based methods, such as PC and FCI,
+and score-based DAG learning. These methods provide the theoretical basis for
+structure learning, but their reliability can decrease with nonlinearity,
+measurement error, nonstationarity, and latent confounding
+\cite{glymour2019review}. Hybrid approaches combine the strengths of both families.
+For example, constraint-based filtering can reduce the search space before Bayesian
+sampling is applied \cite{kuipers2018efficient}.
+
+Recent methods also address mixed data and larger graphs. Likelihood-ratio tests
+improve conditional-independence testing for mixed variables
+\cite{tsagris2018constraint}, while variational Bayesian methods improve scalability
+\cite{annadani2021variational}. Other work studies assumption violations
+\cite{faltenbacher2025internal}, cyclic graphs \cite{mooij2020fci}, joint graph and
+effect uncertainty \cite{castelletti2021structural}, and NOTEARS-style learning for
+mixed data \cite{zhao2024notearsm}.
+
+\subsection{Heterogeneity, Non-stationarity, and Mechanism Shifts}
+
+Changes across environments can provide information about causal direction. CD-NOD
+uses distribution shifts to recover causal structure from heterogeneous or
+nonstationary data \cite{huang2020causal}. The Sparse Mechanism Shift hypothesis
+shows that a full graph can become identifiable when only a small number of causal
+mechanisms change across environments \cite{perry2022causal}.
+
+Recent methods also cluster observations by their causal mechanisms. HCL learns
+latent clusters and their graphs from mixed observational data without environment
+labels \cite{li2025hcl}. MCVCI and MCVCC extend this idea to mixtures of bivariate
+mechanisms \cite{liu2025hybrid}. These methods motivate the present work, which
+considers unknown regime counts and sequential observations.
+
+\subsection{Causal Discovery for Time Series (Stationary and Non-stationary)}
+
+Time-series causal discovery includes Granger-based, constraint-based, noise-based,
+score-based, logic-based, topology-based, and difference-based methods
+\cite{assaad2022survey}. No family is best in every setting. Each depends on
+assumptions such as linearity, causal sufficiency, stationarity, or acyclicity.
+Multivariate time series add further problems, including subsampling and unmeasured
+confounding \cite{glymour2019review}.
+
+CD-NOTS extends CD-NOD to nonstationary time series
+\cite{sadeghi2025causal,huang2020causal}. It models contemporaneous and lagged
+effects while enforcing consistency across time. It also corrects problems that can
+arise when lagged variables are used in conditional-independence tests. The method
+supports KCIT, RCoT, CMIknn, and ParCorr, allowing the test to be selected for the
+sample size and dimensionality. Its financial-data experiments show that
+nonstationary and nonlinear effects can be missed by stationary linear methods.
+
+\subsection{Deep-learning and Granger-based Methods}
+\label{ssec:granger}
+
+Deep-learning methods extend Granger-based discovery to larger and more complex
+time series. TCDF uses an attention-based temporal CNN and permutation validation
+to learn graphs and lags \cite{nauta2019causal}. NTiCD combines LSTMs with graph
+convolutions \cite{absar2023neural}. CUTS+ uses Granger-based neural components
+with graph neural networks for irregular streams \cite{cheng2023cuts}. Transformer
+attention has also been used to represent changing Granger graphs
+\cite{zhu2025attention}. These approaches depend on temporal ordering and therefore
+do not directly apply to unordered i.i.d. observations.
+
+\subsection{Temporal Causal Discovery with Unknown Regimes: CASTOR}
+
+CASTOR is the closest existing method to this thesis. It learns causal graphs from
+multivariate time series with an unknown number of sequential regimes
+\cite{rahmani2025castor}. It estimates the regime count, the boundaries, and the
+causal DAG for each regime.
+
+CASTOR uses expectation-maximisation. The E-step updates regime-membership
+probabilities, while the M-step estimates a BIC-penalised DAG under the NOTEARS
+acyclicity constraint \cite{zheng2018dags}. It starts with equal-width windows and
+merges adjacent windows with similar causal structures. The method provides
+identifiability results under Gaussian equal-variance noise. Experiments on graphs
+with up to 40 nodes and two real benchmarks report improvements over CD-NOD,
+RPCMCI, and DYNOTEARS in regime recovery and graph recovery.
+
+CASTOR and LIRA address the same broad problem: finding an unknown number of
+sequential regimes and their graphs without environment labels. Their boundary
+criteria differ. CASTOR accepts boundaries through a global EM and BIC objective.
+LIRA first applies a Chow $F$-test to ask whether the coefficient vectors differ,
+then uses BIC to control model complexity. This gives a statistical test and a
+separate parsimony check for each candidate boundary.
+
+LIRA also uses a domain-specific structural model derived from the Fundamental
+Plane of Black Hole Activity. This fixes the variable set and gives the model
+parameters a physical interpretation. CASTOR is domain-agnostic and therefore more
+general. In return, LIRA uses stronger physical assumptions. Its greedy binary
+segmentation may miss jointly detectable boundaries, and its piecewise-constant
+model cannot represent gradual changes. These limitations motivate future
+comparisons with CASTOR and DyCAST.
+
+\subsection{Continuously Evolving Causal Structure: DyCAST}
+
+DyCAST models causal structure as a continuous function of time rather than as a
+sequence of fixed regimes \cite{cheng2025dycast}. Neural ODEs constrained to the
+DAG manifold allow it to represent smooth transitions. Experiments on synthetic,
+fMRI, CausalTime, and motion-capture data show strong performance and better
+scaling than several static temporal methods. However, DyCAST also requires
+temporal ordering and therefore is not a direct solution for unordered data.
+
+\subsection{Challenges and Methodological Themes}
+
+The performance of causal discovery depends strongly on whether the model
+assumptions match the data \cite{assaad2022survey}. Important challenges include
+nonlinearity, causal insufficiency, mixed data types, high dimensionality, and
+finite-sample error. Existing responses include hybrid Bayesian learning
+\cite{kuipers2018efficient}, mixed-data independence tests
+\cite{tsagris2018constraint}, and graph neural networks for coarse-to-fine discovery
+\cite{cheng2023cuts}.
+
+The field is also moving toward uncertainty quantification. Variational causal
+networks estimate distributions over possible DAGs \cite{annadani2021variational},
+and joint graph-effect models propagate structural uncertainty into effect estimates
+\cite{castelletti2021structural}. Validation is another growing focus, with evidence
+that learned Granger graphs can improve forecasting \cite{zhang2023causalformer}.
+
+\subsection{Conclusion of the Survey}
+
+Causal discovery now includes methods for mixed data, heterogeneity, uncertainty,
+and temporal dynamics. However, each method depends on particular assumptions.
+Many approaches require environment labels, an auxiliary time or domain index, or
+temporal ordering. This thesis focuses on discovering causal regimes from
+unlabelled observations while estimating the number of regimes and testing whether
+their mechanisms differ. CASTOR provides the closest temporal analogue, but its
+dependence on sequential regime assignment does not solve this problem directly.
+
+The main related methods are compared in Table~\ref{tab:related_works}.
+\input{chapters/chapter_2_table}

@@ -1,0 +1,3939 @@
+Latent Regime Discovery in Black Hole Accretion Disks via
+Structural Invariance
+
+by
+Saad Bin Liakot
+23301052
+Sabikun Neha
+23101406
+Araf Hasan
+23101516
+Thamim Nur Zahin
+23316004
+
+A thesis submitted to the Department of Computer Science and Engineering
+in partial fulfillment of the requirements for the degree of
+B.Sc. in Computer Science and Engineering
+
+Department of Computer Science and Engineering
+Brac University
+June 2026.
+
+© 2026. Brac University
+All rights reserved.
+
+Declaration
+It is hereby declared that
+1. The thesis submitted is my/our own original work while completing degree at
+Brac University.
+2. The thesis does not contain material previously published or written by a
+third party, except where this is appropriately cited through full and accurate
+referencing.
+3. The thesis does not contain material which has been accepted, or submitted,
+for any other degree or diploma at a university or other institution.
+4. We have acknowledged all main sources of help.
+
+Student’s Full Name & Signature:
+
+Saad Bin Liakot
+
+Sabikun Neha
+
+23301052
+
+23101406
+
+Araf Hasan
+
+Thamim Nur Zahin
+
+23101516
+
+23316004
+
+i
+
+Approval
+The thesis/project titled “Latent Regime Discovery in Black Hole Accretion Disks
+via Structural Invariance” submitted by
+1. Saad Bin Liakot (23301052)
+2. Sabikun Neha (23101406)
+3. Araf Hasan (23101516)
+4. Thamim Nur Zahin (23316004)
+of [Semester], [Year] has been accepted as satisfactory in partial fulfillment of the
+requirement for the degree of B.Sc. in Computer Science in [Current Semester] Year.
+Examining Committee:
+
+Supervisor:
+(Member)
+Syed Zamil Hasan Shoumo
+Lecturer
+Department of Computer Science and Engineering
+Brac University
+
+Co-Supervisor:
+(Member)
+Dr. Md. Golam Rabiul Alam
+Professor
+Department of Computer Science and Engineering
+Brac University
+
+Thesis Coordinator:
+(Member)
+Name of Thesis Coordinator
+Designation
+Department
+Brac University
+ii
+
+Head of Department:
+(Chair)
+Sadia Hamid Kazi, PhD
+Chairperson and Associate Professor
+Department of Computer Science and Engineering
+Brac University
+
+iii
+
+Abstract
+Modern observatories collect high-cadence data from several wavelengths. These
+data show that black hole accretion systems move between physical states with
+different spectra, disk structures, and jet activity. However, the state linked to each
+observation is not labelled. Many causal discovery methods also need environment
+labels, a domain index, or prior knowledge of the hidden states. CASTOR can
+learn regimes and causal graphs together, but it does not provide a direct statistical
+test for deciding whether a boundary represents a real change in mechanism. In
+addition, the time dependence in monitoring data can violate the independent and
+identically distributed assumption used by many causal methods. This can inflate
+test statistics and create false boundaries.
+We propose LIRA (Latent Invariant Regime Analysis), a framework for finding hidden regimes and their causal structures from unlabelled time series. LIRA uses the
+power-law physics of the Fundamental Plane to build a log-linear model. It searches
+for regime boundaries with recursive binary segmentation and a Chow invariance
+test. A first-order autoregressive term accounts for temporal autocorrelation. The
+resulting test is a lagged Chow F -statistic. The Bayesian Information Criterion
+then decides whether each split should be kept. This also determines the number of
+regimes. Finally, DYNOTEARS estimates a causal graph for each stable regime. We
+validate the results with refutation tests, sensitivity analysis, and graph falsification.
+We tested LIRA on synthetic data where the two regimes differ only in their causal
+mechanisms and have equal variable means. LIRA recovered the boundary with an
+Adjusted Rand Index of 0.998. Structure-blind clustering achieved an ARI of at
+most 0.012. The structural coefficients were recovered to within 0.02 of their true
+values, including the isolated variable in each regime. A pooled model produced
+a spurious structure that matched neither regime. The causal effects passed all
+refutation tests. The sensitivity analysis also showed that the weaker radio-X-ray
+coupling in the Soft State supports weaker causal claims.
+
+Keywords: Causal Artificial Intelligence, Causal Inference, Latent Regime Discovery, Black Hole Accretion, Structural Break Detection, Causal Discovery, DYNOTEARS,
+Structural Causal Models, Time Series Analysis, Observational Astronomy
+
+iv
+
+Table of Contents
+Declaration
+
+i
+
+Approval
+
+ii
+
+Abstract
+
+iv
+
+Table of Contents
+
+v
+
+List of Figures
+
+viii
+
+List of Tables
+
+ix
+
+1 Introduction
+1.1 Background . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.2 Rationale of the Study . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.3 Problem Statement . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.4 Objectives . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.5 Methodology in Brief . . . . . . . . . . . . . . . . . . . . . . . . . . .
+1.6 Scopes and Challenges . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+1
+1
+1
+2
+2
+3
+4
+
+2 Literature Review
+5
+2.1 Preliminaries . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.1.1 Multivariate Time-Series and Non-Stationarity . . . . . . . . . 5
+2.1.2 Black Holes and Accretion . . . . . . . . . . . . . . . . . . . . 6
+2.1.3 Fundamentals of Causal Inference . . . . . . . . . . . . . . . . 8
+2.1.4 Unsupervised Learning and Clustering . . . . . . . . . . . . . 12
+2.1.5 Dynamic Causal Models and Time-Series Graphs . . . . . . . 14
+2.1.6 Algorithmic Framework for Regime Detection and Causal Discovery . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+2.2 Causal Discovery and Time Series: Progress and Key Findings . . . . 20
+2.2.1 Graphical Causal Discovery . . . . . . . . . . . . . . . . . . . 20
+2.2.2 Heterogeneity, Non-stationarity, and Mechanism Shifts . . . . 20
+2.2.3 Causal Discovery for Time Series (Stationary and Non-stationary) 21
+2.2.4 Deep-learning and Granger-based Methods . . . . . . . . . . . 21
+2.2.5 Temporal Causal Discovery with Unknown Regimes: CASTOR 21
+2.2.6 Continuously Evolving Causal Structure: DyCAST . . . . . . 22
+2.2.7 Challenges and Methodological Themes . . . . . . . . . . . . . 22
+2.2.8 Conclusion of the Survey . . . . . . . . . . . . . . . . . . . . . 22
+2.3 Foundations of Causal Discovery . . . . . . . . . . . . . . . . . . . . . 25
+
+v
+
+2.4
+
+2.3.1 Causal Discovery from Nonstationary and Heterogeneous Data
+2.3.2 Mixture Models and Causal Clustering . . . . . . . . . . . . .
+2.3.3 Joint Causal Inference from Multiple Contexts . . . . . . . . .
+Summary of Key Findings . . . . . . . . . . . . . . . . . . . . . . . .
+2.4.1 Methodological Trends . . . . . . . . . . . . . . . . . . . . . .
+2.4.2 Consistent Findings . . . . . . . . . . . . . . . . . . . . . . . .
+2.4.3 Contradictions and Limitations . . . . . . . . . . . . . . . . .
+2.4.4 Research Gaps . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+25
+26
+26
+27
+27
+27
+27
+28
+
+3 Requirements, Impacts and Constraints
+29
+3.1 Project Management Plan . . . . . . . . . . . . . . . . . . . . . . . . 29
+3.2 Risk Management . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+4 Proposed Methodology
+4.1 Overview . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.2 Log-space linearisation . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3 The structural model . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.3.1 Absorption of black hole mass . . . . . . . . . . . . . . . . . .
+4.3.2 Spectral-state variables . . . . . . . . . . . . . . . . . . . . . .
+4.3.3 The autoregressive extension . . . . . . . . . . . . . . . . . . .
+4.3.4 Choice of estimator . . . . . . . . . . . . . . . . . . . . . . . .
+4.3.5 Design matrix . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4 Gate 1: the lagged Chow test . . . . . . . . . . . . . . . . . . . . . .
+4.4.1 Hypothesis and intuition . . . . . . . . . . . . . . . . . . . . .
+4.4.2 Construction . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.4.3 Degrees of freedom . . . . . . . . . . . . . . . . . . . . . . . .
+4.4.4 Distribution . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.5 Locating the boundary and Gate 2 . . . . . . . . . . . . . . . . . . .
+4.5.1 Binary segmentation . . . . . . . . . . . . . . . . . . . . . . .
+4.5.2 Derivation of the BIC criterion . . . . . . . . . . . . . . . . .
+4.5.3 Why BIC rather than AIC . . . . . . . . . . . . . . . . . . . .
+4.5.4 The two-gate design . . . . . . . . . . . . . . . . . . . . . . .
+4.6 Identifiability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+4.7 Stage 2: regime-specific causal graphs . . . . . . . . . . . . . . . . . .
+4.8 Stage 3: causal effect estimation and validation . . . . . . . . . . . .
+4.9 Parameter summary . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+34
+34
+35
+37
+37
+37
+37
+38
+38
+39
+39
+39
+39
+40
+40
+40
+40
+42
+42
+42
+43
+43
+44
+
+5 Experimental Validation
+5.1 Experimental design . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.1.1 Rationale for synthetic validation . . . . . . . . . . . . . . . .
+5.1.2 Generating process . . . . . . . . . . . . . . . . . . . . . . . .
+5.1.3 Why equal means are necessary for a valid test . . . . . . . .
+5.1.4 Ground-truth structures . . . . . . . . . . . . . . . . . . . . .
+5.2 Validation of the autoregressive extension . . . . . . . . . . . . . . . .
+5.3 Regime discovery . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.3.1 Boundary localisation . . . . . . . . . . . . . . . . . . . . . . .
+5.3.2 Operation of the two gates . . . . . . . . . . . . . . . . . . . .
+5.3.3 Comparison against structure-blind baselines . . . . . . . . . .
+5.4 Structural coefficient recovery . . . . . . . . . . . . . . . . . . . . . .
+
+45
+45
+45
+45
+45
+46
+46
+48
+48
+49
+49
+51
+
+vi
+
+5.5
+5.6
+
+5.7
+
+5.4.1 The pooled-model baseline . . . . . . . . . . . . . . . . . . . .
+Regime-specific causal graph recovery . . . . . . . . . . . . . . . . . .
+Causal effect estimation and validation . . . . . . . . . . . . . . . . .
+5.6.1 Effect estimates . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.6.2 Sensitivity to unobserved confounding . . . . . . . . . . . . .
+5.6.3 Graph falsification . . . . . . . . . . . . . . . . . . . . . . . .
+Summary of validation outcomes . . . . . . . . . . . . . . . . . . . .
+
+52
+53
+54
+54
+55
+56
+56
+
+6 Conclusion
+
+58
+
+Bibliography
+
+63
+
+vii
+
+List of Figures
+1.1
+
+High-level pipeline of the unsupervised dynamic causal discovery framework, illustrating the progression from observational data to regimespecific causal graphs. . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+3
+
+2.1
+
+Representations of Time-Series Causal Graphs . . . . . . . . . . . . . 16
+
+3.1
+3.2
+3.3
+
+Project plan for Phase 1. . . . . . . . . . . . . . . . . . . . . . . . . . 30
+Project plan for Phase 2. . . . . . . . . . . . . . . . . . . . . . . . . . 31
+Project plan for Phase 3. . . . . . . . . . . . . . . . . . . . . . . . . . 32
+
+4.1
+
+Accretion geometry of the two spectral states. In the Hard State the
+disk is truncated and replaced inward by a hot corona, with a steady
+radio jet. In the Soft State the disk extends to the innermost stable
+circular orbit and the jet is quenched. . . . . . . . . . . . . . . . . . . 34
+Hypothesised causal structures for the hard and soft accretion states. 35
+Step-by-step recursive framework for temporal regime discovery and
+dynamic causal graph recovery, combining lagged OLS estimation,
+Binary Segmentation, Chow and BIC gates, and DYNOTEARS. . . . 36
+
+4.2
+4.3
+
+5.1
+
+Hypothesised regime-specific causal structures. Edge width is proportional to coefficient magnitude. The causally isolated variable in
+each regime is shown dashed. . . . . . . . . . . . . . . . . . . . . . . 47
+5.2 The generated series with the true boundary (dashed) and the boundary discovered by LIRA (solid). No level shift is visible at the boundary in any variable, by construction. . . . . . . . . . . . . . . . . . . . 47
+5.3 Residual autocorrelation functions with and without the AR(1) term.
+Shaded band gives the 95% interval under independence. . . . . . . . 48
+5.4 Lagged Chow F -statistic across candidate split points, with detail
+near the boundary. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+5.5 BIC evaluation at each recursion node. . . . . . . . . . . . . . . . . . 50
+5.6 Realised recursion tree on the synthetic validation series. . . . . . . . 50
+5.7 Regime recovery: LIRA against structure-blind clustering baselines. . 51
+5.8 Recovered coefficients per regime, and the pooled model that matches
+neither. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+5.9 Recovered adjacency matrices against ground truth, for both the contemporaneous and lagged components. . . . . . . . . . . . . . . . . . 54
+5.10 Causal effect estimation and refutation battery. All reported tests pass. 55
+5.11 Robustness to unobserved confounding as a function of estimated
+causal-effect magnitude. . . . . . . . . . . . . . . . . . . . . . . . . . 55
+
+viii
+
+List of Tables
+2.1
+
+Summary of major related works in causal discovery, regime detection, and causal clustering. . . . . . . . . . . . . . . . . . . . . . . . . 23
+
+4.1
+4.2
+4.3
+4.4
+
+Variable set and transformation . . . . . . . . . . . . . . . . . . . . .
+Spectral-state diagnostics and their regime dependence . . . . . . . .
+Complexity penalty comparison . . . . . . . . . . . . . . . . . . . . .
+Complete parameter specification . . . . . . . . . . . . . . . . . . . .
+
+36
+37
+42
+44
+
+5.1 Distributional summary of the generated data . . . . . . . . . . . . .
+5.2 Generating coefficients . . . . . . . . . . . . . . . . . . . . . . . . . .
+5.3 Residual independence diagnostics (hard-state segment) . . . . . . . .
+5.4 Gate evaluation at each recursion node . . . . . . . . . . . . . . . . .
+5.5 Regime recovery accuracy . . . . . . . . . . . . . . . . . . . . . . . .
+5.6 Recovered structural coefficients . . . . . . . . . . . . . . . . . . . . .
+5.7 Pooled model versus regime-specific models . . . . . . . . . . . . . . .
+5.8 Contemporaneous edge recovery (Ŵ ) . . . . . . . . . . . . . . . . . .
+5.9 Lagged edge recovery (Â, self-lags) . . . . . . . . . . . . . . . . . . .
+5.10 Estimated causal effects, refutation outcomes, and robustness . . . . .
+5.11 Graph falsification summary . . . . . . . . . . . . . . . . . . . . . . .
+5.12 Summary of experimental findings . . . . . . . . . . . . . . . . . . . .
+
+46
+46
+48
+49
+51
+52
+52
+53
+53
+54
+56
+57
+
+ix
+
+Chapter 1
+Introduction
+This chapter introduces the research context, motivation, objectives, and method.
+It also describes the scope and main limitations of the study.
+
+1.1
+
+Background
+
+Modern observatories collect high-cadence data at several wavelengths. Missions
+such as Chandra, XMM-Newton, and NICER have greatly increased the amount
+and quality of available astrophysical data [7], [9], [18]. These data reveal complex
+changes in black hole accretion systems.
+Black holes are regions of spacetime from which light cannot escape after crossing the
+event horizon. The matter around them can still produce strong radiation. Accretion
+occurs when matter is captured and spirals inward. It converts gravitational energy
+into heat and radiation with high efficiency [2], [8]. Black hole binaries and Active
+Galactic Nuclei (AGN) vary over several timescales [13], [15]. Their variability
+reflects changes in the geometry of the flow and in the mechanism that releases
+energy. These changes are commonly described using the Hard State and Soft State
+[11].
+Accretion systems also follow power-law scaling relations across a wide range of
+black-hole masses. These relations suggest shared physical behaviour and motivate
+the Fundamental Plane of black hole activity [10]. However, correlation alone cannot
+show which physical process drives another. Causal discovery provides a way to
+study these directed relationships.
+The main difficulty is that the physical drivers of accretion, such as magnetic-field
+configuration, viscosity, and local shocks, are usually not observed directly. We
+observe only their emitted light. This thesis studies Latent Regime Discovery:
+finding the hidden physical states and their causal mechanisms from observational
+data.
+
+1.2
+
+Rationale of the Study
+
+Black hole accretion systems change between physically distinct states, but the state
+of each observation is not labelled. Manual classification is time-consuming and does
+not scale well to high-cadence instruments such as NICER.
+
+1
+
+The causal relationships can also change between states. A pooled model may therefore produce biased coefficients and hide the true jet-disk coupling. For example,
+the relationship between X-ray luminosity and radio emission may differ between
+the Hard State and the Soft State. That difference cannot be recovered unless the
+observations are first separated by regime.
+An automated framework for latent causal regime discovery would reduce the need
+for manual labelling and could reveal physical relationships that correlation-based
+analyses miss.
+
+1.3
+
+Problem Statement
+
+This thesis addresses the lack of methods that can discover latent causal regimes from
+unlabelled observations without environment labels, a surrogate domain index, or a
+pre-specified number of states. ICP [20] and IRM [25] require environment labels.
+CD-NOD [29] requires an auxiliary time or domain index. CCSL requires multiple
+independent subject datasets, whereas X-ray binary monitoring usually provides one
+continuous record.
+Traditional clustering groups observations by feature similarity rather than causal
+mechanism. It can miss boundaries where observed distributions overlap but the
+causal laws differ. High-cadence accretion data also contains temporal autocorrelation. Methods that assume independent and identically distributed (i.i.d.) observations may then produce inflated statistics and false regime boundaries.
+The problem is therefore the joint treatment of unlabelled data, an unknown regime
+count, temporal dependence, and invariance-based recursive partitioning.
+
+1.4
+
+Objectives
+
+The general objective is to develop and validate a framework that discovers hidden
+causal regimes and their structures from unlabelled, temporally dependent data.
+The framework should not require environment labels, a surrogate nonstationarity
+index, or a pre-specified number of states. The specific objectives are:
+1. To formulate accretion observables within a structural causal model grounded
+in established scaling physics, with parameters that have a physical interpretation.
+2. To design a statistical criterion that distinguishes genuine mechanism changes
+from variation caused by noise.
+3. To maintain the validity of this criterion when high-cadence observations are
+temporally dependent.
+4. To determine the number and location of latent regimes automatically.
+5. To prevent overfitting and unnecessary fragmentation of the time series.
+6. To recover a directed causal structure within each regime and compare the
+coupling between physical variables across states.
+7. To validate the framework on data with known ground-truth regimes and
+graphs before applying it to real observations.
+2
+
+1.5
+
+Methodology in Brief
+
+The method has two stages. First, the observables are transformed into log space so
+that the power-law relationships become linear. A global OLS model is then fitted,
+and a Chow F -test [1] checks whether one causal mechanism explains the series.
+A first-order autoregressive term accounts for temporal autocorrelation, giving a
+lagged Chow statistic with q = 6 parameters per model.
+If invariance is rejected, the method searches for the strongest candidate split. The
+Bayesian Information Criterion (BIC) [3] decides whether the split improves the
+model enough to justify the added complexity. This process is applied recursively,
+so the number of regimes K is determined automatically. Second, DYNOTEARS
+estimates a directed causal graph within each stable partition. The framework is first
+tested on synthetic structural causal models with known graphs. Regime recovery
+is evaluated with the Adjusted Rand Index [4]. Future work will apply it to the
+WATCHDOG catalogue [21] and the Fundamental Plane compilation of Merloni et
+al. [10].
+The overall methodology is summarised in Figure 1.1.
+Unlabeled Observational Data
+Multiwavelength accretion time-series data
+
+Data Preprocessing
+Log-space transformation & temporal lag integration
+
+Stage 1: Latent Regime Discovery
+Recursive timeline splitting via Binary Segmentation
+Evaluated using the Lagged
+Chow F-Test & BIC Penalty
+
+Stage 2: Causal Graph Recovery
+Extracting localized Window
+Causal Graphs using DYNOTEARS
+
+Output: K-Regime-Specific Causal Graphs
+Dynamic causal rules mapping distinct physical accretion states
+
+Figure 1.1: High-level pipeline of the unsupervised dynamic causal discovery
+framework, illustrating the progression from observational data to regimespecific causal graphs.
+
+3
+
+1.6
+
+Scopes and Challenges
+
+This study combines causal inference with high-energy observational astrophysics.
+The framework is designed for multi-wavelength black-hole accretion data and uses
+log-linear structural equations within each regime. Its outputs are regime-specific
+causal graphs, regression coefficients, and autoregressive parameters.
+Several limitations remain. The linear model may miss nonlinear relationships, and
+the piecewise-stationary model is only an approximation to continuous accretion
+dynamics. The Chow test and BIC derivations assume Gaussian noise. The temporal model uses only one lag, and the current validation uses synthetic rather than
+real observations. Unmeasured variables, such as magnetic-field geometry, may create spurious associations that the PC algorithm cannot resolve without additional
+knowledge [6]. Residual autocorrelation may also inflate the Chow statistic; NeweyWest standard errors [5] are considered as a robustness check. Non-Gaussian noise
+and violations of faithfulness provide further challenges for causal discovery.
+
+4
+
+Chapter 2
+Literature Review
+This chapter introduces the background needed to understand the method and results. It covers black hole accretion physics, time-series causal discovery, regime
+detection, and unsupervised clustering. It then reviews related studies and identifies the research gaps addressed by this thesis.
+
+2.1
+
+Preliminaries
+
+The analysis combines two areas: black hole accretion physics and time-series causal
+discovery. The physical background explains why the hard and soft states have
+different observational signatures. The statistical background explains how to model
+autocorrelation, hidden regime boundaries, and unknown state counts. This section
+introduces time-series concepts, causal inference, structural causal models, and the
+main tools used by the framework: OLS, the Chow test, binary segmentation, BIC,
+and DYNOTEARS.
+
+2.1.1
+
+Multivariate Time-Series and Non-Stationarity
+
+i. Time Series Data
+Time-series data consist of observations collected at ordered time points. The order
+is part of the information in the data. A multivariate series can be written as
+X = {x1 , x2 , x3 , . . . , xn }, where n variables are measured over T time steps [36]. A
+variable at time t may depend on variables from the same time step or on earlier
+observations. These past effects are called lagged effects. Because an infinite lag
+window is not practical, causal discovery uses a maximum lag, denoted by Imax .
+ii. Stationary and Non-Stationary Data
+In stationary data, properties such as the mean and variance remain stable over time.
+In non-stationary data, these properties change, either gradually or at particular
+points.
+iii. Temporal Regime
+A temporal regime is a consecutive time window in which the statistical properties
+or causal structure remain stable. If the properties are stable from t = 1 to t = m
+5
+
+and change at t = m + 1, the first interval forms one regime and the later stable
+interval up to t = k forms another.
+iv. Strict Stationary Assumption
+Many traditional models assume that the data-generating rules remain unchanged
+at every time step. This makes the time index independent of the data distribution
+and implies one causal structure for the whole series. The assumption is often
+unrealistic for dynamic systems. If the distribution or causal relationships change,
+a single stationary model can produce inaccurate or misleading discoveries.
+
+2.1.2
+
+Black Holes and Accretion
+
+i. Black Holes
+Black holes are well-studied astrophysical objects, although many aspects of their
+behaviour remain uncertain.
+A black hole is a region of spacetime from which light cannot escape after crossing
+the event horizon. Black holes are detected indirectly through their gravitational
+and electromagnetic effects on nearby matter. They can form when a massive star
+collapses. In general relativity, the event horizon marks the boundary beyond which
+information cannot return to an external observer.
+For a non-rotating black hole, the radius of the event horizon is described by Equation (2.1):
+2GM
+(2.1)
+c2
+where G is the gravitational constant, M is the black-hole mass, and c is the speed
+of light. At this radius, the escape velocity reaches the speed of light. The black
+hole itself does not emit electromagnetic radiation, but nearby matter can become
+very bright through accretion.
+Rs =
+
+ii. Accretion and Accretion Disks
+Accretion is the process by which matter is captured and moves toward a black
+hole. Because the matter has angular momentum, it usually forms a rotating flow
+instead of falling directly inward. Gravitational potential energy is converted into
+motion, heat, and radiation. Accretion is therefore one of the most efficient known
+mechanisms of energy release [2], [8].
+As matter approaches a black hole, it forms a rotating accretion disk. Viscosity
+removes orbital energy and causes the gas to spiral inward. The resulting friction
+heats the disk to very high temperatures.
+The disk is not equally hot at all radii. The outer region is cooler, while the inner
+region can emit strongly in X-rays. This emission provides information about the
+disk geometry and its behaviour.
+iii. Black Hole X-ray Binaries
+Black holes are commonly grouped as stellar-mass, intermediate-mass, or supermassive. Stellar-mass black holes in binary systems are common in the Milky Way.
+6
+
+These systems are called Black Hole X-ray Binaries (BHXBs).
+In a BHXB, the black hole orbits a companion star and pulls gas from it. The
+captured gas feeds the accretion disk. These systems allow rapid changes in accretion
+to be observed over weeks or months [13], [15].
+iv. Active Galactic Nuclei (AGN)
+Active Galactic Nuclei (AGN) are powered by accretion onto supermassive black
+holes at the centres of galaxies. These black holes can be millions or billions of
+times more massive than the Sun.
+The basic accretion physics is similar to that of stellar-mass black holes, but the
+larger mass produces much longer variability timescales. BHXBs can therefore serve
+as faster systems for studying accretion processes.
+v. Accretion States
+Black holes do not accrete at a constant rate. They move between accretion states,
+in which the flow geometry and energy-release mechanism change. The states are
+identified from their emitted spectra.
+vi. Hard State
+In the Hard State, the accretion rate is usually lower. The inner disk is often
+truncated and replaced by a hot, diffuse gas cloud called a corona.
+A steady radio jet is a key feature of this state. The observed emission is dominated
+by high-energy (Hard ) X-rays and often varies rapidly.
+vii. Soft State
+At a higher accretion rate, the system can enter the Soft State. The disk then
+extends inward to the closest stable orbit.
+In the Soft State, the radio jet is quenched or absent. The emission is dominated by
+thermal disk radiation and appears as a Soft X-ray spectrum. Thus, the Soft State
+is disk-dominated, while the Hard State is jet-dominated.
+viii. Power-Law Scaling Relations
+In contrast to the intricate physics of plasma dynamics and magnetic fields, the
+systems surrounding black holes exhibit a notable level of order. They adhere to
+Power-Law Scaling Relations. One physical feature (like brightness) is proportional
+to another raised to a specific exponent, y = Axk .
+In science, power laws are often a sign of scale invariance. This suggests that the
+same physical law applies whether the black hole is small or supermassive. For
+the purpose of this research, these relations are very important because power laws
+become linear when converted to a logarithmic scale (log y = k log x + log A). This
+makes them ideal for the causal discovery methods explored here.
+
+7
+
+ix. Fundamental Plane of Black Hole Activity
+The Fundamental Plane of Black Hole Activity is a specific scaling relation that
+serves as a ”universal rulebook” for black hole physics [10]. It connects three core
+properties: Radio luminosity (LR ), X-ray luminosity (LX ), and the mass of the black
+hole (MBH ). Empirical observations indicate that the physical processes involved in
+accretion and jet production are similar over several orders of magnitude in mass:
+Equation (2.2) gives the power-law form:
+ξM
+LR ∝ LξXX MBH
+
+(2.2)
+
+This relation is expressed logarithmically in Equation (2.3):
+log LR = a log LX + b log MBH + c
+
+2.1.3
+
+(2.3)
+
+Fundamentals of Causal Inference
+
+To understand the mechanisms governing each temporal regime, we rely on the formal framework of causal inference. This section introduces the necessary graphical
+and structural definitions, adopting the framework detailed by Neal (2020).
+i. Directed Acyclic Graphs (DAGs)
+A graph is a mathematical structure consisting of a set of nodes (or vertices) and a
+set of edges, where each edge represents a relationship between two nodes. In the
+context of causal inference, nodes represent the variables or features of the dataset
+[32].
+In a directed graph, edges contain arrows indicating the direction of the relationship.
+The node from which an edge originates is called the parent node, and the node the
+edge points to is called the child node.
+A path is a sequence of nodes connected by edges, regardless of the direction of the
+arrows. A directed path, however, is a sequence of nodes connected by directed edges
+that all point in the same forward direction.
+For a given node X, its descendants, denoted as de(X), consist of all nodes Y for
+which there exists a directed path from X to Y (this includes children, children of
+children, and so forth). Conversely, the ancestors of Y , denoted as an(Y ), consist of
+all nodes X for which there exists a directed path from X to Y (including parents,
+parents of parents, etc.).
+A Directed Acyclic Graph (DAG) is a directed graph that contains no cycles;
+namely, there does not exist any directed path that starts and ends at the same
+node. Consequently, no node can be an ancestor or descendant of itself [32].
+ii. Causal Graphs
+A variable X is considered a cause of a variable Y if an intervention or deliberate
+change in X results in a change in the distribution of Y ; this underlying mechanism
+is referred to as causation [32].
+Within the framework of a directed graph, the Causal Edges Assumption states that
+every parent node is a direct cause of all its child nodes.
+
+8
+
+Consequently, a Causal Graph is formally defined as a Directed Acyclic Graph
+(DAG) that strictly satisfies the Causal Edges Assumption. In such a graph, every
+directed path from one node to another implies a flow of causation.
+iii. Statistical Independence and Dependence
+Two random variables X and Y are statistically independent (or marginally
+independent), denoted as X ⊥⊥ Y , if their joint probability satisfies Equation (2.4):
+P (X = x, Y = y) = P (X = x)P (Y = y)
+
+(2.4)
+
+If this equality does not hold for at least one pair of (x, y), the variables are statistically dependent, denoted as X ̸⊥⊥ Y , implying that observing the value of X
+provides information that changes the probability of Y .
+In real-life systems, variables are rarely entirely independent. Instead, we rely on
+conditional independence. Two random variables X and Y are conditionally
+independent given a third variable (or set of variables) Z, denoted as X ⊥⊥ Y | Z,
+if Equation (2.5) holds:
+P (X = x, Y = y | Z = z) = P (X = x | Z = z)P (Y = y | Z = z)
+
+(2.5)
+
+In causal terms, conditional independence implies that once Z is known, observing
+X provides no additional information about Y [12].
+iv. d-Separation and the Flow of Association
+In a causal graph, it is necessary to understand the conditional independence or dependence between two nodes. This criterion is known as d-separation (directional
+separation) [32].
+Two nodes X and Y are d-separated by a set of conditioning nodes Z if all paths
+between X and Y are mathematically blocked by Z. If X and Y are d-separated
+in the graph G, it implies they are conditionally independent in the probability
+distribution: X ⊥⊥ Y | Z. Note that Z is a set of nodes which can be empty.
+To determine whether a specific path is open or blocked, we evaluate the path using
+three structural building blocks [32]:
+1. Chains (Mediation)
+A chain represents a sequence where causation flows through an intermediate variable (X → Z → Y ). Here, X is a cause of Z, and Z is
+a cause of Y . This path is by default open and X and Y are statistically dependent. However, conditioning on the mediator Z blocks the
+flow of association. Example: In urban infrastructure, heavy rain (X)
+causes waterlogging (Z), which subsequently causes severe traffic gridlock (Y ). Conditioning on the waterlogging (Z) mathematically blocks
+the association between heavy rain and traffic gridlock.
+X
+
+Z
+
+9
+
+Y
+
+2. Forks (Confounding)
+A fork happens when a single variable is the common cause of two separate variables (X ← Z → Y ). Here, Z is a cause of both X and Y . This
+path is open by default, introducing confounding bias. Conditioning on
+the common cause Z blocks this spurious flow of association. Example:
+A summer heatwave (Z) simultaneously causes load-shedding (X) and
+an increase in app-based ride demand (Y ). Conditioning on the temperature (Z) d-separates the electricity usage from the ride-hailing demand,
+removing the fake correlation between load-shedding (X) and app-based
+ride demand (Y ).
+Z
+
+Y
+
+X
+
+3. Colliders (Selection Bias)
+A collider exists when two independent variables have a common effect
+(X → Z ← Y ). Here, both X and Y are causes of Z. If X and Y are not
+directly connected by an edge, this specific V-structure is formally known
+as an immorality. Unlike chains and forks, a collider naturally blocks the
+flow of association. However, conditioning on the collider Z (or any of its
+descendants) opens a spurious path between X and Y . Example: In an
+academic environment, consider the factors for getting a good grade in
+a certain course (Z). A student’s prior foundational knowledge (X) and
+their dedicated study hours (Y ) independently increase the probability of
+securing an ’A’. Prior knowledge and study hours might be independent;
+however, if a researcher restricts their analysis to students who actually received an ’A’ (conditioning on the collider Z), they will induce a
+spurious negative correlation. Within this conditioned group, a student
+without prior foundational knowledge must have compensated with a
+high number of study hours to achieve the grade. This creates a mathematically false implication that having stronger foundational knowledge
+causes a student to study less.
+X
+
+Y
+
+Z
+Formally, a path between nodes A and B is blocked (no flow of association) by a
+conditioning set M if at least one of the following conditions is met [32]:
+1. The path contains a chain (X → Y → Z) or a fork (X ← Y → Z) such that
+the middle node Y is in the conditioning set M .
+2. The path contains a collider (X → Y ← Z) such that the middle node Y is
+not in M , and no descendant of Y is in M .
+10
+
+v. Structural Causal Models (SCMs)
+A Structural Causal Model (SCM) is a mathematical framework used to model
+cause-and-effect relations in an environment [32]. While a DAG is the visual description of causality, an SCM provides the mathematical rules for those relations.
+In an SCM, every single node is calculated through the function in Equation (2.6):
+Xi := fi (PA(Xi ), ϵi )
+
+(2.6)
+
+where:
+ Xi (The effect): The variable being calculated.
+ PA(Xi ) (The causes): The set of parents of Xi which are causing the effect.
+ fi (The function): The deterministic mathematical relation that computes the
+effect from the causes.
+ ϵi (The noise term): The variation in the effect that the causes cannot explain.
+ := (The assignment): The mathematical assignment operation means Xi is
+defined by the right-hand side. Note that this operation is not symmetric.
+
+To illustrate how a DAG translates into structural mathematical equations, consider
+a system with the causal structure: A → C, B → C, B → D, D → E, and E → F .
+A
+
+C
+
+B
+
+D
+
+E
+
+F
+
+The corresponding SCM defines each node as a deterministic function of its direct
+parents and its unobserved noise (ϵ):
+A := fA (ϵA )
+B := fB (ϵB )
+C := fC (A, B, ϵC )
+D := fD (B, ϵD )
+E := fE (D, ϵE )
+F := fF (E, ϵF )
+In this structure, nodes A and B have no direct parents (they act as root nodes),
+meaning their assignments rely entirely on their respective noise terms. Node C,
+acting as a collider between A and B, takes both parent variables as arguments in
+its structural function.
+
+11
+
+vi. The Discovery Postulates: Markov and Faithfulness
+Every mathematical field stands on axioms and postulates. Similarly, to successfully
+discover a causal graph G from the probability distribution P of observational data,
+it is necessary to establish a mathematical bridge between the SCM and statistical independence. This bridge relies on two foundational postulates: the Causal
+Markov Assumption and the Faithfulness Assumption [32].
+1. The Local Causal Markov Assumption (Equation (2.7))
+The Causal Markov Assumption dictates that a node is conditionally
+independent of all its non-descendants, given its direct parents. Formally,
+for any node X in a DAG G, where PA(X) represents its parents and
+ND(X) represents its non-descendants:
+X ⊥⊥ ND(X) | PA(X)
+
+(2.7)
+
+This assumption guarantees that the causal graph naturally imposes the
+correct conditional independencies on the joint probability distribution.
+If two variables are d-separated in the graph G, they must be statistically
+independent in the data P .
+2. The Faithfulness Assumption
+The Faithfulness Assumption is the logical converse of the Markov Assumption. A probability distribution P is considered faithful to a DAG
+G if every conditional independence observed in the data is strictly the
+result of a structural d-separation in the graph. Formally, if X ⊥⊥ Y | Z
+is found in the data distribution P , then X and Y must be d-separated
+by Z in G. This axiom ensures that two causal paths do not perfectly
+and coincidentally cancel each other out to create a fake statistical independence.
+Together, these postulates guarantee that the structural d-separations in the causal
+graph perfectly map to the statistical conditional independencies in the observable
+time-series data, making the unsupervised discovery of the DAG mathematically
+possible.
+
+2.1.4
+
+Unsupervised Learning and Clustering
+
+Because the structural boundaries of real-world temporal regimes are rarely known
+in advance, discovering these shifts requires analyzing the data without predefined
+labels. This section discusses the application of clustering and temporal segmentation
+to identify these hidden causal boundaries.
+i. The Need for Unsupervised Learning
+We have theoretically established the basic theoretical framework for modeling
+causal structure. In this section, we address a major methodological challenge of
+causal modeling, which is detecting the temporal regimes without knowing the structural boundaries of the data. We frame this as an unsupervised learning problem.
+In traditional supervised learning algorithms, models are trained with data with
+12
+
+input features x where the actual outputs y are known beforehand. But in most
+real life dynamic systems, it is not feasible to gather the predefined target outputs.
+So, the exact boundaries of the temporal regimes stay hidden. Supervised learning
+cannot work in this case. To solve this, we rely on unsupervised learning, which
+seeks to recover latent structure without reference to known or labeled outcomes
+[16]. Since our multivariate time-series data does not contain the predefined labels,
+it is mandatory to use unsupervised learning to discover the underlying Structural
+Causal Model (SCM) shifts.
+ii. Clustering vs. Temporal Segmentation
+One of the primary techniques for unsupervised learning is the method of clustering.
+In this method, the data are grouped in a way such that the intra-group similarity
+is maximized and the inter-group similarity is minimized. One such well known
+clustering technique is k-means clustering. In this method, data points are assigned
+to clusters based entirely on their feature proximity, ignoring the sequence of the
+data. So, applying standard clustering on time-series data where the sequence matters, destroys the temporal precedence required for causal discovery. To solve this
+problem, we can use temporal segmentation. Temporal segmentation safeguards
+continuity by grouping contiguous time blocks into discrete clusters. Here, each
+cluster represents a temporal regime, and the boundary between two regimes is now
+clearly defined, which our causal model may work with [36].
+To illustrate this within a real-world context, consider the highly dynamic environmental and traffic conditions of Dhaka City. A multivariate time-series dataset
+tracking hourly parameters, such as traffic density, weather metrics (humidity, wind
+speed), and air quality markers like PM2.5 exhibits distinct, unlabeled temporal
+regimes. During the Winter Regime (November-February), cold weather and stagnant air mean traffic density has a strong, direct causal link to sudden PM2.5 spikes.
+However, during the Monsoon Regime (June-August), heavy rainfall washes away
+pollutants, breaking or heavily weakening that direct causal link, while the rain itself becomes the primary cause of traffic gridlock. Standard clustering like k-means
+would completely ignore this and may group data based only on features like traffic
+speed, which may cluster winter data and summer data together. Temporal segmentation, however, treats winter and monsoon as continuous, separate blocks of
+time with their own distinct causal behaviors.
+iii. Requirements for Temporal Segmentation
+Although there exist many algorithms which may be used to perform temporal segmentation, some rules or requirements have to be enforced for our specific problem.
+ Contiguity enforcement: The algorithm must ensure that each cluster is
+an unbroken sequence of time.
+ Dynamic graph optimization: The cluster fit shouldn’t just be the distance
+between two data points, but also by how a Directed Acyclic Graph (DAG)
+explains the entire block of data.
+ Complexity penalization: The algorithm might assign each time-step its
+own unique regime which we have to prevent. We can prevent it by ensuring
+
+13
+
+that some penalty term is added to the objective function which balances the
+accuracy of the causal graph against the number of structural breaks.
+By satisfying the requirements, the unsupervised algorithm can successfully divide
+the non-stationary time-series data into unique stationary regimes, which will allow
+the discovery of a DAG within each time block.
+
+2.1.5
+
+Dynamic Causal Models and Time-Series Graphs
+
+In a standard Structural Causal Model (SCM), cause-and-effect relationships are
+captured only at a single, isolated instant. The underlying mathematics cannot
+account for historical dependencies, and a traditional DAG is limited to representing static relations. To evaluate dynamical systems, causal influences from the
+past must be explicitly taken into account. Therefore, to properly study structural
+breaks across temporal regimes, we must shift from the standard causal framework
+introduced in the previous section to Dynamic Causal Models.
+i. Unrolling the Graph over Time (Dynamic Bayesian Networks)
+A Dynamic Bayesian Network (DBN) is a directed graphical representation of a
+stochastic process [19]. It is important to note that the network structure itself
+is not dynamic; rather, it is a fixed topology that models variables across discrete
+slices of time. By unrolling these static time slices, the network formally represents
+a dynamical system capable of accounting for historical dependencies.
+To rigorously define a DBN, three structural requirements must be specified [19]:
+1. The Initial State: The structural topology of the first time-slice (t = 0).
+2. The Transition Model: The directed connections between historical timeslices (t − τ ) and the current time-slice (t).
+3. The Probability Distributions: The specific Conditional Probability Distributions (CPDs) that mathematically govern the relations along these directed connections.
+ii. Defining Time-Series Causal Graphs
+To apply causal discovery algorithms to time-series data, we must mathematically
+formalize how the unrolled Dynamic Bayesian Network is represented as a graph.
+Depending on the level of temporal detail required, time-series causality can be
+represented using three distinct graphical definitions [36]. These representations are
+illustrated in Figure 2.1:
+1. The Full Time Causal Graph
+The Full Time Causal Graph captures all causal relations throughout all
+possible time. This is an infinite Directed Acyclic Graph (DAG) where
+every variable at every time step is denoted by an independent node.
+Formally, the set of nodes is defined as {Xti | ∀i, ∀t}. An edge drawn
+j
+from Xt−τ
+→ Xti indicates a direct causal relationship with an exact time
+delay of τ . If τ = 0, the edge represents a contemporaneous effect; if
+14
+
+τ > 0, the edge represents a lagged effect. Although this graph contains
+all the theoretical information, the sheer number of nodes and edges
+makes it computationally intractable for causal discovery algorithms.
+2. The Window Causal Graph
+Because the Full Time Causal Graph is computationally intractable, we
+must compress the temporal information into a manageable window. As
+a result, this graph restricts the analysis to a specific, finite maximum
+j
+time lag, denoted as τmax . In this representation, an edge Xt−τ
+→ Xti
+is only valid and included in the graph if the delay is within the sliding
+window (τ ≤ τmax ). This operates under the assumption that an effect
+past τmax is negligible and is instead mediated by more recent causal
+relations. The Window Causal Graph is the primary target structure
+for time-series causal discovery algorithms and is the most prominent
+representation utilized in this thesis.
+3. The Summary Causal Graph
+Unlike the Full Time Causal Graph or the Window Causal Graph, the
+Summary Causal Graph does not incorporate timestamps; it serves as
+a full summary of the entire temporal history, containing information
+across all time steps. In this graph, nodes revert to their static definitions
+(X i and X j , dropping the time index t). An edge X j → X i is drawn if
+j
+there exists any time delay τ ≥ 0 where Xt−τ
+causes Xti in the underlying
+full graph. Because this aggregation ignores the strict forward-flowing
+direction of time, a Summary Causal Graph can contain cycles (X j → X i
+and X i → X j can simultaneously exist if they occur at different lags).
+Therefore, unlike a standard static causal graph, a Summary Causal
+Graph is not necessarily a DAG.
+By understanding these three representations, we can define unsupervised clustering algorithms to discover distinct temporal regimes in a time-series by analyzing
+localized Window or Summary Causal Graphs.
+iii. The Time-Series Structural Causal Model
+A standard Structural Causal Model (SCM) assumes all variables operate within
+the same isolated instant. However, in a Time-Series Structural Causal Model, we
+must extend this framework to account for the flow of time t.
+In a time-series SCM, a variable is not merely caused by other variables, but by
+specific historical time instants (from t − 1 down to t − τmax ) of those variables [36].
+Equation (2.8) formally defines a time-series SCM:
+j
+j
+Xti := fi ({Xt−τ
+| Xt−τ
+∈ PA(Xti )}, ϵit )
+
+(2.8)
+
+where:
+ Xti (The present effect): The target variable being calculated at the current
+time step t.
+ PA(Xti ) (The temporal parents): The set of all direct causes of Xti . Because
+time is now a factor, this set can contain two distinct types of causes:
+
+15
+
+Full Time Causal Graph
+Xt−1
+
+Xt+1
+
+Xt
+
+...
+
+...
+Yt−1
+
+Yt+1
+
+Yt
+
+Window Causal Graph (τmax = 1)
+Xt−1
+
+Xt
+
+Yt−1
+
+Yt
+
+Summary Causal Graph
+
+X
+
+Y
+
+Figure 2.1: Representations of Time-Series Causal Graphs
+
+– Contemporaneous Effects: Causes that occur within the exact same
+time step (τ = 0), denoted as Xtj → Xti .
+– Time-Lagged Effects: Causes that occurred in the strict past (τ > 0),
+j
+denoted as Xt−τ
+→ Xti . Note that a variable can be a lagged cause of
+i
+itself (Xt−τ
+→ Xti ), representing auto-correlation.
+ fi : The deterministic function mapping the historical and instantaneous parents to the current effect.
+ ϵit : The independent noise term at time t.
+
+To illustrate how a static DAG is unrolled into this time-series SCM format (using
+a maximum time lag of τmax = 2), consider a dynamic system with three variables
+(A, B, and C). Let the causal structure dictate the following temporal rules: A
+influences its own next state, A influences B with a delay of two time steps, B
+influences its own next state, A influences C with a delay of one time step, and B
+influences C instantaneously.
+
+16
+
+Time t − 2
+
+Time t − 1
+
+Time t
+
+At−2
+
+At−1
+
+At
+
+Bt−2
+
+Bt−1
+
+Bt
+
+Ct−2
+
+Ct−1
+
+Ct
+
+The corresponding time-series equations dictate the state of each node at the current
+time step t:
+At := fA (At−1 , ϵA,t )
+Bt := fB (Bt−1 , At−2 , ϵB,t )
+Ct := fC (Bt , At−1 , ϵC,t )
+In this dynamic system, the equation for At demonstrates a lagged auto-correlation
+(τ = 1), the equation for Bt demonstrates a cross-lagged effect reaching back to the
+maximum lag limit (τ = 2), and the equation for Ct demonstrates a combination of
+a historical effect from A (τ = 1) and a contemporaneous effect from B (τ = 0).
+iv. Consistency Throughout Time and Structural Breaks
+The mathematical formalizations of Time-Series SCMs and Window Causal Graphs
+rely on a fundamental assumption: the underlying causal mechanisms do not change
+spontaneously or erratically. It is highly unlikely that a causal direction will abruptly
+flip within a stable window; if such instability occurred frequently, the system would
+fragment into countless micro-regimes, causing the predictive model to collapse. In
+most macroscopic real-world scenarios, a causal link from A to B might weaken
+or disappear over time, but an immediate reversal where B suddenly causes A is
+highly improbable. This principle of stability is formally known as Consistency
+Throughout Time.
+According to Assaad et al. [36], a time-series causal graph is consistent throughout
+time if the presence and direction of every causal edge remain invariant across all
+time steps. For instance, if X causes Y with a lag of τ = 1 at time t, it must also
+cause Y with the exact same lag at time t + 100.
+In the context of this thesis, Consistency Throughout Time serves as the core defining characteristic of a Temporal Regime. As long as the consistency of the causal
+graph remains unbroken, that contiguous block of time constitutes a single, independent regime.
+However, in real-world dynamical systems, environments evolve and underlying rules
+change. When this consistency assumption is violated over time—for example, when
+an existing causal edge disappears or a new one emerges—we denote that exact moment as a Structural Break. Consequently, the time steps following this break
+17
+
+transition into an entirely different regime. In observational data, this often manifests as certain variables becoming causally isolated while new cause-and-effect relationships are born.
+To illustrate this dynamically, we extend the Dhaka City environmental model introduced in Section 2.1.4. Consider a multivariate time-series dataset tracking hourly
+parameters: Traffic Density (X), PM2.5 levels (Y ), and Rainfall (Z).
+ Regime 1: The Winter Consistency (Nov–Feb): Cold weather and
+stagnant air mean traffic density has a strong, direct causal link to sudden
+PM2.5 spikes. During this contiguous block of time, the Window Causal Graph
+maintains a perfectly consistent, lagged edge: Xt−τ → Yt .
+ The Structural Break: As the climate shifts, the environmental physics
+governing the city fundamentally change. The consistency assumption is violated.
+ Regime 2: The Monsoon Consistency (Jun–Aug): Heavy rainfall washes
+away pollutants, effectively breaking the direct causal link from traffic to air
+quality. Simultaneously, the rain itself becomes the primary cause of traffic
+gridlock. The old causal edge (Xt−τ → Yt ) disappears from the Window Causal
+Graph, replaced by a newly consistent edge representing the rain’s effect on
+traffic (Zt−τ → Xt ).
+
+Because the exact temporal boundary (the structural break) between these distinct
+causal regimes is hidden within the unlabeled observational data, we cannot rely on
+supervised learning to locate it. This dictates the core methodological approach of
+this thesis: we must treat the discovery of these structural breaks as an unsupervised learning problem, utilizing clustering algorithms to segment the time-series
+based solely on the shifting structures of the underlying Window Causal Graphs.
+
+2.1.6
+
+Algorithmic Framework for Regime Detection and Causal
+Discovery
+
+Identifying independent temporal regimes, and more precisely, locating their underlying structural breaks requires a multi-step pipeline. Therefore, our methodology
+relies on the integration of multiple algorithms, analytical tools, and optimization
+techniques. Within this pipeline, the time-series data is first segmented into distinct
+temporal regimes, and subsequently, the specific causal structure of each isolated
+regime is extracted. To achieve this, our framework relies on three core stages:
+i. Parameter Estimation and Model Scoring
+ Ordinary Least Squares (OLS): OLS serves as the baseline optimization
+technique in this framework. It mathematically estimates the strength of the
+relationship (the edge weight) between a historical cause and a present effect. Because these cause-and-effect relationships are temporal, the true edge
+weights remain constant within a stable regime but shift when a structural
+break occurs. By minimizing the residual sum of squares, OLS evaluates the
+baseline error for any given window of time.
+
+18
+
+ Bayesian Information Criterion (BIC): BIC acts as the penalized scoring
+metric for this framework. During clustering, if every tiny chunk of time were
+segmented independently, the OLS error would drop to near zero, but the
+model would severely overfit, rendering the results meaningless. BIC introduces a mathematical penalty for each new regime discovered. Consequently,
+it balances the need to minimize OLS error against model complexity, ensuring
+the algorithm does not fracture the timeline into an excessive and insignificant
+number of segments.
+
+This fundamental trade-off between minimizing OLS error and minimizing the BIC
+penalty ensures the mathematical foundation necessary to deploy search algorithms
+to locate the exact structural breaks.
+ii. Structural Break Identification
+To identify the exact temporal boundaries where structural breaks occur, we utilize
+recursive hypothesis testing driven by OLS error evaluation.
+ Binary Segmentation (BinSeg): Because a time-series may contain multiple hidden regimes, evaluating every single time step independently for a
+structural break is computationally intractable. To optimize this, we employ
+Binary Segmentation, a recursive ”divide-and-conquer” search strategy. At
+each step, the algorithm sweeps the current time window, identifies the single point with the highest Chow Test significance score, and divides the data
+at that exact juncture. The recursion then continues independently on those
+newly divided sub-segments. Furthermore, because the true number of regimes
+is unknown, this method is highly advantageous; it iteratively halves the timeline only when statistically justified, isolating independent regimes without
+requiring a predefined regime count.
+ Chow F-Test: The Chow F-Test serves as the statistical engine that dictates
+whether BinSeg should actually execute a split. It evaluates if a structural
+break is genuinely happening by comparing the OLS error of a single continuous time window against the combined OLS error of the two segments proposed by BinSeg. If formulating two distinct regression models significantly
+reduces the overall residual error, the Chow Test mathematically confirms that
+a structural break has occurred and the regime has shifted.
+
+iii. Continuous Causal Graph Discovery
+Once the entire time-series is segmented into independent regimes, the final step is
+to discover the internal dynamic causal graph governing each regime.
+ The DYNOTEARS Algorithm: Traditional causal discovery algorithms,
+such as the PC algorithm, rely on combinatorial graph search and do not scale
+well with dense time-series data. To extract the causal relations and underlying
+structures from each independent regime, we utilize DYNOTEARS, a temporal extension of the NOTEARS framework. DYNOTEARS advances DAG
+learning by replacing discrete graph search with a continuous, differentiable
+optimization problem. This formulation allows the algorithm to efficiently
+
+19
+
+learn both instantaneous and lagged causal effects simultaneously. By applying DYNOTEARS individually to each temporal block isolated by BinSeg, we
+can extract the exact localized Window Causal Graph for that specific regime.
+iv. Summary and Baseline Assumptions
+In summary, this pipeline functions as a comprehensive framework for unsupervised
+causal inference: OLS measures the baseline error, BIC prevents model overfitting,
+Binary Segmentation recursively divides the timeline, the Chow F-Test statistically
+validates the structural breaks, and finally, DYNOTEARS maps the dynamic causal
+graphs.
+It must be noted that this baseline framework initially operates under the assumption of linear causal relationships. If real-world datasets exhibit strong non-linear
+mechanisms, the performance of this specific configuration may degrade. However,
+because this pipeline is inherently modular, each algorithm or statistical test can
+be substituted with non-linear alternatives optimized for the target dataset. Consequently, this architecture can be adapted to capture the behaviors of highly complex
+dynamic systems.
+
+2.2
+
+Causal Discovery and Time Series: Progress
+and Key Findings
+
+Causal discovery has developed from classical graphical models into methods that
+handle mixed data, heterogeneity, and temporal dependence. Recent work focuses
+on nonstationary and high-dimensional time series.
+
+2.2.1
+
+Graphical Causal Discovery
+
+The main classical approaches are constraint-based methods, such as PC and FCI,
+and score-based DAG learning. These methods provide the theoretical basis for
+structure learning, but their reliability can decrease with nonlinearity, measurement
+error, nonstationarity, and latent confounding [26]. Hybrid approaches combine the
+strengths of both families. For example, constraint-based filtering can reduce the
+search space before Bayesian sampling is applied [22].
+Recent methods also address mixed data and larger graphs. Likelihood-ratio tests
+improve conditional-independence testing for mixed variables [23], while variational
+Bayesian methods improve scalability [34]. Other work studies assumption violations
+[45], cyclic graphs [30], joint graph and effect uncertainty [35], and NOTEARS-style
+learning for mixed data [43].
+
+2.2.2
+
+Heterogeneity, Non-stationarity, and Mechanism Shifts
+
+Changes across environments can provide information about causal direction. CDNOD uses distribution shifts to recover causal structure from heterogeneous or nonstationary data [29]. The Sparse Mechanism Shift hypothesis shows that a full graph
+can become identifiable when only a small number of causal mechanisms change
+across environments [37].
+
+20
+
+Recent methods also cluster observations by their causal mechanisms. HCL learns
+latent clusters and their graphs from mixed observational data without environment
+labels [46]. MCVCI and MCVCC extend this idea to mixtures of bivariate mechanisms [47]. These methods motivate the present work, which considers unknown
+regime counts and sequential observations.
+
+2.2.3
+
+Causal Discovery for Time Series (Stationary and Nonstationary)
+
+Time-series causal discovery includes Granger-based, constraint-based, noise-based,
+score-based, logic-based, topology-based, and difference-based methods [36]. No
+family is best in every setting. Each depends on assumptions such as linearity,
+causal sufficiency, stationarity, or acyclicity. Multivariate time series add further
+problems, including subsampling and unmeasured confounding [26].
+CD-NOTS extends CD-NOD to nonstationary time series [29], [49]. It models contemporaneous and lagged effects while enforcing consistency across time. It also
+corrects problems that can arise when lagged variables are used in conditionalindependence tests. The method supports KCIT, RCoT, CMIknn, and ParCorr,
+allowing the test to be selected for the sample size and dimensionality. Its financialdata experiments show that nonstationary and nonlinear effects can be missed by
+stationary linear methods.
+
+2.2.4
+
+Deep-learning and Granger-based Methods
+
+Deep-learning methods extend Granger-based discovery to larger and more complex
+time series. TCDF uses an attention-based temporal CNN and permutation validation to learn graphs and lags [28]. NTiCD combines LSTMs with graph convolutions
+[38]. CUTS+ uses Granger-based neural components with graph neural networks
+for irregular streams [40]. Transformer attention has also been used to represent
+changing Granger graphs [50]. These approaches depend on temporal ordering and
+therefore do not directly apply to unordered i.i.d. observations.
+
+2.2.5
+
+Temporal Causal Discovery with Unknown Regimes:
+CASTOR
+
+CASTOR is the closest existing method to this thesis. It learns causal graphs from
+multivariate time series with an unknown number of sequential regimes [48]. It
+estimates the regime count, the boundaries, and the causal DAG for each regime.
+CASTOR uses expectation-maximisation. The E-step updates regime-membership
+probabilities, while the M-step estimates a BIC-penalised DAG under the NOTEARS
+acyclicity constraint [24]. It starts with equal-width windows and merges adjacent
+windows with similar causal structures. The method provides identifiability results under Gaussian equal-variance noise. Experiments on graphs with up to 40
+nodes and two real benchmarks report improvements over CD-NOD, RPCMCI, and
+DYNOTEARS in regime recovery and graph recovery.
+CASTOR and LIRA address the same broad problem: finding an unknown number
+of sequential regimes and their graphs without environment labels. Their boundary
+criteria differ. CASTOR accepts boundaries through a global EM and BIC objective.
+21
+
+LIRA first applies a Chow F -test to ask whether the coefficient vectors differ, then
+uses BIC to control model complexity. This gives a statistical test and a separate
+parsimony check for each candidate boundary.
+LIRA also uses a domain-specific structural model derived from the Fundamental
+Plane of Black Hole Activity. This fixes the variable set and gives the model parameters a physical interpretation. CASTOR is domain-agnostic and therefore more
+general. In return, LIRA uses stronger physical assumptions. Its greedy binary segmentation may miss jointly detectable boundaries, and its piecewise-constant model
+cannot represent gradual changes. These limitations motivate future comparisons
+with CASTOR and DyCAST.
+
+2.2.6
+
+Continuously Evolving Causal Structure: DyCAST
+
+DyCAST models causal structure as a continuous function of time rather than as a
+sequence of fixed regimes [44]. Neural ODEs constrained to the DAG manifold allow
+it to represent smooth transitions. Experiments on synthetic, fMRI, CausalTime,
+and motion-capture data show strong performance and better scaling than several
+static temporal methods. However, DyCAST also requires temporal ordering and
+therefore is not a direct solution for unordered data.
+
+2.2.7
+
+Challenges and Methodological Themes
+
+The performance of causal discovery depends strongly on whether the model assumptions match the data [36]. Important challenges include nonlinearity, causal
+insufficiency, mixed data types, high dimensionality, and finite-sample error. Existing responses include hybrid Bayesian learning [22], mixed-data independence tests
+[23], and graph neural networks for coarse-to-fine discovery [40].
+The field is also moving toward uncertainty quantification. Variational causal networks estimate distributions over possible DAGs [34], and joint graph-effect models
+propagate structural uncertainty into effect estimates [35]. Validation is another
+growing focus, with evidence that learned Granger graphs can improve forecasting
+[41].
+
+2.2.8
+
+Conclusion of the Survey
+
+Causal discovery now includes methods for mixed data, heterogeneity, uncertainty,
+and temporal dynamics. However, each method depends on particular assumptions.
+Many approaches require environment labels, an auxiliary time or domain index,
+or temporal ordering. This thesis focuses on discovering causal regimes from unlabelled observations while estimating the number of regimes and testing whether
+their mechanisms differ. CASTOR provides the closest temporal analogue, but its
+dependence on sequential regime assignment does not solve this problem directly.
+The main related methods are compared in Table 2.1.
+
+22
+
+Table 2.1: Summary of major related works in causal discovery, regime detection, and causal clustering.
+Study
+
+Task
+
+Method
+
+Setting
+
+Main Finding / Gap
+
+Spirtes et
+al. [6]
+
+DAG
+learning from
+observational
+data
+
+PC and FCI
+constraintbased
+algorithms
+
+i.i.d.,
+single environment
+
+Foundational framework
+for causal discovery.
+Assumes a single fixed
+causal model throughout.
+
+Zheng et al.
+[24]
+
+Continuous
+DAG
+structure
+learning
+
+NOTEARS:
+smooth
+algebraic
+acyclicity
+constraint
+
+i.i.d.,
+single environment
+
+Enables gradient-based
+DAG learning at scale.
+The acyclicity constraint
+underpins DYNOTEARS
+and CASTOR.
+
+Pamfil et
+al. [33]
+
+Time-series
+causal graph
+recovery
+
+DYNOTEARS: Stationary
+NOTEARS
+time series
+extended to
+contemporaneous and lagged
+edges
+
+Efficiently recovers
+window causal graphs.
+Assumes stationarity
+holds throughout the
+entire series.
+
+Huang et
+al. [29]
+
+Causal
+discovery
+under
+heterogeneity
+
+CD-NOD:
+nonparametric
+method
+exploiting
+distribution
+shifts
+
+Multiple
+domains
+or timeindexed
+data
+
+Heterogeneity aids causal
+identification. Requires
+an auxiliary domain
+index or time stamp.
+
+Peters et
+al. [20]
+
+Causal
+parent
+identification
+
+ICP: invariant
+prediction
+across
+environments
+
+Multiple
+labelled
+environments
+
+Exploits causal
+invariance effectively.
+Requires environment
+labels as a strict
+prerequisite.
+
+Arjovsky et
+al. [25]
+
+Out-ofdistribution
+generalisation
+
+IRM: invariant
+risk
+minimisation
+
+Multiple
+labelled
+environments
+
+Encourages causally
+stable features.
+Guarantees weaken when
+the environment count is
+small.
+
+Perry et al.
+[37]
+
+Multienvironment
+causal graph
+recovery
+
+Sparse
+Mechanism
+Shift
+hypothesis
+with MSS
+score
+
+Multiple
+labelled
+environments
+
+Full graph identifiable
+under sparse shifts.
+Environment
+membership must still be
+known.
+
+Huang et
+al. [27]
+
+Causal
+clustering
+with shared
+and specific
+relations
+
+SSCM:
+mixture of
+causal
+mechanisms
+
+i.i.d.,
+multiple
+regimes
+
+Distinguishes shared and
+regime-specific causal
+relations. Requires a
+pre-specified regime
+count.
+Continued on next page
+
+23
+
+Table 2.1 – continued from previous page
+Study
+
+Task
+
+Method
+
+Setting
+
+Main Finding / Gap
+
+Chen et al.
+[39]
+
+Causal
+structure
+learning from
+unknown
+environments
+
+CCSL:
+Bayesian
+nonparametric
+Causal CRP
+with
+variational
+inference
+
+i.i.d.,
+unknown
+environments
+
+Does not require regime
+count in advance.
+Identifiable under a
+linear non-Gaussian
+assumption. Primary
+baseline for this thesis.
+
+Varambally
+et al. [42]
+
+Mixture of
+causal
+models from
+time series
+
+MCD:
+variational
+inference over
+mixtures of
+SCMs
+
+Temporal,
+autoregressive
+structure
+
+Jointly infers causal
+models and mixing
+probabilities. Relies on
+temporal ordering.
+
+Rahmani
+and
+Frossard
+[48]
+
+Temporal
+causal regime
+discovery
+
+CASTOR: EM
+over piecewiseconstant
+regimes with
+NOTEARS
+acyclicity
+
+Sequential
+time series
+
+Jointly learns regime
+boundaries and
+per-regime DAGs
+without a prior regime
+count. Relies on
+temporal contiguity
+unavailable in i.i.d.
+settings.
+
+Cheng et
+al. [44]
+
+Continuously
+evolving
+causal
+structure
+
+DyCAST:
+Neural ODE
+constrained to
+DAG manifold
+
+Sequential
+time series
+
+Captures smooth causal
+transitions and scales
+beyond 50 nodes.
+Requires temporal
+ordering.
+
+Li et al.
+[46]
+
+Unsupervised
+causal
+clustering
+from
+mixed-type
+data
+
+HCL:
+bi-directional
+iterative
+causal
+clustering
+(preprint)
+
+i.i.d., no
+environment
+labels
+
+No temporal ordering or
+regime count required.
+Scalability on large
+graphs has not yet been
+assessed.
+
+Sadeghi et
+al. [49]
+
+Causal
+discovery
+from nonstationary time
+series
+
+CD-NOTS:
+nonparametric
+extension of
+CD-NOD
+correcting
+lagged
+conditioning
+
+Nonstationary
+time series
+
+Uncovers nonlinear
+nonstationary causal
+relations missed by
+stationarity-assuming
+methods.
+
+Mooij et al.
+[31]
+
+Joint causal
+inference
+from multiple
+contexts
+
+JCI: context
+encoded as
+additional
+graph nodes
+
+Multiple
+prespecified
+contexts
+
+Theoretically general and
+subsumes many special
+cases. Contexts must be
+labelled in advance.
+Continued on next page
+
+24
+
+Table 2.1 – continued from previous page
+Study
+
+Task
+
+Faltenbacher Assumption
+et al. [45]
+violation
+detection
+
+2.3
+
+Method
+
+Setting
+
+Main Finding / Gap
+
+Internal
+incoherency
+scores for
+constraintbased
+algorithms
+
+i.i.d.,
+single environment
+
+Flags assumption
+violations without
+ground truth. Not yet
+adapted to causal
+clustering settings.
+
+Foundations of Causal Discovery
+
+Causal discovery infers causal relationships from observational data. Constraintbased methods, such as PC and FCI, use conditional-independence tests. PC returns
+a Markov equivalence class of DAGs, while FCI also allows latent confounding and
+returns a partial ancestral graph [6].
+Score-based methods search for a DAG that fits the data well. GES performs
+a greedy search over equivalence classes. NOTEARS reformulates DAG learning
+as continuous optimization by expressing acyclicity as a smooth constraint [24].
+DYNOTEARS extends this formulation to contemporaneous and lagged relationships in time series [33].
+Functional causal models make stronger assumptions about the functional form and
+noise distribution. LiNGAM can identify the causal order when the model is linear
+and the noise is non-Gaussian [14]. VAR-LiNGAM extends this idea to vector
+autoregressive models with instantaneous and lagged effects [17].
+These foundational methods generally assume one causal model for the full dataset.
+Real data may combine several latent processes, populations, time intervals, or
+biological states. A single model fitted to such data can produce an averaged graph
+that represents none of the underlying mechanisms. This motivates methods for
+heterogeneous structure learning.
+
+2.3.1
+
+Causal Discovery from Nonstationary and Heterogeneous Data
+
+Several methods use changes across environments to improve causal identification.
+Invariant Causal Prediction identifies parents whose conditional relationship with
+a target remains stable across known environments [20]. Its main limitation is the
+need for environment labels.
+CD-NOD uses distribution shifts across domains or time to recover causal structure
+[29]. It needs an auxiliary domain or time index, but not hard environment labels.
+CD-NOTS adapts this idea to time series and improves the treatment of lagged
+variables [49]. The Sparse Mechanism Shift hypothesis gives theoretical support to
+this approach when only a few mechanisms change [37].
+DyCAST models continuous changes in the causal DAG with Neural ODEs [44].
+IRM provides a related learning-theoretic approach that encourages stable predictors
+across environments [25]. Both IRM and ICP require known environment partitions.
+Together, these studies show that heterogeneity can help causal learning. However,
+existing methods generally need environment labels, an auxiliary nonstationarity
+25
+
+index, or temporal ordering. Recovering regimes without all three is the central gap
+addressed by this thesis.
+
+2.3.2
+
+Mixture Models and Causal Clustering
+
+Causal clustering jointly estimates cluster assignments and causal structures. This
+is preferable to a sequential approach because incorrect assignments can corrupt
+graph learning, while an incorrect graph can corrupt clustering.
+The Specific and Shared Causal Model (SSCM) represents data as a mixture of
+causal mechanisms and separates shared from regime-specific relations [27]. It requires the number of regimes in advance.
+CCSL is more flexible. It uses a causal Chinese Restaurant Process to group observations by causal-structure similarity rather than feature distance [39]. Variational
+inference estimates the parameters and assignments together, and the number of
+groups need not be supplied. CCSL provides identifiability under a linear nonGaussian model and has been tested on fMRI and Sachs protein-signalling data.
+i. Temporal Extensions of Causal Clustering
+MCD learns mixtures of structural causal models from time series using variational
+inference [42]. Its autoregressive structure makes it unsuitable for i.i.d. crosssectional data. CASTOR provides a temporal method for jointly learning sequential
+regimes and their DAGs [48], but its use of temporal contiguity does not transfer
+directly to unordered observations.
+ii. i.i.d. Extensions and Recent Advances
+HCL jointly learns latent clusters and causal structures from mixed observational
+data without environment labels or a pre-specified regime count [46]. Its preprint
+reports weaker assumptions than CCSL, but its identifiability conditions and largegraph performance require further study. MCVCI and MCVCC show that mechanismaware clustering is also useful in simple bivariate mixtures [47].
+iii. Classical Clustering Methods
+Methods such as k-means, GMM, DBSCAN, and OPTICS group observations by
+similarity in feature space. They can fail when regimes have similar distributions
+but different causal mechanisms. CCSL results show the value of including causal
+structure in the clustering objective [39].
+
+2.3.3
+
+Joint Causal Inference from Multiple Contexts
+
+JCI represents contexts as additional nodes in a causal graph and learns causal
+structure across observational and interventional settings [31]. It is general, but the
+contexts must be known in advance. Representation-learning methods also study
+hidden causal variables, but they usually focus on learning latent variables from
+images or videos rather than grouping tabular observations by causal regime.
+
+26
+
+2.4
+
+Summary of Key Findings
+
+The literature has moved from single-environment causal discovery to methods that
+use known environments, distribution shifts, or joint causal clustering. This section
+summarises the main trends and limitations and states the gaps addressed by this
+thesis.
+
+2.4.1
+
+Methodological Trends
+
+Constraint-based methods use conditional independence, while score-based methods
+optimize a graph score such as BIC. Functional causal models, including LiNGAM
+and VAR-LiNGAM, use stronger assumptions about the noise and functional form
+[14], [17], [36].
+In heterogeneous settings, invariance and distribution shifts are the main guiding
+ideas. They appear in ICP, CD-NOD, CD-NOTS, IRM, and JCI [20], [25], [29],
+[31], [49]. CASTOR and DyCAST model temporal changes as piecewise-constant
+or continuously evolving structures [44], [48]. Causal clustering methods such as
+SSCM, CCSL, HCL, and MCD jointly estimate assignments and causal models [27],
+[39], [42], [46].
+
+2.4.2
+
+Consistent Findings
+
+The reviewed studies support five conclusions:
+1. Causal structure can differ substantially across regimes. A pooled model can
+produce a graph that represents none of them [29], [39], [42], [46], [48].
+2. Joint estimation of assignments and causal structures is generally better than
+a sequential pipeline [27], [39], [46], [48].
+3. Causal-structure similarity can be a better clustering signal than feature distance or correlation [39].
+4. Real data often violates stationarity, as shown by CD-NOTS and CASTOR
+[48], [49].
+5. No method is universally best. Performance depends on whether its assumptions match the data-generating process [36].
+
+2.4.3
+
+Contradictions and Limitations
+
+ICP and IRM require known environment partitions. CD-NOD and CD-NOTS require an auxiliary domain or time index. CCSL assumes stationarity within clusters,
+while CASTOR handles sequential changes but assumes piecewise-constant regimes
+and Gaussian equal-variance noise. These requirements limit their use when the
+hidden state and the number of regimes are both unknown.
+There is also a trade-off between flexibility and identifiability. CCSL has formal
+guarantees under linear non-Gaussian noise, but that assumption may be restrictive. HCL and MCD use more flexible models but provide weaker or less developed
+formal guarantees. Evaluation is also inconsistent: some studies report clustering
+quality without graph quality, while others do the reverse. A common benchmark
+is still needed. Internal incoherency scores are promising for detecting assumption
+violations, but they have not been adapted to causal clustering [45].
+
+27
+
+2.4.4
+
+Research Gaps
+
+The main gaps relevant to this thesis are:
+ No formal invariance test for discovered boundaries. CASTOR and DyCAST use global optimization scores, but do not attach a direct hypothesis test
+to each proposed boundary. LIRA addresses this with a Chow test followed by
+an independent BIC decision.
+ No formal test of structural difference. Existing causal-clustering methods
+generally do not test whether two learned regimes differ beyond finite-sample
+variation.
+ Limited scalability evidence. Most causal-clustering studies use small synthetic graphs. Comparable large-graph evaluations remain limited.
+ No standard causal-clustering benchmark. The field lacks agreed datasets
+and evaluation measures for comparing regime recovery and graph recovery.
+ Limited observational identifiability theory. Formal guarantees for mixtures of SCMs from observational i.i.d. data remain limited beyond the linear
+non-Gaussian case of CCSL.
+ Within-regime nonstationarity. Most methods assume that each regime is
+stationary, even though the mechanism may continue to change inside a regime.
+ Assumption checks without ground truth. Tools for detecting violated
+causal assumptions have not been developed fully for causal clustering.
+
+This thesis addresses the first two gaps directly and evaluates regime recovery, graph
+recovery, and scalability on controlled synthetic data. The remaining gaps, including standard benchmarks, within-regime nonstationarity, and broader assumption
+checks, are left for future work.
+
+28
+
+Chapter 3
+Requirements, Impacts and
+Constraints
+3.1
+
+Project Management Plan
+
+The project is organised into three phases over 46 weeks. The schedules are shown
+in Figures 3.1, 3.2, and 3.3.
+The phases follow the order of the research process. Phase 1 establishes the physical
+and methodological foundation. Phase 2 develops and tests the algorithms under
+controlled conditions. Phase 3 applies the validated pipeline to real observations
+and completes the reporting.
+This order reduces the risk of interpreting real data with an untested method.
+Phase 1 (Weeks 1 to 15). Background and Method Design
+The first 15 weeks are reserved for background study and method design. The later
+experiments depend on both of them.
+The literature review is completed first so that the project requirements and research
+gaps are clear. The clustering and causal discovery reviews come next. They are
+followed by the accretion-disk review, which connects the statistical problem to the
+physical variables.
+The gaps found in these reviews guide the pipeline design. Data collection or simulation is scheduled at the end of this phase. The data generator and preprocessing
+choices should follow the final model design.
+
+1. Review causal discovery methods for time series.
+2. Review unsupervised methods for regime identification.
+3. Review accretion-disk physics and known accretion states.
+4. Identify gaps in causal discovery for astrophysical time series.
+5. Design the regime-separation and graph-recovery pipeline.
+6. Obtain or simulate accretion-disk time-series data from sources such as GRMHD
+simulations or NICER/RXTE archives.
+
+29
+
+Phase 1. Weeks 1 to 15
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+10 11 12 13 14 15
+
+Task 1
+Task 2
+Task 3
+Task 4
+Task 5
+Task 6
+
+Figure 3.1: Project plan for Phase 1.
+
+Figure 3.1 shows that the tasks are arranged from general to specific. The first
+reviews establish the research context. The physics review and gap analysis then
+define the scientific and technical requirements.
+Pipeline design comes next, followed by data preparation. This sequence ensures
+that the data and experiments match the proposed method rather than being selected independently of it.
+Phase 2 (Weeks 16 to 30). Algorithm Development and Simulation
+Phase 2 uses 15 weeks to implement and test the method before real-data analysis.
+The first step is to generate data with known regimes and graphs. Ground truth is
+required for objective evaluation.
+Regime clustering is implemented next. Graph recovery within each estimated
+regime comes after it. Once both components are available, the complete pipeline
+can be compared with the known ground truth.
+The final weeks are used for sensitivity analysis. The method is tested under different
+noise levels, sample sizes, and sampling patterns.
+
+1. Generate data with known causal graphs and regime labels.
+2. Implement regime clustering based on mechanism changes.
+3. Implement time-series causal discovery within each regime.
+4. Compare the recovered regimes and graphs with the ground truth.
+5. Test sensitivity to noise, sample size, and irregular sampling.
+
+Figure 3.2 reflects this dependency. Data generation comes before algorithm testing,
+and regime discovery comes before regime-specific graph learning. Validation is
+scheduled only after the full pipeline is available.
+30
+
+Phase 2. Weeks 16 to 30
+16 17 18 19 20 21 22 23 24 25 26 27 28 29 30
+Task 1
+Task 2
+Task 3
+Task 4
+Task 5
+
+Figure 3.2: Project plan for Phase 2.
+
+Sensitivity analysis is last because it evaluates the stability of the completed implementation.
+Phase 3 (Weeks 31 to 46). Real-Data Application and Reporting
+The final 16 weeks are used for real-data application and communication of the
+results. Real light curves are analysed only after the synthetic tests. The synthetic
+tests show that the method can recover known structures.
+The discovered regimes are then compared with known accretion states. Their
+graphs are examined for physical differences. The report is drafted after the main
+analysis. It then reflects the final results and limitations.
+Visualisation is completed at the end. It presents the regime assignments, graphs,
+and time-series results consistently throughout the thesis.
+
+1. Apply the pipeline to real accretion-disk light curves, such as those from GRS
+1915+105 or Cygnus X-1.
+2. Interpret the discovered regimes using known accretion states.
+3. Compare the causal graphs and discuss their physical meaning.
+4. Write the report, including the method, results, and limitations.
+5. Prepare causal graphs, regime assignments, and time-series plots.
+
+Figure 3.3 shows this final progression. Real-data analysis begins the phase. Interpretation follows the discovery of the regimes. Reporting begins after the main
+findings are available.
+The final visualization task supports the written discussion. It also prepares the
+project for review and submission.
+
+31
+
+Phase 3. Weeks 31 to 46
+31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46
+Task 1
+Task 2
+Task 3
+Task 4
+Task 5
+
+Figure 3.3: Project plan for Phase 3.
+
+3.2
+
+Risk Management
+
+Real astrophysical time series, including X-ray light curves, can be noisy, irregular, and limited in size. These properties make causal graph recovery and regime
+separation difficult.
+Unlike a controlled experiment, the accretion state for each observation is not known.
+The number of causal mechanisms is also uncertain. Unobserved variables, such as
+magnetic-field changes, may confound the measured features.
+Many causal discovery algorithms also assume acyclic relationships. Accretion disks
+can contain feedback among temperature, density, and accretion rate.
+The study manages these risks in three ways. First, it uses simulated data with
+known graphs for controlled validation. Second, it uses methods designed for time
+series and time-delayed effects. Third, it compares results across methods and tests
+their stability under noise and small sample sizes.
+Risks of Synthetic Data
+Synthetic data is central to Phase 2. It is the only practical way to know the correct
+regime boundaries and causal graphs in advance. Without a known answer, it is
+impossible to say whether the pipeline recovered the true structure. It could also
+have simply produced a plausible-looking result.
+Synthetic data carries its own set of risks. These risks must be stated clearly.
+The first risk is that the generator may be too favourable to the method. The
+simulated series are built from the same linear and piecewise-stationary assumptions
+that LIRA uses to recover them. If the real system departs from these assumptions,
+the simulation results will overestimate performance.
+To reduce this risk, the study varies noise levels, sample sizes, and sampling patterns.
+It also compares the pipeline against established baselines rather than against an
+empty model.
+The second risk is that synthetic data does not contain every feature of real observations. Real X-ray light curves contain gaps caused by telescope visibility. They also
+contain instrumental artifacts and source-specific variability. A simple generator
+does not reproduce these effects.
+A method that works perfectly on clean simulations may fail when they are present.
+32
+
+The sensitivity analysis therefore includes irregular and noisy conditions. It cannot
+cover every case that real data may present.
+The third risk is overconfidence. Because the boundary and graph are known during
+simulation, it is tempting to treat a successful recovery as proof that the method
+works in general.
+The study avoids this. Synthetic results are treated as a necessary but insufficient
+condition. The pipeline must first succeed under controlled conditions. It is only
+then applied to real observations where the truth is unknown.
+Any claim from the synthetic experiments is a claim about the implementation. It
+is not a claim about black hole physics.
+The fourth risk is that the assumed collider structure may not hold for every system.
+The identifiability analysis depends on this structure. If real accretion variables form
+causal chains instead of the collider used here, the identifiability guarantee does not
+transfer.
+This limitation is carried forward into the discussion of real data in Chapter 6. It
+is not hidden by the simulation.
+This risk strategy also explains the phase order. Phase 1 reduces design risk through
+background study and method specification. Phase 2 reduces implementation risk
+by testing the pipeline where the correct answer is known. The synthetic-data risks
+above are contained and documented in this phase.
+Phase 3 addresses the remaining scientific risk. It applies the validated method to
+real observations. It also reports the assumptions and uncertainties that cannot be
+removed from observational data.
+The phase order is therefore not only a schedule. It is a deliberate escalation from
+low-risk controlled tests to high-risk real-data analysis. No stage begins before the
+previous stage has established its own reliability.
+
+33
+
+Chapter 4
+Proposed Methodology
+4.1
+
+Overview
+
+The framework has four stages. Stage 0 transforms the observables into log space
+using the power-law structure of accretion. Stage 1 finds regime boundaries with
+recursive binary segmentation, a lagged Chow F -test, and BIC. Stage 2 estimates
+a dynamic causal graph for each regime with DYNOTEARS. Stage 3 validates the
+resulting causal effects.
+The physical states are introduced first in Figure 4.1. Their hypothesised causal
+structures are then shown in Figure 4.2. The complete recursive pipeline appears in
+Figure 4.3.
+
+Figure 4.1: Accretion geometry of the two spectral states. In the Hard State
+the disk is truncated and replaced inward by a hot corona, with a steady radio
+jet. In the Soft State the disk extends to the innermost stable circular orbit
+and the jet is quenched.
+
+Figure 4.1 compares the two accretion states. In the Hard State, the inner disk is
+truncated and replaced by a hot corona, while a steady radio jet is present. In the
+Soft State, the disk extends to the innermost stable circular orbit and the radio jet
+is quenched.
+Figure 4.2 shows the hypothesised causal structures for the two states. The variables
+34
+
+Figure 4.2: Hypothesised causal structures for the hard and soft accretion
+states.
+
+that influence radio luminosity differ between the Hard and Soft States, and the
+isolated variable also changes. These regime-specific structures motivate the graphrecovery stage of LIRA.
+Figure 4.3 summarises the complete procedure. The method fits a lagged OLS
+model, searches for a candidate boundary with binary segmentation, and passes it
+through the Chow and BIC gates. Accepted splits are processed recursively. When
+a leaf is reached, DYNOTEARS estimates the regime-specific causal graph. The
+validation results for this process are presented in Chapter 5.
+
+4.2
+
+Log-space linearisation
+
+The Fundamental Plane of Black Hole Activity expresses radio luminosity as a power
+law in X-ray luminosity and black hole mass, as shown in Equation (4.1):
+ξM
+LR ∝ LξXX · MBH
+
+(4.1)
+
+Taking logarithms converts Equation (4.1) into coefficients and addition:
+log LR = ξX log LX + ξM log MBH + c
+
+(4.2)
+
+Equation (4.2) is linear. This form is required by OLS, the Chow test, the F distribution derivation, BIC, and the linear DYNOTEARS model. In raw flux space
+the relationships would remain multiplicative, so these linear-model results would
+not apply. The reasoning is summarised in Equation (4.3):
+accretion physics ⇒ power laws ⇒ log-linearity ⇒ OLS valid ⇒ Chow and BIC valid
+(4.3)
+The log transform is derived from the physical scaling law rather than chosen only
+as a generic preprocessing step.
+Table 4.1 gives the transformation used for each variable.
+35
+
+Node input
+
+Fit lagged OLS
+
+Binary segmentation
+
+NO
+
+Gate 1: Chow test
+YES
+
+NO
+
+Gate 2: BIC check
+YES
+
+Accept split
+
+Declare leaf
+
+Apply DYNOTEARS
+
+Regime-specific causal graph
+
+Termination
+
+Figure 4.3: Step-by-step recursive framework for temporal regime discovery
+and dynamic causal graph recovery, combining lagged OLS estimation, Binary
+Segmentation, Chow and BIC gates, and DYNOTEARS.
+
+Table 4.1: Variable set and transformation
+Symbol
+FR
+
+Transform
+log
+
+Γ
+
+Quantity
+radio
+luminosity
+X-ray
+luminosity
+inner disk
+temperature
+photon index
+
+HR
+
+hardness ratio
+
+none
+
+LX
+Tin
+
+log
+log
+none
+
+Justification
+Luminosity. Power-law coupled and spans
+orders of magnitude.
+Luminosity. Power-law coupled and spans
+orders of magnitude.
+multicolor disk models give power-law
+scaling with luminosity
+already a dimensionless spectral slope, itself
+an exponent. Range ≈ 1.4–2.5
+already a bounded dimensionless ratio. The
+same argument applies as for Γ.
+
+36
+
+The dimensionless, bounded variables Γ and HR are left unchanged. They do not
+require logarithmic compression, and the power-law argument does not apply to
+them.
+The spectral-state diagnostics used by the model are summarised in Table 4.2.
+
+4.3
+
+The structural model
+
+4.3.1
+
+Absorption of black hole mass
+
+Equation (4.2) contains log MBH . For a single accreting source observed over time,
+MBH is constant: it cannot vary between time steps. A constant term in a regression
+equation is absorbed entirely by the intercept, as shown in Equation (4.4):
+ξM log MBH −→ folded into w0
+
+(4.4)
+
+so mass is absorbed into the intercept. This is the correct treatment of a withinsource constant. LIRA’s coefficients therefore describe variation within one source
+and are not directly comparable to the cross-source Fundamental Plane exponents.
+
+4.3.2
+
+Spectral-state variables
+
+The model needs time-varying quantities to distinguish physical states. The standard spectral-state diagnostics provide these variables, as summarised in Table 4.2.
+Table 4.2: Spectral-state diagnostics and their regime dependence
+Variable
+log LX
+Γ
+
+Hard State
+lower
+flat, ≈ 1.4–1.7
+
+log Tin
+
+lower (disk
+truncated)
+high
+
+HR
+
+Soft State
+higher
+steep,
+≈ 2.0–2.5
+higher (disk at
+ISCO)
+low
+
+Physical quantity indexed
+accretion rate
+Comptonisation vs. disk emission
+disk inner radius / geometry
+spectral hardness
+
+These variables do not replace mass. They capture temporal state variation within
+one source, which the cross-source Fundamental Plane does not represent. The
+resulting static specification is given in Equation (4.5):
+
+log FR (t) = w0 + w1 log LX (t) + w2 Γ(t) + w3 log Tin (t) + w4 HR(t) + ε(t)
+
+4.3.3
+
+(4.5)
+
+The autoregressive extension
+
+The static specification in Equation (4.5) would require i.i.d. errors, which real accretion time series do not satisfy. Time series show memory from viscous timescales,
+turbulence, propagating fluctuations, and persistent jets. The main consequences
+are:
+1. OLS coefficient estimates remain unbiased.
+
+37
+
+2. Standard errors are underestimated.
+3. The Chow F -statistic breaks. Its denominator assumes i.i.d. residuals.
+Under autocorrelation the denominator is artificially small, the F -statistic
+artificially large, and the procedure detects regime boundaries that do not
+exist.
+The third consequence is the most important: unmodelled autocorrelation can create
+false regime boundaries. We address it by adding the first-order autoregressive term
+in Equation (4.6):
+log FR (t) = w0 +w1 log LX (t)+w2 Γ(t)+w3 log Tin (t)+w4 HR(t)+ϕ log FR (t−1)+ε(t)
+(4.6)
+Here, ϕ absorbs the temporal dependence, making ε(t) approximately i.i.d. and
+restoring the test assumptions. Section 5.2 verifies this result.
+The coefficient ϕ measures temporal persistence and can be compared across regimes
+(Section 5.4).
+Lag one is used as the minimum sufficient choice. Additional lags increase q, reduce
+the residual degrees of freedom, and make smaller regime segments harder to estimate. If residual autocorrelation remains, Newey–West standard errors provide a
+robustness check.
+
+4.3.4
+
+Choice of estimator
+
+Regularised regression is excluded. Ridge and Lasso add penalties (λ∥β∥22 and
+λ∥β∥1 respectively) that shrink coefficients toward zero, biasing the estimates. Since
+the Chow test consists entirely of comparing the coefficient vectors of two groups,
+shrinking both corrupts the comparison: the test would partly detect differences
+induced by the penalty rather than by genuine mechanism change. Stage 1 therefore
+requires unbiased estimates and must not regularise.
+This is deliberately in contrast with Stage 2, where DYNOTEARS does employ an
+L1 penalty. The two stages answer different questions. Stage 2 asks which edges
+exist, for which sparsity is essential. Stage 1 asks whether two coefficient vectors are
+equal, for which bias is fatal.
+Polynomial terms are excluded. The log-linear form is derived from power-law
+physics (Section 4.2). Terms such as (log LX )2 have no physical motivation, invite
+overfitting, and violate the assumption of common functional form across groups
+required by the F -statistic derivation.
+
+4.3.5
+
+Design matrix
+
+The design matrix has shape (n − 1, 6), the first observation being unavailable as a
+response because it has no lag. Equations (4.7) and (4.8) show the design matrix
+and response vector:
+
+
+1 log LX (2) Γ(2) log Tin (2) HR(2)
+log FR (1)
+1 log LX (3) Γ(3) log Tin (3) HR(3)
+log FR (2) 
+
+
+Xlag =  ..
+(4.7)
+
+..
+..
+..
+..
+..
+.
+
+.
+.
+.
+.
+.
+1 log LX (n) Γ(n) log Tin (n) HR(n) log FR (n − 1)
+38
+
+Y = [log FR (2), log FR (3), . . . , log FR (n)]⊤
+
+(4.8)
+
+With the OLS solution given by the normal equation in Equation (4.9), Equation (4.10) gives the residuals and residual sum of squares:
+⊤
+⊤
+ŵ = (Xlag
+Xlag )−1 Xlag
+Y,
+
+ŵ = [w0 , w1 , w2 , w3 , w4 , ϕ]⊤
+
+(4.9)
+
+RSSglobal = ε̂⊤ ε̂
+
+(4.10)
+
+ε̂ = Y − Xlag ŵ,
+
+RSSglobal measures how well a single causal model fits the entire series and serves
+as the baseline against which all partitions are compared.
+
+4.4
+
+Gate 1: the lagged Chow test
+
+4.4.1
+
+Hypothesis and intuition
+H0 : wA = wB
+
+(4.11)
+
+Equation (4.11) is the null hypothesis. Rejecting it indicates that the mechanism
+differs between the two groups. If the two states follow different laws, separate
+models should have lower residual error than one pooled model. The test determines
+whether this reduction is statistically significant.
+Note that w includes the intercept w0 . This has a direct consequence for the design
+of the validation data, addressed in Section 5.1.
+
+4.4.2
+
+Construction
+
+For a candidate split, let A denote observations before and B after. Separate fits
+are given in Equations (4.12) and (4.13):
+ŵA = (XA⊤ XA )−1 XA⊤ YA ,
+
+RSSA = ∥YA − XA ŵA ∥2
+
+(4.12)
+
+ŵB = (XB⊤ XB )−1 XB⊤ YB ,
+
+RSSB = ∥YB − XB ŵB ∥2
+
+(4.13)
+
+Equation (4.14) gives the Chow statistic. The cost of pooling is RSSglobal −(RSSA +
+RSSB ), which is near zero when both groups share one causal law. Normalising by
+the within-group variance σ̂ 2 = (RSSA + RSSB )/(n − 2q) yields the lagged Chow
+statistic:
+
+
+RSSglobal − (RSSA + RSSB ) /q
+(4.14)
+Flag =
+(RSSA + RSSB )/(n − 2q)
+The numerator is divided by q because the split adds q parameters. The denominator
+has n−2q degrees of freedom, the residual degrees of freedom after fitting two models.
+
+4.4.3
+
+Degrees of freedom
+
+The value q = 6 follows directly from the structural model of Section 4.3 and is
+not a tuning parameter: the intercept w0 (which absorbs ξM log MBH ), the four
+spectral-state coefficients w1 –w4 , and the autoregressive coefficient ϕ.
+39
+
+4.4.4
+
+Distribution
+
+Under H0 and Gaussian i.i.d. residuals, Equation (4.15) gives the numerator and
+denominator distributions: independent chi-square variates,
+
+
+RSSglobal − (RSSA + RSSB ) /σ 2 ∼ χ2 (q),
+
+(RSSA + RSSB )/σ 2 ∼ χ2 (n − 2q)
+(4.15)
+and the ratio of two independent chi-square variables each divided by its degrees of
+freedom is F -distributed by definition, as shown in Equation (4.16):
+Flag ∼ F (q, n − 2q) under H0
+
+(4.16)
+
+
+p = P F (q, n − 2q) > Fobs = 1 − CDFF (Fobs , q, n − 2q)
+
+(4.17)
+
+H0 is rejected at α = 0.05. The test requires Gaussian residuals, which also constrains the downstream causal-discovery model. This issue is discussed in Section 4.6.
+
+4.5
+
+Locating the boundary and Gate 2
+
+4.5.1
+
+Binary segmentation
+
+The test of Section 4.4 requires a split point to be supplied. Since the boundary location is unknown, the statistic is evaluated at every admissible index and maximised,
+as shown in Equation (4.18):
+
+τ ∗ = arg max Flag A(τ ), B(τ )
+τ
+
+(4.18)
+
+where A(τ ) = {2, . . . , τ } and B(τ ) = {τ + 1, . . . , n}. The maximising index is the
+location at which the data most strongly prefers two models to one.
+Exhaustive search over all multi-way partitions is intractable. Binary segmentation
+is therefore used as a greedy divide-and-conquer method: it finds the best split and
+then repeats the search within each child segment. This procedure is not guaranteed
+to find the global optimum.
+A minimum segment size of 2q = 12 is enforced. Smaller segments do not support
+stable matrix inversion, and the F -test degrees of freedom approach zero. Segments
+near this minimum can still produce noisy coefficients and unreliable graphs.
+Note on splitting variable. Splitting is performed on the time index only.
+Feature-threshold splitting of the form (j ∗ , τ ∗ ) is not employed, as the autoregressive
+term of (4.5) presupposes temporal contiguity within each segment.
+
+4.5.2
+
+Derivation of the BIC criterion
+
+A significant F -statistic shows that a difference is detectable, but a greedy search
+can find apparently favourable splits caused by noise. Without a stopping rule,
+the algorithm would continue splitting until the segments became too small. BIC
+provides the required complexity penalty.
+
+40
+
+Step A: the Gaussian likelihood. For Y = Xw + ε with εt ∼ N (0, σ 2 ) i.i.d.,
+Equation (4.19) gives the Gaussian likelihood.
+n
+RSS
+n
+(4.19)
+log P (Y | w, σ 2 , M ) = − log(2π) − log(σ 2 ) −
+2
+2
+2σ 2
+Step B: substitution of the MLE. With σ̂ 2 = RSS/n, Equation (4.20) gives the
+likelihood at the MLE.
+
+
+n
+n
+RSS
+n
+2
+log P (Y | ŵ, σ̂ , M ) = − log(2π) − log
+−
+(4.20)
+2
+2
+n
+2
+The terms − n2 log(2π) and − n2 do not depend on the model and cancel in any
+comparison, leaving the simplified likelihood in Equation (4.21):
+
+
+n
+RSS
+log P ≈ − log
+(4.21)
+2
+n
+Step C: the criterion. Schwarz’s criterion, obtained from the Laplace approximation to the marginal likelihood, is BIC = −2 log P (Y | θ̂, M ) + k log(n) for k free
+parameters. Substituting Equation (4.19), Equation (4.22) gives the BIC:
+
+
+RSS
+BIC = n log
++ k log(n)
+(4.22)
+n
+Step D: the one-model case. For a single global model over n observations with
+q = 6 parameters, Equation (4.23) gives the one-model BIC:
+
+
+RSSglobal
++ q log(n)
+(4.23)
+BIC1 = n log
+n
+Step E: the two-model case. For disjoint segments the combined log-likelihood
+is the sum of the two independent log-likelihoods, each with its own MLE σ̂A2 =
+RSSA /nA and σ̂B2 = RSSB /nB . With 2q total free parameters, as shown in Equation (4.24):
+
+
+
+
+RSSA
+RSSB
+BIC2 = nA log
++ nB log
++ 2q log(n)
+(4.24)
+nA
+nB
+Step F: the choice of log(n). The penalty uses the total sample size n, following
+the Bai–Perron convention for structural-break models. Using nA and nB separately
+would make small segments cheaper and encourage over-partitioning. Using total n
+keeps the two scores on a common scale.
+Step G: decision rule. A split is accepted if and only if BIC2 < BIC1 . Subtracting Equations (4.21) and (4.22), the net penalty increase from splitting is given in
+Equation (4.25):
+2q log(n) − q log(n) = q log(n)
+
+(4.25)
+
+which is the exact price, in units of −2 log-likelihood, of admitting one additional
+regime.
+
+41
+
+Table 4.3: Complexity penalty comparison
+n
+800
+5,000
+10,000
+
+AIC penalty
+12
+12
+12
+
+BIC penalty
+40.1
+51.1
+55.3
+
+4.5.3
+
+Why BIC rather than AIC
+
+Ratio
+3.3×
+4.3×
+4.6×
+
+AIC imposes a penalty of 2k, constant in sample size. BIC imposes k log(n), which
+grows with the data. Table 4.3 gives the comparison at k = q = 6.
+For regime discovery, a false split can corrupt both resulting graphs, while a missed
+split gives a conservative pooled model. BIC’s stronger, sample-size-dependent
+penalty is therefore appropriate for this task.
+
+4.5.4
+
+The two-gate design
+
+The two criteria serve different purposes. The Chow test asks whether the difference
+is statistically detectable. BIC asks whether the improvement justifies the added
+complexity. A split can pass the first test and fail the second, as shown in Section 5.3.
+
+4.6
+
+Identifiability
+
+For a linear structural equation model with Gaussian noise, edge direction within a
+chain (X → Y → Z) or fork (X ← Y → Z) is not identifiable from observational
+data: for any true X → Y there exists a reversed model with rescaled coefficient and
+noise variance inducing an identical joint distribution. No algorithm can recover the
+direction, as the information is absent from the data.
+A collider, several mutually independent parents converging on a common effect,
+is the exception. Collider orientation is recoverable from conditional-independence
+structure alone, irrespective of noise distribution. This is the v-structure argument
+on which constraint-based discovery rests generally.
+The model of Section 4.3 is a collider. log LX , Γ, log Tin , and HR are specified
+as parents of log FR and not of one another. Direction is therefore identifiable here
+for structural reasons rather than incidentally.
+This has a consequence for possible extensions that is worth stating explicitly. Suppose the model were enriched with causal chains among the spectral variables. Those
+edges would be chains and forks, and recovering their orientation would require
+non-Gaussian innovations together with a LiNGAM-family estimator. However,
+the F -distribution result (4.14) requires Gaussian residuals for the numerator and
+denominator to be independent chi-square variates, and the BIC derivation (4.17)–
+(4.20) begins from the Gaussian log-likelihood. Adopting non-Gaussian noise to
+secure identifiability in Stage 2 would therefore weaken the distributional derivations underpinning both gates of Stage 1. The collider specification avoids this
+tension: Gaussian noise is retained, (4.14) and (4.20) hold exactly as derived, and
+Stage 2 orientations remain identifiable. The restriction to a collider structure is
+thus a defended design decision rather than a simplifying convenience.
+
+42
+
+4.7
+
+Stage 2: regime-specific causal graphs
+
+Each leaf is a temporally contiguous segment treated as a stable causal regime, and
+DYNOTEARS is applied independently within each. Two matrices are estimated
+simultaneously: W , in which Wij ̸= 0 indicates that variable j affects variable i
+within the same time step, and A, in which Aij ̸= 0 indicates that variable j at t − 1
+affects variable i at t. Acyclicity of the contemporaneous graph is enforced by the
+smooth algebraic constraint tr(eW ◦W ) − d = 0, replacing combinatorial search with
+gradient-based optimisation.
+DYNOTEARS is preferred to the PC algorithm on two grounds. The first, noted
+in Section 2.1.6, is that PC returns a skeleton and partial orientation without edge
+weights and requires a number of conditional independence tests that grows sharply
+once lagged variables are admitted. The second is decisive in practice: the Fisher-Z
+test assumes independent samples, an assumption violated outright by consecutive
+observations of an autoregressive process with ϕ ≈ 0.9. Applied to such data the
+test’s null distribution is misspecified, and in preliminary experiments this produced
+orientations into variables that have no parents by construction.
+Two implementation requirements are recorded. First, variables must be standardised within each leaf before fitting, as the DYNOTEARS objective and its sparsity
+threshold are scale-sensitive. Without standardisation, edges belonging to lowervariance variables are systematically underweighted and may be eliminated by the
+L1 penalty. Second, the terminality of FR must be encoded as explicit per-edge
+exclusions forbidding FR at any lag from being a parent of LX , Γ, Tin , or HR. A
+blanket node-level prohibition also suppresses the edge FR (t − 1) → FR (t), which
+the model of (4.5) explicitly requires.
+
+4.8
+
+Stage 3: causal effect estimation and validation
+
+Stages 1 and 2 yield a graph. Stage 3 quantifies the effects it encodes and assesses
+how far those quantities should be trusted.
+For each discovered parent of FR within each regime, the causal effect is estimated
+by backdoor adjustment, conditioning on the remaining parents. Unpenalised regression is used here, for the reason given in Section 4.3.4: with the structure already
+determined, regularisation contributes only bias. The lag term log FR (t − 1) must be
+included in every adjustment set, since the predictors are autocorrelated with their
+own past and FR (t − 1) lies downstream of that past. Omitting it allows a predictor
+to absorb part of the lag term’s effect.
+Three refutation procedures are applied. A random common cause test injects
+an irrelevant synthetic covariate, under which a valid estimate should be unchanged.
+A placebo treatment test replaces the treatment with a permuted version, under
+which the estimated effect should collapse to zero. This is the diagnostic that would
+expose a procedure generating effects from noise. A data subset test re-estimates
+on an 80
+Sensitivity analysis is then applied in the partial-R2 parameterisation of Cinelli
+and Hazlett, which reports a robustness value: the minimum proportion of residual
+variance in both treatment and outcome that an unobserved confounder would need
+43
+
+to explain in order to reduce the estimate to zero. Unobserved confounding cannot
+be excluded from observational data, and Section 1.6 identifies it as a principal
+challenge for this application. The robustness value converts that acknowledged
+limitation into a stated numerical threshold against which domain knowledge can
+be brought to bear.
+Finally, graph falsification tests whether the conditional-independence implications of the entire recovered DAG are consistent with the data, by comparing its
+violation count against randomly permuted graphs. Where the preceding tests validate individual effects conditional on the graph, this interrogates the graph itself.
+
+4.9
+
+Parameter summary
+
+The complete parameter specification is given in Table 4.4.
+Table 4.4: Complete parameter specification
+Parameter
+Variables log-transformed
+Variables untransformed
+q (parameters per model)
+Chow numerator d.f.
+Chow denominator d.f.
+α
+BIC penalty, one model
+BIC penalty, two models
+Net cost of a split
+Lag order
+Minimum segment size
+Splitting variable
+
+Value
+Determined by
+FR , LX , Tin power-law scaling (Section 4.2)
+Γ, HR
+dimensionless, bounded range
+(Section 4.2)
+6
+structural model: w0 , w1 –w4 , ϕ
+(Section 4.4.3)
+q=6
+parameters gained by splitting
+(Section 4.4.2)
+n − 2q
+residual d.f. after two fits
+(Section 4.4.2)
+0.05
+conventional; asymmetric error cost
+handled by Gate 2
+q log(n)
+Schwarz criterion (Section 4.5.2)
+2q log(n)
+Bai–Perron convention, total n
+(Section 4.5.2)
+q log(n)
+Eq. (4.23)
+1
+minimum sufficient; higher orders
+raise q (Section 4.3.3)
+2q = 12
+invertibility and F -test stability
+(Section 4.5.1)
+time
+required by AR term
+index
+(Section 4.5.1)
+
+44
+
+Chapter 5
+Experimental Validation
+5.1
+
+Experimental design
+
+5.1.1
+
+Rationale for synthetic validation
+
+Real observations do not provide ground truth for regime boundaries or causal
+graphs. This prevents direct measurement of recovery accuracy. Synthetic structural causal models have known graphs and coefficients, so every output can be
+evaluated: regimes with the Adjusted Rand Index, graphs against the generating
+DAG, effects against the generating coefficients, and persistence against the true ϕ.
+
+5.1.2
+
+Generating process
+
+Two regimes of 5,000 observations are generated in temporal order and concatenated without shuffling. The four spectral-state variables follow independent, meanreverting first-order autoregressive processes:
+Equation (5.1) defines the mean-reverting process:
+
+X(t) = µX + φ X(t − 1) − µX + ϵX (t),
+φ = 0.90
+(5.1)
+with ϵX (t) ∼ N (0, 0.102 ) for all four variables. The mean-reverting form preserves
+the chosen mean from the first step. It therefore avoids the decay of initial values
+and removes the need for a burn-in period.
+The target variable is generated by Equation (5.2):
+ X (z)
+
+log FR (t) = µF + ϕ log FR (t − 1) − µF +
+βv Xv (t) − µv + ϵF (t)
+
+(5.2)
+
+v
+
+with ϕ = 0.50. The predictors are centred and FR is mean-reverting. Thus,
+E[log FR ] = µF for any coefficient vector, so both regimes have the same means.
+
+5.1.3
+
+Why equal means are necessary for a valid test
+
+Equal means are necessary for a meaningful test. The Chow null hypothesis in
+Equation (4.11) compares the full coefficient vectors, including the intercept w0 . A
+mean shift would change the intercept and could cause rejection without any change
+
+45
+
+in the causal slopes. Structure-blind clustering would also benefit from that level
+shift, making the baseline comparison uninformative.
+With equal means, the regimes differ only in which variable has a non-zero coefficient
+into log FR . A rejection can therefore reflect a mechanism change. Table 5.1 confirms
+the construction.
+Table 5.1: Distributional summary of the generated data
+Variable
+log LX
+Γ
+log Tin
+HR
+log FR
+
+Hard mean
+37.4931
+1.6124
+0.2934
+0.7669
+27.9747
+
+Soft mean
+37.4756
+1.5909
+0.3289
+0.7320
+27.9595
+
+Hard s.d.
+0.2332
+0.2347
+0.2188
+0.2377
+0.3803
+
+Soft s.d.
+0.2290
+0.2174
+0.2174
+0.2297
+0.2289
+
+The means differ by less than 0.04 for every variable. The variance of log FR is
+still different (0.380 versus 0.229), because the Hard State has larger coefficient
+magnitudes. This remaining difference is addressed in the baseline comparison.
+
+5.1.4
+
+Ground-truth structures
+Table 5.2: Generating coefficients
+
+Coefficient
+βLX
+βΓ
+βTin
+βHR
+ϕ
+
+Hard State (G1 )
++0.70
+−0.30
+0.00 (isolated)
+−0.40
++0.50
+
+Soft State (G2 )
++0.18
++0.20
+−0.40
+0.00 (isolated)
++0.50
+
+The Hard State is interpreted as jet-dominated: radio emission is driven by Xray luminosity, photon index, and hardness ratio, while inner-disk temperature is
+isolated. The Soft State is disk-dominated, with hardness ratio isolated instead.
+The generating coefficients are listed in Table 5.2.
+The corresponding ground-truth causal structures are shown in Figure 5.1, and the
+generated series and its true and discovered boundaries are shown in Figure 5.2.
+Figure 5.1 shows the causal structures used to generate the two regimes. The Hard
+State contains edges from LX , Γ, and HR into FR ; Tin is isolated. In the Soft State,
+Tin becomes a parent of FR and HR is isolated. These mechanism changes are the
+target of regime discovery.
+Figure 5.2 shows the generated series and the two boundaries. The levels remain
+similar across the true boundary, so the regimes are not separated by a simple mean
+shift. The recovered boundary is close to the generating boundary, which supports
+the numerical localisation result in Section 5.3.1.
+
+5.2
+
+Validation of the autoregressive extension
+
+Section 4.3.3 argues that the lag term is required for the Chow F derivation to hold.
+This is verified directly. Fitting the static specification in Equation (4.5) within
+46
+
+Figure 5.1: Hypothesised regime-specific causal structures. Edge width is
+proportional to coefficient magnitude. The causally isolated variable in each
+regime is shown dashed.
+
+Figure 5.2: The generated series with the true boundary (dashed) and the
+boundary discovered by LIRA (solid). No level shift is visible at the boundary
+in any variable, by construction.
+
+47
+
+the first regime yields residuals with first-order autocorrelation 0.507 and a Ljung–
+Box statistic at 10 lags of 1713.4 (p < 10−16 ), decisively rejecting independence.
+Fitting the autoregressive specification in Equation (4.6) to the same data reduces
+the first-order residual autocorrelation to −0.011, with a Ljung–Box statistic of 13.2
+(p = 0.211), consistent with independence at any conventional level.
+The residual-independence diagnostics are summarised in Table 5.3.
+Table 5.3: Residual independence diagnostics (hard-state segment)
+Specification
+
+ACF(1)
+
+Ljung–Box(10)
+
+p
+
+Static, Eq.
+(4.5)
+Autoregressive,
+Eq. (4.6)
+
+0.507
+
+1713.4
+
+< 10−16
+
+Residuals
+i.i.d.?
+rejected
+
+−0.011
+
+13.2
+
+0.211
+
+not rejected
+
+Table 5.3 shows that the static model leaves strong residual autocorrelation, while
+the AR(1) model produces residuals consistent with independence. The corresponding autocorrelation plots are shown next.
+
+Figure 5.3: Residual autocorrelation functions with and without the AR(1)
+term. Shaded band gives the 95% interval under independence.
+
+The autoregressive specification therefore supports the distributional assumption in
+Equation (4.15), while the static specification does not. The lag term is necessary,
+not merely beneficial.
+Figure 5.3 shows the corresponding residual autocorrelation diagnostics.
+
+5.3
+
+Regime discovery
+
+5.3.1
+
+Boundary localisation
+
+Figure 5.4 shows the lagged Chow statistic evaluated across all admissible split
+indices at the root node. The statistic rises monotonically toward the true boundary
+and attains its maximum of Flag = 963.4 at τ ∗ = 5004, against a true boundary at
+t = 5000, a localisation error of four observations, or 0.04% of the series length. The
+associated p-value is below the limit of double-precision representation.
+48
+
+Figure 5.4: Lagged Chow F -statistic across candidate split points, with
+detail near the boundary.
+
+5.3.2
+
+Operation of the two gates
+
+At the root node both gates are satisfied: Flag = 963.4 with p < 10−16 , and BIC1 =
+−41362 against BIC2 = −45874, so the split reduces BIC by 4512 and is accepted.
+Recursion then proceeds into each child.
+At both child nodes the Chow test is significant: Flag = 3.15, p = 0.004 on the
+left and Flag = 3.27, p = 0.003 on the right. A Chow-only procedure would have
+created extra, spurious boundaries. BIC rejects both splits. The split increases BIC
+by about 31 in each child, so recursion stops with K = 2.
+The gate decisions at the root and child nodes are summarised in Table 5.4.
+Table 5.4: Gate evaluation at each recursion node
+Node
+
+n
+
+Flag
+
+p
+
+Gate
+1
+pass
+pass
+pass
+
+root
+
+9,999
+
+963.38
+
+< 10−16
+
+left child
+right child
+
+5,003
+4,995
+
+3.15
+3.27
+
+0.0044
+0.0033
+
+BIC1
+
+BIC2
+
+−41362
+
+−45874
+
+Gate
+2
+pass
+
+−23026
+−22851
+
+−22994
+−22820
+
+fail
+fail
+
+Outcome
+split at
+t = 5004
+leaf
+leaf
+
+The child-node results show why both gates are needed. The Chow test detects a
+possible difference, while BIC determines that the added complexity is not justified.
+Figures 5.5 and 5.6 visualise the BIC decisions and the realised recursion tree, respectively.
+Figure 5.5 gives the numerical BIC comparison. The root split has the lower twomodel BIC and is accepted, whereas both child splits have higher two-model BIC
+values and are rejected.
+Figure 5.6 presents these decisions as a recursion tree. It shows the accepted root
+split, the two terminal leaves, and the subsequent application of DYNOTEARS.
+Together, the two figures explain how the final two-regime solution is formed.
+
+5.3.3
+
+Comparison against structure-blind baselines
+
+K = 2 regimes are recovered with an Adjusted Rand Index of 0.9984, without
+supplying K in advance. Table 5.5 compares this result with k-means, which is
+given the correct value K = 2. Even with this advantage, feature-space clustering
+fails on three of the four variants.
+49
+
+Figure 5.5: BIC evaluation at each recursion node.
+
+Figure 5.6: Realised recursion tree on the synthetic validation series.
+
+50
+
+Table 5.5: Regime recovery accuracy
+Method
+LIRA (this work)
+k-means, raw features
+(K = 2 given)
+k-means, standardised
+features (K = 2 given)
+k-means, rolling means
+(K = 2 given, w = 200)
+k-means, rolling s.d. of
+log FR (K = 2 given,
+w = 200)
+
+Basis for grouping
+causal mechanism
+invariance, K not supplied
+feature-space proximity
+
+ARI
+0.9984
+
+feature-space proximity
+
+0.0009
+
+local level
+
+0.0112
+
+local dispersion
+
+0.5867
+
+0.0011
+
+The result supports the design in Section 5.1.3: the regimes are not separated well
+by distributional similarity alone.
+The rolling-standard-deviation baseline reaches ARI = 0.587. It is included because
+the variance of log FR differs between regimes. It recovers less than LIRA and
+requires K to be supplied in advance.
+Figure 5.7 shows the regime-recovery comparison against the structure-blind baselines.
+
+Figure 5.7: Regime recovery: LIRA against structure-blind clustering baselines.
+
+5.4
+
+Structural coefficient recovery
+
+Fitting Equation (4.6) within each leaf recovers the generating coefficients accurately
+and identifies the isolated variable in both regimes.
+The recovered structural coefficients are reported in Table 5.6.
+51
+
+Table 5.6: Recovered structural coefficients
+
+Coefficient
+βLX
+βΓ
+βTin
+βHR
+ϕ
+
+True
++0.70
+−0.30
+0.00
+−0.40
++0.50
+
+Hard State
+Recovered
++0.7172
+−0.2989
++0.0049
+−0.4015
++0.4931
+
+Error
++0.017
++0.001
++0.005
+−0.002
+−0.007
+
+True
++0.18
++0.20
+−0.40
+0.00
++0.50
+
+Soft State
+Recovered
++0.1830
++0.2030
+−0.3894
+−0.0070
++0.4958
+
+Error
++0.003
++0.003
++0.011
+−0.007
+−0.004
+
+The isolated coefficients are +0.005 in the Hard State and −0.007 in the Soft State.
+Both are close to zero and much smaller than the active coefficients. The autoregressive coefficient is recovered within 0.007 of its true value.
+Temporal persistence. The recovered ϕ values of 0.493 and 0.496 are statistically
+indistinguishable, correctly reflecting that the generating process assigns identical
+persistence to both regimes. The framework therefore does not manufacture a persistence difference where none exists. It should be noted that the abstract’s claim
+regarding differential temporal persistence across accretion states is a hypothesis
+about real systems. The present synthetic design does not encode such a difference,
+and testing it requires either a generator in which ϕ varies by regime or application
+to observational data.
+
+5.4.1
+
+The pooled-model baseline
+
+To test whether segmentation is necessary, Equation (4.6) is fitted once to the full
+series. The resulting structure matches neither regime.
+The pooled and regime-specific estimates are compared in Table 5.7.
+Table 5.7: Pooled model versus regime-specific models
+Coefficient
+βLX
+βΓ
+βTin
+βHR
+ϕ
+
+True (Hard)
++0.70
+−0.30
+0.00
+−0.40
++0.50
+
+True (Soft)
++0.18
++0.20
+−0.40
+0.00
++0.50
+
+Pooled fit
++0.2504
+−0.0285
+−0.1167
+−0.1170
++0.7650
+
+Every coefficient is distorted. The coefficient on Γ is negative in one regime and
+positive in the other, but the pooled value is almost zero (−0.029). Both isolated
+variables receive spurious coefficients. The autoregressive coefficient rises from 0.50
+to 0.765 because the pooled model attributes between-regime variation to temporal
+persistence.
+This result shows why a single pooled model can hide the coupling laws of distinct
+accretion states.
+The recovered and pooled coefficients are compared visually in Figure 5.8.
+
+52
+
+Figure 5.8: Recovered coefficients per regime, and the pooled model that
+matches neither.
+
+5.5
+
+Regime-specific causal graph recovery
+
+DYNOTEARS applied independently within each discovered leaf recovers the correct graph structure in both regimes.
+The contemporaneous and lagged edge estimates are reported in Tables 5.8 and 5.9,
+respectively.
+Table 5.8: Contemporaneous edge recovery (Ŵ )
+Edge
+LX → F R
+Γ → FR
+Tin → FR
+HR → FR
+any edge into
+LX
+
+Hard: true
+present (+)
+present (−)
+absent
+present (−)
+absent
+
+Hard: Ŵ
++0.315 yes
+−0.100 yes
+absent yes
+−0.157 yes
+absent yes
+
+Soft: true
+present (+)
+present (+)
+present (−)
+absent
+absent
+
+Soft: Ŵ
++0.079 yes
++0.090 yes
+−0.212 yes
+absent yes
+absent yes
+
+Table 5.8 confirms the contemporaneous structure. The active edges have the correct
+signs, the state-specific isolated variable is absent, and LX has no contemporaneous
+parent.
+Table 5.9: Lagged edge recovery (Â, self-lags)
+Self-lag
+LX
+Γ
+Tin
+HR
+FR
+
+True
+0.90
+0.90
+0.90
+0.90
+0.50
+
+Hard: Â
+0.851
+0.854
+0.843
+0.854
+0.527
+
+Soft: Â
+0.851
+0.839
+0.838
+0.847
+0.495
+
+Table 5.9 reports the temporal self-lags. The four spectral variables are recovered
+close to the generating value of 0.90, while the radio luminosity self-lag is close to
+0.50. Thus, the method recovers temporal dependence as well as contemporaneous
+edges.
+All edge signs are correct, the isolated variable is excluded in each regime, and LX
+has no parent other than its own lag. The edge magnitudes are smaller than the
+53
+
+generating coefficients because of L1 soft-thresholding. This does not change the
+structural conclusions; unbiased effect magnitudes are estimated in Section 5.6.
+
+Figure 5.9: Recovered adjacency matrices against ground truth, for both the
+contemporaneous and lagged components.
+
+5.6
+
+Causal effect estimation and validation
+
+5.6.1
+
+Effect estimates
+
+Backdoor adjustment with the remaining parents gives more accurate effect estimates than the penalised Stage 2 weights, as expected from Section 4.8.
+The estimated causal effects are listed in Table 5.10.
+Table 5.10: Estimated causal effects, refutation outcomes, and robustness
+Placebo
+
+Subset
+
+Robustness
+
++0.70
+
+Random
+c.c.
++0.7110
+
++0.0016
+
++0.7116
+
++0.680
+
+−0.2964
+
+−0.30
+
+−0.2964
+
+−0.0003
+
+−0.2963
+
++0.473
+
+HR
+
+−0.3981
+
+−0.40
+
+−0.3981
+
++0.0011
+
+−0.3985
+
++0.556
+
+Hard
+
+FR (t−1)
+
++0.4983
+
++0.50
+
++0.4983
+
+−0.0006
+
++0.4979
+
++0.734
+
+Soft
+
+LX
+
++0.1799
+
++0.18
+
++0.1800
+
+−0.0006
+
++0.1800
+
++0.325
+
+Soft
+
+Γ
+
++0.1994
+
++0.20
+
++0.1993
+
+−0.0005
+
++0.1999
+
++0.338
+
+Soft
+
+Tin
+
+−0.3833
+
+−0.40
+
+−0.3833
+
+−0.0001
+
+−0.3829
+
++0.515
+
+Soft
+
+FR (t−1)
+
++0.5062
+
++0.50
+
++0.5063
+
+−0.0007
+
++0.5059
+
++0.728
+
+Regime
+
+Treatment Estimate
+
+True
+
+Hard
+
+LX
+
++0.7111
+
+Hard
+
+Γ
+
+Hard
+
+Every estimate is within 0.017 of its generating value. The random common-cause
+and subset tests leave the estimates almost unchanged, while the placebo test reduces
+every effect to within 0.002 of zero.
+54
+
+The effect estimates and refutation outcomes are visualised in Figure 5.10.
+
+Figure 5.10: Causal effect estimation and refutation battery. All reported
+tests pass.
+
+5.6.2
+
+Sensitivity to unobserved confounding
+
+The Cinelli–Hazlett robustness value is the minimum residual variance that an unobserved confounder must explain in both treatment and outcome to reduce an
+effect to zero. Robustness increases with effect magnitude, with Pearson correlation
+r = 0.888. The weaker Soft-State effects are therefore more sensitive to hidden
+confounding and require more cautious interpretation.
+
+Figure 5.11: Robustness to unobserved confounding as a function of estimated causal-effect magnitude.
+
+55
+
+5.6.3
+
+Graph falsification
+
+Falsification testing compares the conditional-independence implications of each recovered DAG with randomly permuted graphs. With 20 permutations, neither DAG
+is rejected at α = 0.05. One permutation falls within the Markov equivalence class
+for each regime. The Hard-State graph violates 15 of 22 local Markov conditions
+and the Soft-State graph violates 10 of 22; both outperform 95% of the alternatives.
+The falsification results are summarised in Table 5.11.
+Table 5.11: Graph falsification summary
+Regime
+Hard
+Soft
+
+LMC
+violations
+15 / 22
+10 / 22
+
+Better than
+
+Permutations
+in MEC
+1 / 20
+1 / 20
+
+95.0%
+95.0%
+
+p
+
+Verdict
+
+0.05
+0.05
+
+not rejected
+not rejected
+
+Limitation. With only 20 permutations, the p-value is restricted to multiples
+of 0.05. The result is therefore indicative rather than conclusive. At least 100
+permutations should be used before publication.
+
+5.7
+
+Summary of validation outcomes
+
+Table 5.12 consolidates the main validation outcomes.
+
+56
+
+Table 5.12: Summary of experimental findings
+Claim
+AR(1) term restores
+residual
+independence
+Boundary is
+localised accurately
+K is determined
+automatically
+Both gates are
+necessary
+Regimes are not
+separable by feature
+distribution
+Coefficients are
+recovered
+accurately
+Pooling produces a
+spurious structure
+Regime-specific
+graphs are
+recovered
+Effects survive
+refutation
+Robustness scales
+with effect size
+Recovered graphs
+are not falsified
+
+Evidence
+Ljung–Box p: < 10−16 → 0.211
+
+Outcome
+confirmed
+(Section 5.2)
+
+τ ∗ = 5004 vs. true 5000
+
+confirmed
+(Section 5.3.1)
+confirmed
+(Section 5.3.2)
+confirmed
+(Section 5.3.2)
+confirmed
+(Section 5.3.3)
+
+K = 2 recovered, not specified
+Chow passes at both leaves, BIC rejects
+k-means (given K = 2) ARI ≤ 0.012 for three
+of four variants versus LIRA 0.998
+Maximum error 0.017 across both regimes
+
+confirmed
+(Section 5.4)
+
+βΓ averaged to −0.029, ϕ inflated to 0.765
+
+confirmed
+(Section 5.4.1)
+confirmed
+(Section 5.5)
+
+All signs correct, isolated variable excluded in
+each
+Placebo < 0.002, other estimates unchanged
+r = 0.888
+Neither rejected at α = 0.05
+
+57
+
+confirmed
+(Section 5.6.1)
+confirmed
+(Section 5.6.2)
+indicative only
+(Section 5.6.3)
+
+Chapter 6
+Conclusion
+This thesis introduced LIRA (Latent Invariant Regime Analysis), a framework for
+finding hidden causal regimes in black hole accretion time series. The method uses
+the power-law physics of the Fundamental Plane and models the observations with a
+log-linear structural equation. Black hole mass is included in the intercept, while four
+spectral-state variables describe changes over time. LIRA finds regime boundaries
+through recursive partitioning, a lagged Chow F -test, and the Bayesian Information
+Criterion. DYNOTEARS then estimates the causal graph inside each regime. The
+results are checked with refutation tests, sensitivity analysis, and graph falsification.
+The synthetic experiments produced strong results. LIRA found the true boundary
+within four observations out of ten thousand. It also found the correct number of
+regimes. It recovered the structural coefficients to within 0.017 of their true values.
+The isolated variable in each regime was identified correctly. Clustering methods
+that ignored causal structure performed poorly. A pooled model also gave an averaged structure that matched neither regime.
+The two-gate design was useful. The Chow test alone would have created extra
+splits. The BIC gate rejected those unnecessary splits.
+Several limitations remain. The most important one is that every result in this thesis
+was obtained from synthetic data. The synthetic experiments show that LIRA works
+when the data follow the assumptions it was designed for. They do not show that
+it works on real black hole observations.
+Real X-ray light curves contain gaps. They also contain instrumental artifacts and
+sources of variability that the generator does not reproduce. The pipeline may
+behave differently once it is applied to them.
+The simulation also uses the same linear and piecewise-stationary structure that
+LIRA assumes during recovery. The tests are therefore favourable to the method by
+construction.
+Beyond the data itself, the model assumes linear and piecewise-stationary relationships. Real accretion systems may change in nonlinear and continuous ways instead.
+The identifiability result also depends on the collider structure used in this thesis.
+It may not hold for a model with causal chains between the spectral variables.
+The sensitivity analysis showed that the weaker coupling in the Soft State supports
+weaker causal claims than the Hard State.
+The next step is to move from synthetic validation to real data. This is the single
+most important piece of future work. Real observations are the only way to test
+whether the regimes LIRA finds correspond to physical accretion states. They also
+
+58
+
+show whether the regimes are artefacts of the simulation.
+The recommended sequence mirrors the phase structure used in this thesis. LIRA
+should first be applied to well-monitored sources with dense coverage. GRS 1915+105
+and Cygnus X-1 are good candidates. Their known state transitions provide an external check on the discovered boundaries.
+The analysis should then be extended to the WATCHDOG catalogue. It offers a
+broader sample of sources and longer baselines.
+In both cases, the discovered regimes should be compared against independently
+identified Hard and Soft States. The recovered causal graphs should be checked
+against the physical expectations discussed in Chapter 2.
+Any disagreement between the synthetic and real-data results should be treated as
+a finding in its own right. It would locate exactly where the simulation assumptions
+break down.
+Other useful steps include testing nonlinear mechanisms. LIRA can also be compared with CASTOR on the same benchmark. Future work can also allow causal
+structure to change gradually rather than at fixed boundaries.
+Together, these extensions would address the gap between the controlled synthetic
+validation reported here and the noisier, less predictable behaviour of real accretion
+systems.
+
+59
+
+Bibliography
+[1] G. C. Chow, “Tests of equality between sets of coefficients in two linear regressions,” Econometrica, vol. 28, no. 3, pp. 591–605, 1960.
+[2] N. I. Shakura and R. A. Sunyaev, “Black holes in binary systems. observational
+appearance,” Astronomy and Astrophysics, vol. 24, pp. 337–355, 1973.
+[3] G. Schwarz, “Estimating the dimension of a model,” Annals of Statistics,
+vol. 6, no. 2, pp. 461–464, 1978.
+[4] L. Hubert and P. Arabie, “Comparing partitions,” Journal of Classification,
+vol. 2, no. 1, pp. 193–218, 1985.
+[5] W. K. Newey and K. D. West, “A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix,” Econometrica, vol. 55,
+no. 3, pp. 703–708, 1987.
+[6] P. Spirtes, C. N. Glymour, and R. Scheines, Causation, Prediction, and Search,
+2nd. MIT Press, 2000.
+[7] F. Jansen et al., “Xmm-newton observatory. i. the spacecraft and operations,”
+Astronomy and Astrophysics, vol. 365, pp. L1–L6, 2001.
+[8] J. Frank, A. King, and D. Raine, Accretion Power in Astrophysics, 3rd. Cambridge University Press, 2002.
+[9] M. C. Weisskopf et al., “An overview of the performance and scientific results
+from the chandra x-ray observatory,” Publications of the Astronomical Society
+of the Pacific, vol. 114, no. 791, pp. 1–24, 2002.
+[10] A. Merloni, S. Heinz, and T. di Matteo, “A fundamental plane of black hole
+activity,” Monthly Notices of the Royal Astronomical Society, vol. 345, no. 4,
+pp. 1057–1076, 2003.
+[11] R. P. Fender, T. M. Belloni, and E. Gallo, “Towards a unified model for black
+hole x-ray binary jets,” Monthly Notices of the Royal Astronomical Society,
+vol. 355, no. 4, pp. 1105–1118, 2004.
+[12] L. Wasserman, All of Statistics: A Concise Course in Statistical Inference.
+Springer, 2004.
+[13] R. A. Remillard and J. E. McClintock, “X-ray properties of black-hole binaries,” Annual Review of Astronomy and Astrophysics, vol. 44, pp. 49–92,
+2006.
+[14] S. Shimizu, P. O. Hoyer, A. Hyvarinen, and A. Kerminen, “A linear nonGaussian acyclic model for causal discovery,” Journal of Machine Learning
+Research, vol. 7, no. 72, pp. 2003–2030, 2006.
+
+60
+
+[15] C. Done, M. Gierliński, and A. Kubota, “Modelling the behaviour of accretion
+flows in x-ray binaries: Everything you always wanted to know about accretion
+but were afraid to ask,” Astronomy and Astrophysics Review, vol. 15, no. 1,
+pp. 1–66, 2007.
+[16] T. Hastie, R. Tibshirani, and J. Friedman, “The elements of statistical learning,” 2009.
+[17] A. Hyvarinen, K. Zhang, S. Shimizu, and P. O. Hoyer, “Estimation of a structural vector autoregression model using non-Gaussianity,” Journal of Machine
+Learning Research, vol. 11, no. 56, pp. 1709–1731, 2010.
+[18] K. C. Gendreau, Z. Arzoumanian, and T. Okajima, “The neutron star interior
+composition explorer (nicer): An explorer mission of opportunity for soft x-ray
+timing spectroscopy,” in Proceedings of SPIE, vol. 8443, 2012.
+[19] K. P. Murphy, Machine Learning: A Probabilistic Perspective. MIT Press,
+2012.
+[20] J. Peters, P. Buhlmann, and N. Meinshausen, “Causal inference using invariant prediction: Identification and confidence intervals,” Journal of the Royal
+Statistical Society: Series B, vol. 78, no. 5, pp. 947–1012, 2016.
+[21] B. E. Tetarenko et al., “Watchdog: A comprehensive all-sky database of galactic black hole x-ray binaries,” The Astrophysical Journal Supplement Series,
+vol. 222, no. 2, p. 15, 2016.
+[22] J. Kuipers, P. Suter, and G. Moffa, “Efficient sampling and structure learning
+of Bayesian networks,” Journal of Computational and Graphical Statistics,
+vol. 31, pp. 639–650, 2018.
+[23] M. Tsagris, G. Borboudakis, V. Lagani, and I. Tsamardinos, “Constraintbased causal discovery with mixed data,” International Journal of Data Science and Analytics, vol. 6, pp. 19–30, 2018.
+[24] X. Zheng, B. Aragam, P. K. Ravikumar, and E. P. Xing, “DAGs with NO
+TEARS: Continuous optimization for structure learning,” in Advances in Neural Information Processing Systems (NeurIPS), vol. 31, 2018.
+[25] M. Arjovsky, L. Bottou, I. Gulrajani, and D. Lopez-Paz, “Invariant risk minimization,” arXiv preprint arXiv:1907.02893, 2019.
+[26] C. Glymour, K. Zhang, and P. Spirtes, “Review of causal discovery methods
+based on graphical models,” Frontiers in Genetics, vol. 10, 2019.
+[27] B. Huang, K. Zhang, P. Xie, M. Gong, E. P. Xing, and C. Glymour, “Specific and shared causal relation modeling and mechanism-based clustering,” in
+Advances in Neural Information Processing Systems (NeurIPS), vol. 32, 2019,
+pp. 13 520–13 531.
+[28] M. Nauta, D. Bucur, and C. Seifert, “Causal discovery with attention-based
+convolutional neural networks,” Machine Learning and Knowledge Extraction,
+vol. 1, no. 1, pp. 312–340, 2019.
+[29] B. Huang et al., “Causal discovery from heterogeneous/nonstationary data
+with independent changes,” Journal of Machine Learning Research, vol. 21,
+no. 89, pp. 1–53, 2020.
+
+61
+
+[30] J. Mooij and T. Claassen, “Constraint-based causal discovery using partial ancestral graphs in the presence of cycles,” in Proceedings of the 36th Conference
+on Uncertainty in Artificial Intelligence (UAI), 2020, pp. 1159–1168.
+[31] J. M. Mooij, S. Magliacane, and T. Claassen, “Joint causal inference from
+multiple contexts,” Journal of Machine Learning Research, vol. 21, no. 99,
+pp. 1–108, 2020.
+[32] B. Neal, Introduction to Causal Inference from a Machine Learning Perspective. Independently published, 2020.
+[33] R. Pamfil et al., “DYNOTEARS: Structure learning from time-series data,”
+in Proceedings of the 23rd International Conference on Artificial Intelligence
+and Statistics (AISTATS), 2020, pp. 1595–1605.
+[34] Y. Annadani et al., “Variational causal networks: Approximate Bayesian inference over causal structures,” arXiv preprint arXiv:2106.07635, 2021.
+[35] F. Castelletti and A. Mascaro, “Structural learning and estimation of joint
+causal effects among network-dependent variables,” Statistical Methods & Applications, vol. 30, pp. 1289–1314, 2021.
+[36] C. K. Assaad, E. Devijver, and E. Gaussier, “Survey and evaluation of causal
+discovery methods for time series,” Journal of Artificial Intelligence Research,
+vol. 73, pp. 767–819, 2022.
+[37] R. Perry, J. Von Kugelgen, and B. Schölkopf, “Causal discovery in heterogeneous environments under the sparse mechanism shift hypothesis,” in Advances in Neural Information Processing Systems (NeurIPS), vol. 35, 2022,
+pp. 10 904–10 917.
+[38] S. Absar, Y. Wu, and L. Zhang, “Neural time-invariant causal discovery from
+time series data,” in 2023 International Joint Conference on Neural Networks
+(IJCNN), 2023, pp. 1–8.
+[39] W. Chen, Y. Wu, R. Cai, Y. Chen, and Z. Hao, “CCSL: A causal structure
+learning method from multiple unknown environments,” IEEE Transactions
+on Neural Networks and Learning Systems, 2023, arXiv:2111.09666v2.
+[40] Y. Cheng et al., “CUTS+: High-dimensional causal discovery from irregular
+time-series,” arXiv preprint arXiv:2305.05890, 2023.
+[41] C. Zhang, L. Zhao, Z. Yin, and Z. Zhang, “Causalformer: Causal discoverybased transformer for multivariate time series forecasting,” in 2023 16th International Congress on Image and Signal Processing, BioMedical Engineering
+and Informatics (CISP-BMEI), 2023, pp. 1–6.
+[42] S. Varambally, Y.-A. Ma, and R. Yu, “Discovering mixtures of structural
+causal models from time series data,” in Proceedings of the 41st International
+Conference on Machine Learning (ICML), ser. Proceedings of Machine Learning Research, vol. 235, 2024, pp. 49 171–49 202.
+[43] Y. Zhao and J. Jia, NOTEARS-M: Causal Bayesian network structure learning of mixed type data and its application in identifying disease risk factors,
+Preprint. DOI: 10.21203/rs.3.rs-5644505/v1, 2024.
+
+62
+
+[44] Y. Cheng, B. Lyu, W. Xing, and Z. Zhu, “DyCAST: Learning dynamic causal
+structure from time series,” in Proceedings of the 13th International Conference
+on Learning Representations (ICLR 2025), 2025.
+[45] S. Faltenbacher, J. Wahl, R. J. Herman, and J. Runge, “Internal incoherency
+scores for constraint-based causal discovery algorithms,” arXiv:2502.14719,
+2025.
+[46] W. Li, Q. Zhang, and X. Wang, “Interpretable clustering with adaptive heterogeneous causal structure learning in mixed observational data,” arXiv preprint
+arXiv:2509.04415v2, 2025, Preprint; not yet peer-reviewed.
+[47] S. Liu, Y. Qian, J. Li, H. Cheng, and F. Li, “Hybrid causal identification and
+causal mechanism clustering,” arXiv preprint arXiv:2507.21792, 2025.
+[48] A. Rahmani and P. Frossard, “Causal temporal regime structure learning,” in
+Proceedings of the 28th International Conference on Artificial Intelligence and
+Statistics (AISTATS 2025), ser. Proceedings of Machine Learning Research,
+vol. 258, PMLR, 2025, pp. 4546–4554.
+[49] A. Sadeghi, A. Gopal, and M. Fesanghary, “Causal discovery from nonstationary time series,” International Journal of Data Science and Analytics, vol. 19,
+pp. 33–59, 2025.
+[50] J. Zhu, K. Li, Z. Mai, H. Xie, W. AbdAlmageed, and Z. Abraham, “Attentiondriven causal discovery: From transformer matrices to Granger causal graphs
+for non-stationary time-series data,” in ICASSP 2025, 2025, pp. 1–5.
+
+63
+
+
